@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/IVBackdrop"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRoundedBottom"
+        app:srcCompat="@drawable/food1" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/IVProfilePicture"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.094"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+        app:srcCompat="@drawable/my_profile_square"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp" />
+
+    <TextView
+        android:id="@+id/TVName"
+        android:layout_width="147dp"
+        android:layout_height="25dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="Fitri Makmor"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IVProfilePicture"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <TextView
+        android:id="@+id/TVFollowing"
+        android:layout_width="89dp"
+        android:layout_height="24dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="72 Following"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVName"
+        app:layout_constraintVertical_bias="0.018" />
+
+    <TextView
+        android:id="@+id/TVFollowers"
+        android:layout_width="85dp"
+        android:layout_height="26dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="37 Followers"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.331"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVName"
+        app:layout_constraintVertical_bias="0.016" />
+
+    <TextView
+        android:id="@+id/TVSeparator"
+        android:layout_width="26dp"
+        android:layout_height="21dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="||"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVName"
+        app:layout_constraintVertical_bias="0.018" />
+
+    <Button
+        android:id="@+id/BtnCat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="576dp"
+        android:text="@string/meow_string"
+        app:icon="@drawable/ic_cat"
+        app:iconGravity="top"
+        app:iconSize="40dp"
+        app:iconTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BtnRecommendations"
+        android:layout_width="130dp"
+        android:layout_height="32dp"
+        android:background="@drawable/yellow_button"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/recommendations"
+        android:textAllCaps="false"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.770"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVFollowing"
+        app:layout_constraintVertical_bias="0.041" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BtnLogout"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:background="@drawable/red_yellow_button"
+        android:drawableLeft="@drawable/ic_logout_svgrepo_com"
+        android:drawablePadding="-7dp"
+        android:drawableTint="@color/Y3"
+        android:fontFamily="@font/montserrat"
+        android:includeFontPadding="false"
+        android:paddingRight="0dp"
+        android:text="@string/logout"
+        android:textAllCaps="false"
+        android:textColor="@color/Y3"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IVBackdrop"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BtnEditProfile"
+        android:layout_width="130dp"
+        android:layout_height="32dp"
+        android:background="@drawable/yellow_button"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/edit_profile"
+        android:textAllCaps="false"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.240"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVFollowers"
+        app:layout_constraintVertical_bias="0.038" />
+
+    <Button
+        android:id="@+id/BtnDog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="576dp"
+        android:text="@string/wang_string"
+        app:icon="@drawable/ic_dog"
+        app:iconGravity="top"
+        app:iconSize="40dp"
+        app:iconTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BtnHedgehog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="576dp"
+        android:text="@string/sniffle_string"
+        app:icon="@drawable/ic_hedgehog"
+        app:iconGravity="top"
+        app:iconSize="40dp"
+        app:iconTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
