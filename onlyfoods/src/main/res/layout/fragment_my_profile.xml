@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".MyProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -26,6 +26,7 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:background="#00FFFFFF"
+        android:padding="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,7 @@
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
         app:srcCompat="@drawable/my_profile_square"
         app:strokeColor="@color/white"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="3dp" />
 
     <TextView
         android:id="@+id/TVName"

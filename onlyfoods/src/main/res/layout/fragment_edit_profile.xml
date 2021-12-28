@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CSEditProfile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/R5"
+    tools:context=".EditProfileFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <View
+        android:id="@+id/VEditName"
+        android:layout_width="370dp"
+        android:layout_height="101dp"
+        android:background="@drawable/rounded_rectangle_y1_50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/IVEditProfilePicture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.756"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/IVEditProfilePicture"
+        app:layout_constraintVertical_bias="0.583" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/IVEditProfilePicture"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:background="#00FFFFFF"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+        app:srcCompat="@drawable/my_profile_square"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp" />
+
+    <ImageButton
+        android:id="@+id/IBEditName"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/circular_red_yellow_button"
+        android:contentDescription="@string/edit_profile"
+        android:src="@drawable/ic_pencil_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/VEditName"
+        app:layout_constraintEnd_toEndOf="@+id/VEditName"
+        app:layout_constraintHorizontal_bias="0.391"
+        app:layout_constraintStart_toStartOf="@+id/VEditName"
+        app:layout_constraintTop_toTopOf="@+id/VEditName"
+        app:tint="@color/Y4" />
+
+    <ImageButton
+        android:id="@+id/IBEditProfilePicture"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/circular_red_yellow_button"
+        android:contentDescription="@string/edit_profile"
+        android:src="@drawable/ic_camera_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/IVEditProfilePicture"
+        app:layout_constraintEnd_toEndOf="@+id/IVEditProfilePicture"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/IVEditProfilePicture"
+        app:layout_constraintTop_toTopOf="@+id/IVEditProfilePicture"
+        app:layout_constraintVertical_bias="1.0"
+        app:tint="@color/Y4" />
+
+    <TextView
+        android:id="@+id/TVEditName"
+        android:layout_width="130dp"
+        android:layout_height="26dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="Fitri Makmor"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/VEditName"
+        app:layout_constraintEnd_toEndOf="@+id/VEditName"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="@+id/VEditName"
+        app:layout_constraintTop_toTopOf="@+id/VEditName"
+        app:layout_constraintVertical_bias="0.506" />
+
+    <View
+        android:id="@+id/VEditBackdrop"
+        android:layout_width="258dp"
+        android:layout_height="275dp"
+        android:background="@drawable/rounded_rectangle_y1_90dp"
+        app:layout_constraintBottom_toBottomOf="@+id/IVEditBackdrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/IVEditBackdrop"
+        app:layout_constraintVertical_bias="0.586" />
+
+    <TextView
+        android:id="@+id/TVEditBackdrop"
+        android:layout_width="130dp"
+        android:layout_height="26dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="@string/backdrop"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/VEditBackdrop"
+        app:layout_constraintEnd_toEndOf="@+id/VEditBackdrop"
+        app:layout_constraintStart_toStartOf="@+id/VEditBackdrop"
+        app:layout_constraintTop_toTopOf="@+id/VEditBackdrop"
+        app:layout_constraintVertical_bias="0.049" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/IVEditBackdrop"
+        android:layout_width="380dp"
+        android:layout_height="200dp"
+        android:padding="3dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.508"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRoundedSmall"
+        app:srcCompat="@drawable/food1"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BtnEditBackdrop"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:background="@drawable/red_yellow_rounded_border_button"
+        android:drawableLeft="@drawable/ic_camera_20dp"
+        android:drawablePadding="-7dp"
+        android:drawableTint="@color/Y3"
+        android:fontFamily="@font/montserrat"
+        android:includeFontPadding="false"
+        android:paddingLeft="10dp"
+        android:paddingRight="0dp"
+        android:text="@string/edit"
+        android:textAllCaps="false"
+        android:textColor="@color/Y3"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/IVEditBackdrop"
+        app:layout_constraintEnd_toEndOf="@+id/IVEditBackdrop"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="@+id/IVEditBackdrop"
+        app:layout_constraintTop_toTopOf="@+id/IVEditBackdrop"
+        app:layout_constraintVertical_bias="0.88" />
+
+    <View
+        android:id="@+id/VAdd"
+        android:layout_width="414dp"
+        android:layout_height="150dp"
+        android:background="@drawable/rounded_top_rectangle_y1_90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998" />
+
+    <TextView
+        android:id="@+id/TVAdd"
+        android:layout_width="130dp"
+        android:layout_height="26dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="@string/add"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/VAdd"
+        app:layout_constraintEnd_toEndOf="@+id/VAdd"
+        app:layout_constraintStart_toStartOf="@+id/VAdd"
+        app:layout_constraintTop_toTopOf="@+id/VAdd"
+        app:layout_constraintVertical_bias="0.123" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BtnAddRecentPlace"
+        android:layout_width="150dp"
+        android:layout_height="73dp"
+        android:background="@drawable/red_yellow_rounded_left_button"
+        android:drawableTop="@drawable/ic_restaurant_30dp"
+        android:drawablePadding="-10dp"
+        android:drawableTint="@color/Y3"
+        android:fontFamily="@font/montserrat"
+        android:includeFontPadding="false"
+        android:paddingTop="10dp"
+        android:text="@string/recent_place"
+        android:textAllCaps="false"
+        android:textColor="@color/Y3"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/VAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.203"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/VAdd"
+        app:layout_constraintVertical_bias="0.688" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BtnAddReview"
+        android:layout_width="150dp"
+        android:layout_height="73dp"
+        android:background="@drawable/red_yellow_rounded_right_button"
+        android:drawableTop="@drawable/ic_review_30dp"
+        android:drawablePadding="-10dp"
+        android:drawableTint="@color/Y3"
+        android:fontFamily="@font/montserrat"
+        android:includeFontPadding="false"
+        android:paddingTop="10dp"
+        android:text="@string/review"
+        android:textAllCaps="false"
+        android:textColor="@color/Y3"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/VAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/VAdd"
+        app:layout_constraintVertical_bias="0.688" /><![CDATA[
+
+    />
+
+
+
+
+
+
+
+
+]]>
+</androidx.constraintlayout.widget.ConstraintLayout>

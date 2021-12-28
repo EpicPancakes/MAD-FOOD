@@ -7,6 +7,12 @@
     <string name="logout">Logout</string>
     <string name="recent_places">Recent Places</string>
     <string name="reviews">Reviews</string>
+    <string name="backdrop">Backdrop</string>
+    <string name="edit">Edit</string>
+    <string name="add">Add</string>
+    <string name="recent_place">Recent Place</string>
+    <string name="review">Review</string>
+
 
     <string name="meow_string">Meow</string>
     <string name="wang_string">Wang</string>

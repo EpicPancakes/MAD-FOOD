@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/DestHome"
+        android:id="@+id/DestMyProfile"
         android:icon="@android:drawable/ic_menu_agenda"
         android:title="@string/home_tb_string" />
     <item
