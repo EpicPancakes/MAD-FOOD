@@ -101,21 +101,6 @@
         app:layout_constraintTop_toBottomOf="@+id/TVName"
         app:layout_constraintVertical_bias="0.018" />
 
-    <Button
-        android:id="@+id/BtnCat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="576dp"
-        android:text="@string/meow_string"
-        app:icon="@drawable/ic_cat"
-        app:iconGravity="top"
-        app:iconSize="40dp"
-        app:iconTint="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/BtnRecommendations"
         android:layout_width="130dp"
@@ -173,25 +158,10 @@
         app:layout_constraintVertical_bias="0.038" />
 
     <Button
-        android:id="@+id/BtnDog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="576dp"
-        android:text="@string/wang_string"
-        app:icon="@drawable/ic_dog"
-        app:iconGravity="top"
-        app:iconSize="40dp"
-        app:iconTint="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/BtnHedgehog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="576dp"
+        android:layout_marginTop="520dp"
         android:text="@string/sniffle_string"
         app:icon="@drawable/ic_hedgehog"
         app:iconGravity="top"
@@ -199,6 +169,36 @@
         app:iconTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BtnCat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="520dp"
+        android:text="@string/meow_string"
+        app:icon="@drawable/ic_cat"
+        app:iconGravity="top"
+        app:iconSize="40dp"
+        app:iconTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BtnDog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="520dp"
+        android:text="@string/wang_string"
+        app:icon="@drawable/ic_dog"
+        app:iconGravity="top"
+        app:iconSize="40dp"
+        app:iconTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
