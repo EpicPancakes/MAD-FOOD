@@ -13,6 +13,7 @@
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/app/src/main/res/menu/menu_bottom.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/app/src/main/res/menu/menu_side.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/circular_red_yellow_button.xml" value="0.23055555555555557" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/gray_border.xml" value="0.11197916666666667" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/red_yellow_button.xml" value="0.2361111111111111" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/red_yellow_button_default.xml" value="0.2361111111111111" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/red_yellow_button_focused.xml" value="0.2361111111111111" />
@@ -38,7 +39,11 @@
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_edit_profile.xml" value="0.30082796688132474" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_hedgehog.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_my_profile.xml" value="0.264" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_my_profile.xml" value="0.2" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_recent_places.xml" value="0.6045548654244306" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_recent_places_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_reviews.xml" value="0.6" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_reviews_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/header_layout.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/menu/menu_bottom.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />

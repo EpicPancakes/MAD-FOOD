@@ -157,49 +157,50 @@
         app:layout_constraintTop_toBottomOf="@+id/TVFollowers"
         app:layout_constraintVertical_bias="0.038" />
 
-    <Button
-        android:id="@+id/BtnHedgehog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="520dp"
-        android:text="@string/sniffle_string"
-        app:icon="@drawable/ic_hedgehog"
-        app:iconGravity="top"
-        app:iconSize="40dp"
-        app:iconTint="@null"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/VPEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="267dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/VHorizontalLine"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/BtnCat"
-        android:layout_width="wrap_content"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/TLEditProfile"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="520dp"
-        android:text="@string/meow_string"
-        app:icon="@drawable/ic_cat"
-        app:iconGravity="top"
-        app:iconSize="40dp"
-        app:iconTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/VHorizontalLine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/BtnDog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="520dp"
-        android:text="@string/wang_string"
-        app:icon="@drawable/ic_dog"
-        app:iconGravity="top"
-        app:iconSize="40dp"
-        app:iconTint="@null"
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/TIRecentPlaces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recent_places" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/TIReviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reviews" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <View
+        android:id="@+id/VHorizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/IVBackdrop"
+        app:layout_constraintVertical_bias="0.57" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
