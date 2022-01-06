@@ -91,7 +91,7 @@
         android:layout_height="21dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:text="||"
+        android:text="@string/separator"
         android:textColor="@color/gray"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -157,34 +157,23 @@
         app:layout_constraintTop_toBottomOf="@+id/TVFollowers"
         app:layout_constraintVertical_bias="0.038" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/VPEditProfile"
-        android:layout_width="match_parent"
-        android:layout_height="267dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/VHorizontalLine"
-        app:layout_constraintVertical_bias="1.0" />
-
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/TLEditProfile"
+        android:id="@+id/TLFollows"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/VHorizontalLine"
+        app:layout_constraintBottom_toTopOf="@+id/HLMyProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/TIRecentPlaces"
+            android:id="@+id/TIFollowers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/recent_places" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/TIReviews"
+            android:id="@+id/TIFollowing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reviews" />
@@ -192,7 +181,7 @@
     </com.google.android.material.tabs.TabLayout>
 
     <View
-        android:id="@+id/VHorizontalLine"
+        android:id="@+id/HLMyProfile"
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
         android:background="@android:color/darker_gray"
@@ -202,5 +191,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/IVBackdrop"
         app:layout_constraintVertical_bias="0.57" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/VPFollows"
+        android:layout_width="match_parent"
+        android:layout_height="267dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HLMyProfile"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

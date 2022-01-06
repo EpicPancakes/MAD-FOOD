@@ -33,6 +33,9 @@
         <action
             android:id="@+id/NextToEditProfile"
             app:destination="@id/DestEditProfile" />
+        <action
+            android:id="@+id/NextToFollows"
+            app:destination="@id/DestFollows" />
     </fragment>
     <fragment
         android:id="@+id/DestHedgehog"
@@ -44,4 +47,9 @@
         android:name="com.example.onlyfoods.EditProfileFragment"
         android:label="@string/edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/DestFollows"
+        android:name="com.example.onlyfoods.FollowsFragment"
+        android:label="Follows"
+        tools:layout="@layout/fragment_follows" />
 </navigation>

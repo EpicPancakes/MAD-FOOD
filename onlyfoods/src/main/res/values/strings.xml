@@ -12,7 +12,9 @@
     <string name="add">Add</string>
     <string name="recent_place">Recent Place</string>
     <string name="review">Review</string>
-
+    <string name="separator">||</string>
+    <string name="follow">Follow</string>
+    <string name="days_ago">days ago</string>
 
     <string name="meow_string">Meow</string>
     <string name="wang_string">Wang</string>
