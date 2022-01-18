@@ -36,7 +36,8 @@
             android:background="@color/R4"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
-            app:menu="@menu/menu_bottom" />
+            app:menu="@menu/menu_bottom"
+            app:labelVisibilityMode="unlabeled"/>
 
     </LinearLayout>
 
