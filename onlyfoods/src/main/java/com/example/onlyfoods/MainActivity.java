@@ -72,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNav, navController);
     }
 
-    // delete this
-    private void setupNavMenu(NavController navController){
-        //NavigationView sideNav = findViewById(R.id.sideNav);
-        //NavigationUI.setupWithNavController(sideNav, navController);
-    }
+
+//    private void setupNavMenu(NavController navController){
+//        NavigationView sideNav = findViewById(R.id.sideNav);
+//        NavigationUI.setupWithNavController(sideNav, navController);
+//    }
 
 }
