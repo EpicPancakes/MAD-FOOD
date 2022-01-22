@@ -6,8 +6,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onlyfoods.databinding.FragmentFollowersBinding;
-import com.example.onlyfoods.databinding.FragmentRecentPlacesBinding;
+import com.example.onlyfoods.databinding.FragmentFollowersItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new ViewHolder(FragmentFollowersBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(FragmentFollowersItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
 
@@ -48,7 +47,7 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
         public final TextView mContentView;
         public PlaceholderItem mItem;
 
-        public ViewHolder(FragmentFollowersBinding binding) {
+        public ViewHolder(FragmentFollowersItemBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber;
             mContentView = binding.content;

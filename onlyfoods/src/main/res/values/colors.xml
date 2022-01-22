@@ -19,7 +19,7 @@
     <color name="R3">#D83148</color>
     <color name="R4">#AA3758</color>
     <color name="R5">#BB8E96</color>
-    <color name="positive_rating">#FFFFFFFF</color>
-    <color name="moderate_rating">#FFFFFFFF</color>
-    <color name="negative_rating">#FFFFFFFF</color>
+    <color name="positive_rating">#4DC124</color>
+    <color name="moderate_rating">#C5C903</color>
+    <color name="negative_rating">#C12E24</color>
 </resources>

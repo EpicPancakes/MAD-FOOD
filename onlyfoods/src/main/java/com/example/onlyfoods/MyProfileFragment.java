@@ -122,6 +122,15 @@ public class MyProfileFragment extends Fragment {
             }
         };
         BtnEditProfile.setOnClickListener(OCLEditProfile);
+
+        Button BtnRecommendations = view.findViewById(R.id.BtnRecommendations);
+        View.OnClickListener OCLRecommendations = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.NextToRecommendations);
+            }
+        };
+        BtnRecommendations.setOnClickListener(OCLRecommendations);
     }
 
 }

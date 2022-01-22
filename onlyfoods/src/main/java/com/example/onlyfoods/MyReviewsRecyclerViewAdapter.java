@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
-import com.example.onlyfoods.databinding.FragmentReviewsBinding;
+import com.example.onlyfoods.databinding.FragmentReviewsItemBinding;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviews
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new ViewHolder(FragmentReviewsBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(FragmentReviewsItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
 
@@ -48,7 +48,7 @@ public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviews
         public final TextView mContentView;
         public PlaceholderItem mItem;
 
-        public ViewHolder(FragmentReviewsBinding binding) {
+        public ViewHolder(FragmentReviewsItemBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber2;
             mContentView = binding.content2;

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
-import com.example.onlyfoods.databinding.FragmentRecentPlacesBinding;
+import com.example.onlyfoods.databinding.FragmentRecentPlacesItemBinding;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new ViewHolder(FragmentRecentPlacesBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(FragmentRecentPlacesItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
 
@@ -48,7 +48,7 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
         public final TextView mContentView;
         public PlaceholderItem mItem;
 
-        public ViewHolder(FragmentRecentPlacesBinding binding) {
+        public ViewHolder(FragmentRecentPlacesItemBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber;
             mContentView = binding.content;
