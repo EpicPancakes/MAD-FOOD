@@ -25,7 +25,7 @@ public class Recommendation {
         ArrayList<Recommendation> contacts = new ArrayList<Recommendation>();
 
         for (int i = 1; i <= numRecommendations; i++) {
-            contacts.add(new Recommendation("Person " + ++lastRecommendationId, i <= numRecommendations / 2));
+            contacts.add(new Recommendation( ""+ ++lastRecommendationId, i <= numRecommendations / 2));
         }
 
         return contacts;

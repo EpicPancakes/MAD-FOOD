@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CLRecommendations"
     android:layout_width="match_parent"
-    android:layout_height="350dp"
-    android:background="@drawable/gray_border">
+    android:layout_height="350dp">
 
 
     <FrameLayout
         android:id="@+id/FLRecommendation"
-        android:layout_width="331dp"
+        android:layout_width="370dp"
         android:layout_height="252dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,8 +19,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/IVRecommendationImage"
-            android:layout_width="331dp"
-            android:layout_height="252dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="#00FFFFFF"
             android:padding="3dp"
             android:scaleType="fitXY"
@@ -43,12 +42,23 @@
     <View
         android:id="@+id/VRecommendationBtm"
         style="@style/roundedImageViewRoundedBottom"
-        android:layout_width="331dp"
+        android:layout_width="370dp"
         android:layout_height="80dp"
         android:background="@drawable/background_with_shadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FLRecommendation" />
+
+    <View
+        android:id="@+id/VRating"
+        android:layout_width="30dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/positive_rating"
+        app:layout_constraintBottom_toBottomOf="@+id/VRecommendationBtm"
+        app:layout_constraintEnd_toEndOf="@+id/VRecommendationBtm"
+        app:layout_constraintTop_toBottomOf="@id/FLRecommendation"
+        app:layout_constraintVertical_bias="0.142" />
 
     <TextView
         android:id="@+id/item_number"
@@ -63,17 +73,6 @@
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="@+id/VRating"
         app:layout_constraintTop_toTopOf="@+id/VRating" />
-
-    <View
-        android:id="@+id/VRating"
-        android:layout_width="30dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/positive_rating"
-        app:layout_constraintBottom_toBottomOf="@+id/VRecommendationBtm"
-        app:layout_constraintEnd_toEndOf="@+id/VRecommendationBtm"
-        app:layout_constraintTop_toBottomOf="@id/FLRecommendation"
-        app:layout_constraintVertical_bias="0.142" />
 
     <TextView
         android:id="@+id/content"
@@ -105,6 +104,20 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
         android:text="Recommended By"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/VRecommendationBtm"
+        app:layout_constraintTop_toBottomOf="@id/FLRecommendation" />
+
+    <TextView
+        android:id="@+id/TVRecommendedBy2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Koh Guan Po"
         android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold"
