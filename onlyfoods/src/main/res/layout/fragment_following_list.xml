@@ -8,4 +8,4 @@
     android:layout_height="match_parent"
     app:layoutManager="LinearLayoutManager"
     tools:context=".RecentPlacesFragment"
-    tools:listitem="@layout/fragment_following" />
+    tools:listitem="@layout/fragment_following_item" />
