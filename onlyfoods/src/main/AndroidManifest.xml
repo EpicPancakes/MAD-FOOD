@@ -10,11 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlyFoods">
         <activity
-            android:name="com.example.onlyfoods.MainActivity"
+            android:name=".leyhangDiscover"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
-<!--            <meta-data-->
-<!--                android:name="android.support.PARENT_ACTIVITY"-->
-<!--                android:value="com.example.onlyfoods.MainActivity" />-->
+
+            <!-- <meta-data -->
+            <!-- android:name="android.support.PARENT_ACTIVITY" -->
+            <!-- android:value="com.example.onlyfoods.MainActivity" /> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
