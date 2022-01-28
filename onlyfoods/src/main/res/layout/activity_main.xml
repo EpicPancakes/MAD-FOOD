@@ -13,13 +13,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/TBMainAct"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="?attr/colorPrimary"-->
-<!--            android:minHeight="?attr/actionBarSize" />-->
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/NHFMain"
             android:name="androidx.navigation.fragment.NavHostFragment"

@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -92,52 +95,21 @@ public class RecommendationsFragment extends Fragment {
         rvRecommendations.setAdapter(adapter);
         // Set layout manager to position the items
         rvRecommendations.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        // That's all!
-//
-//        tabLayout = view.findViewById(R.id.TLFollows);
-//        viewPager = view.findViewById(R.id.VPFollows);
-//        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), getLifecycle());
-//        adapter.addFragment(new FollowersFragment(), "Followers");
-//        adapter.addFragment(new FollowingFragment(), "Following");
-//        viewPager.setAdapter(adapter);
-//        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-//            if(position == 0)
-//                tab.setText("Followers");
-//            else
-//                tab.setText("Following");
-//        }).attach();
 
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
 
-//        Button BtnCat = view.findViewById(R.id.BtnCat);
-//        View.OnClickListener OCLCat = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Navigation.findNavController(view).navigate(R.id.DestCat);
-//            }
-//        };
-//        BtnCat.setOnClickListener(OCLCat);
-//
-//        Button BtnDog = view.findViewById(R.id.BtnDog);
-//        View.OnClickListener OCLDog = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Navigation.findNavController(view).navigate(R.id.NextToDog);
-//            }
-//        };
-//        BtnDog.setOnClickListener(OCLDog);
-//
-//        Button BtnHedgehog = view.findViewById(R.id.BtnHedgehog);
-//        View.OnClickListener OCLHedgehog = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Navigation.findNavController(view).navigate(R.id.NextToHedgehog);
-//            }
-//        };
-//        BtnHedgehog.setOnClickListener(OCLHedgehog);
+        FloatingActionButton BtnAddRecommendation = view.findViewById(R.id.FABAddRecommendation);
+        View.OnClickListener OCLAddRecommendation = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.NextToAddRecommendation);
+            }
+        };
+        BtnAddRecommendation.setOnClickListener(OCLAddRecommendation);
+
     }
 
 }
