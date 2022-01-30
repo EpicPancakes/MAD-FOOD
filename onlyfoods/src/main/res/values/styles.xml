@@ -27,4 +27,16 @@
         <item name="cornerSizeBottomLeft">25%</item>
         <item name="cornerSizeBottomRight">25%</item>
     </style>
+    <style name="roundedImageViewRoundedTop">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopLeft">25%</item>
+        <item name="cornerSizeTopRight">25%</item>
+    </style>
+    <style name="roundedImageViewRoundedTop20">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeTopRight">20dp</item>
+    </style>
 </resources>

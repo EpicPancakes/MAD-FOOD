@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CLFollows"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="Add Recommendation"
+    tools:context=".FollowsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVRecommendations"
+        android:name="com.example.onlyfoods.RecentPlacesFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".RecentPlacesFragment"
+        tools:listitem="@layout/fragment_recommendations_item" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/FABAddRecommendation"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/circular_red_yellow_button"
+        android:backgroundTint="@color/R3"
+        android:clickable="true"
+        android:foregroundTint="@color/Y2"
+        android:src="@drawable/ic_user_60dp"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/Y3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

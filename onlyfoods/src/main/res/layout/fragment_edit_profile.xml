@@ -132,7 +132,7 @@
         app:strokeWidth="3dp" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/BtnEditBackdrop"
+        android:id="@+id/BTNEditBackdrop"
         android:layout_width="75dp"
         android:layout_height="30dp"
         android:background="@drawable/red_yellow_rounded_border_button"
@@ -183,7 +183,7 @@
         app:layout_constraintVertical_bias="0.123" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/BtnAddRecentPlace"
+        android:id="@+id/BTNAddRecentPlace"
         android:layout_width="150dp"
         android:layout_height="73dp"
         android:background="@drawable/red_yellow_rounded_left_button"
@@ -205,7 +205,7 @@
         app:layout_constraintVertical_bias="0.688" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/BtnAddReview"
+        android:id="@+id/BTNAddReview"
         android:layout_width="150dp"
         android:layout_height="73dp"
         android:background="@drawable/red_yellow_rounded_right_button"

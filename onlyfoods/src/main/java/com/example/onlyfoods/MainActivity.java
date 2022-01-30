@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNav, navController);
     }
 
+
 //    private void setupNavMenu(NavController navController){
 //        NavigationView sideNav = findViewById(R.id.sideNav);
 //        NavigationUI.setupWithNavController(sideNav, navController);
