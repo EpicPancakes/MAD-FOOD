@@ -3,6 +3,7 @@ package com.example.onlyfoods.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,9 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.onlyfoods.DAOs.DAORecentPlace;
+import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.MyRecentPlacesRecyclerViewAdapter;
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -25,6 +33,10 @@ public class RecentPlacesFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    DAORecentPlace daoRP;
+    MyRecentPlacesRecyclerViewAdapter adapter;
+    ArrayList<RecentPlace> rps = new ArrayList<>();
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -66,8 +78,33 @@ public class RecentPlacesFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyRecentPlacesRecyclerViewAdapter(PlaceholderContent.ITEMS));
+            adapter = new MyRecentPlacesRecyclerViewAdapter(PlaceholderContent.ITEMS, rps);
+            recyclerView.setAdapter(adapter);
         }
+
+        daoRP = new DAORecentPlace();
+        loadData();
+
         return view;
+    }
+
+    private void loadData()
+    {
+        daoRP.get().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot data : snapshot.getChildren())
+                {
+                    RecentPlace rp = data.getValue(RecentPlace.class);
+                    rps.add(rp);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

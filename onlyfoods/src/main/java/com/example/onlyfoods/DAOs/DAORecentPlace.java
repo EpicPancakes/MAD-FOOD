@@ -3,8 +3,10 @@ package com.example.onlyfoods.DAOs;
 
 import com.example.onlyfoods.Models.RecentPlace;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.HashMap;
 
@@ -29,6 +31,14 @@ public class DAORecentPlace {
 
     public Task<Void> remove(String key){
         return databaseReference.child(key).removeValue();
+    }
+
+    public Query get(){
+        return databaseReference.orderByKey();
+    }
+
+    public Task<DataSnapshot> getAll(){
+        return databaseReference.get();
     }
 
 }

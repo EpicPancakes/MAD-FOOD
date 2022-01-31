@@ -56,7 +56,7 @@
         app:srcCompat="@drawable/rest2" />
 
     <TextView
-        android:id="@+id/TVRecentRestaurantName"
+        android:id="@+id/TVRPRestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -70,7 +70,7 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <TextView
-        android:id="@+id/TVReviewsNum"
+        android:id="@+id/TVRPCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -96,7 +96,7 @@
         app:srcCompat="@drawable/ic_clock_30dp" />
 
     <TextView
-        android:id="@+id/TVRecentComment"
+        android:id="@+id/TVRPDaysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -116,13 +116,14 @@
         android:text="@string/days_ago"
         android:textColor="@color/gray"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TVRecentComment"
+        app:layout_constraintStart_toEndOf="@+id/TVRPDaysAgo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.6" />
 
     <TextView
-        android:id="@+id/TVRecentPlacesCity"
+        android:id="@+id/TVRPCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -135,13 +136,14 @@
         app:layout_constraintVertical_bias="0.85" />
 
     <TextView
-        android:id="@+id/TVRecentPlacesState"
+        android:id="@+id/TVRPState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:text="Selangor"
         android:textColor="@color/gray"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/TVRecentPlacesComma"
         app:layout_constraintTop_toTopOf="parent"
@@ -154,8 +156,9 @@
         android:text=","
         android:textColor="@color/gray"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TVRecentPlacesCity"
+        app:layout_constraintStart_toEndOf="@+id/TVRPCity"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.85" />
 
