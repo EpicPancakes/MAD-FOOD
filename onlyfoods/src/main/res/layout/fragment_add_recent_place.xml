@@ -5,7 +5,7 @@
     android:id="@+id/CLAddRecentPlace"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddRecentPlace">
+    tools:context=".Fragments.AddRecentPlaceFragment">
 
     <TextView
         android:id="@+id/TVSelectRestaurantRP"

@@ -5,7 +5,7 @@
     android:id="@+id/CSDog"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DogFragment">
+    tools:context=".Fragments.DogFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

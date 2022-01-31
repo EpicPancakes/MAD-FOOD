@@ -1,4 +1,4 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.onlyfoods.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AboutAppFragment#newInstance} factory method to
+ * Use the {@link HedgehogFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AboutAppFragment extends Fragment {
+public class HedgehogFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class AboutAppFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AboutAppFragment() {
+    public HedgehogFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class AboutAppFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AboutAppFragment.
+     * @return A new instance of fragment Hedgehog.
      */
     // TODO: Rename and change types and number of parameters
-    public static AboutAppFragment newInstance(String param1, String param2) {
-        AboutAppFragment fragment = new AboutAppFragment();
+    public static HedgehogFragment newInstance(String param1, String param2) {
+        HedgehogFragment fragment = new HedgehogFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class AboutAppFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_app, container, false);
+        return inflater.inflate(R.layout.fragment_hedgehog, container, false);
     }
 }

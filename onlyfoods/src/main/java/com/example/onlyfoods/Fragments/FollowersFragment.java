@@ -1,23 +1,24 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.example.onlyfoods.FollowersRecyclerViewAdapter;
+import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
 
 /**
  * A fragment representing a list of Items.
  */
-public class RecentPlacesFragment extends Fragment {
+public class FollowersFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -28,13 +29,13 @@ public class RecentPlacesFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public RecentPlacesFragment() {
+    public FollowersFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static RecentPlacesFragment newInstance(int columnCount) {
-        RecentPlacesFragment fragment = new RecentPlacesFragment();
+    public static FollowersFragment newInstance(int columnCount) {
+        FollowersFragment fragment = new FollowersFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -53,7 +54,7 @@ public class RecentPlacesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recent_places_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_followers_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -64,7 +65,7 @@ public class RecentPlacesFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyRecentPlacesRecyclerViewAdapter(PlaceholderContent.ITEMS));
+            recyclerView.setAdapter(new FollowersRecyclerViewAdapter(PlaceholderContent.ITEMS));
         }
         return view;
     }

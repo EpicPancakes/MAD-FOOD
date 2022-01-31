@@ -1,23 +1,21 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
+
+import com.example.onlyfoods.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link EditProfileFragment#newInstance} factory method to
+ * Use the {@link AddRecommendationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EditProfileFragment extends Fragment {
+public class AddRecommendationFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,7 +26,7 @@ public class EditProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public EditProfileFragment() {
+    public AddRecommendationFragment() {
         // Required empty public constructor
     }
 
@@ -38,11 +36,11 @@ public class EditProfileFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment EditProfileFragment.
+     * @return A new instance of fragment AddRecommendation.
      */
     // TODO: Rename and change types and number of parameters
-    public static EditProfileFragment newInstance(String param1, String param2) {
-        EditProfileFragment fragment = new EditProfileFragment();
+    public static AddRecommendationFragment newInstance(String param1, String param2) {
+        AddRecommendationFragment fragment = new AddRecommendationFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -63,22 +61,6 @@ public class EditProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
-
-        Button BtnAddRecentPlace = view.findViewById(R.id.BTNAddRecentPlace);
-        View.OnClickListener OCLAddRecentPlace = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.NextToAddRecentPlace);
-            }
-        };
-        BtnAddRecentPlace.setOnClickListener(OCLAddRecentPlace);
-        
-        ImageView IVEditBackdrop = view.findViewById(R.id.IVEditBackdrop);
-        IVEditBackdrop.setClipToOutline(true);
+        return inflater.inflate(R.layout.fragment_add_recommendation, container, false);
     }
 }

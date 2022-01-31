@@ -5,7 +5,7 @@
     android:id="@+id/CLAddRecommendation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddRecommendation" >
+    tools:context=".Fragments.AddRecommendationFragment" >
 
     <TextView
         android:id="@+id/TVSelectRestaurant"

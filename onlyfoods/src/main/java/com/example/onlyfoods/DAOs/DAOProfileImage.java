@@ -1,24 +1,27 @@
-package com.example.onlyfoods.placeholder;
+package com.example.onlyfoods.DAOs;
 
-import com.example.onlyfoods.RecentPlace;
+
+import com.example.onlyfoods.Models.Following;
+import com.example.onlyfoods.Models.ProfileImage;
+import com.example.onlyfoods.Models.RecentPlace;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-public class DAORecentPlace {
+public class DAOProfileImage {
 
     private DatabaseReference databaseReference;
-    public DAORecentPlace()
+    public DAOProfileImage()
     {
         FirebaseDatabase db = FirebaseDatabase.getInstance("https://onlyfoods-e16b9-default-rtdb.asia-southeast1.firebasedatabase.app");
-        databaseReference = db.getReference(RecentPlace.class.getSimpleName());
+        databaseReference = db.getReference(ProfileImage.class.getSimpleName());
     }
 
-    public Task<Void> add(RecentPlace rp)
+    public Task<Void> add(ProfileImage profileImage)
     {
-        return databaseReference.push().setValue(rp);
+        return databaseReference.push().setValue(profileImage);
     }
 
     public Task<Void> update(String key, HashMap<String, Object> hashMap)

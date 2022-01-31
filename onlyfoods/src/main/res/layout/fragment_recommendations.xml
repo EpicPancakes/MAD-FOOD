@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:contentDescription="Add Recommendation"
-    tools:context=".FollowsFragment">
+    tools:context=".Fragments.FollowsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RVRecommendations"
@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".RecentPlacesFragment"
+        tools:context=".Fragments.RecentPlacesFragment"
         tools:listitem="@layout/fragment_recommendations_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

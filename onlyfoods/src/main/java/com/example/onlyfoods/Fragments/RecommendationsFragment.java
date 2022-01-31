@@ -1,10 +1,9 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -13,9 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.onlyfoods.R;
+import com.example.onlyfoods.Recommendation;
+import com.example.onlyfoods.RecommendationsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 

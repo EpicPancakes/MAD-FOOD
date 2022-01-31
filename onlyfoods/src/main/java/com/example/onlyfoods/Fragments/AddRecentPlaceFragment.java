@@ -1,4 +1,4 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
 
@@ -14,19 +14,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.onlyfoods.placeholder.DAORecentPlace;
+import com.example.onlyfoods.DAOs.DAORecentPlace;
+import com.example.onlyfoods.DAOs.DAORestaurant;
+import com.example.onlyfoods.Models.RecentPlace;
+import com.example.onlyfoods.Models.Restaurant;
+import com.example.onlyfoods.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddRecentPlace#newInstance} factory method to
+ * Use the {@link AddRecentPlaceFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddRecentPlace extends Fragment {
+public class AddRecentPlaceFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +41,7 @@ public class AddRecentPlace extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AddRecentPlace() {
+    public AddRecentPlaceFragment() {
         // Required empty public constructor
     }
 
@@ -50,8 +54,8 @@ public class AddRecentPlace extends Fragment {
      * @return A new instance of fragment AddRecentPlace.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddRecentPlace newInstance(String param1, String param2) {
-        AddRecentPlace fragment = new AddRecentPlace();
+    public static AddRecentPlaceFragment newInstance(String param1, String param2) {
+        AddRecentPlaceFragment fragment = new AddRecentPlaceFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -86,35 +90,43 @@ public class AddRecentPlace extends Fragment {
 
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); // Make sure user insert date into edittext in this format.
 
-        DAORecentPlace dao = new DAORecentPlace();
+        DAORestaurant daoRest = new DAORestaurant();
+        DAORecentPlace daoRP = new DAORecentPlace();
         BTNSubmitOnly.setOnClickListener(v-> {
 
             Date dateObject = null;
             try{
-
                 String dateArrived=(ETDateArrived.getText().toString());
-
                 dateObject = formatter.parse(dateArrived);
-
 //            date = new SimpleDateFormat("dd/MM/yyyy").format(dateObject);
 //            time = new SimpleDateFormat("h:mmaa").format(dateObject);
-            }
-
-            catch (java.text.ParseException e)
+            } catch (java.text.ParseException e)
             {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
                 Log.i("Date Parsing Error: ", e.toString());
             }
 
-            RecentPlace rp = new RecentPlace(ETSelectRestaurantRP.getText().toString(), dateObject);
-            dao.add(rp).addOnSuccessListener(suc ->
-            {
-                Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
-            }).addOnFailureListener(er ->
-            {
+            Restaurant rest = new Restaurant(ETSelectRestaurantRP.getText().toString(), "Western", "Petaling Jaya, Selangor");
+
+            Date finalDateObject = dateObject;
+            daoRest.add(rest).addOnSuccessListener(suc -> {
+
+                Toast.makeText(getContext(), "Restaurant is inserted", Toast.LENGTH_SHORT).show();
+                RecentPlace rp = new RecentPlace(daoRest.getRestaurantKey(), "testUser", finalDateObject);
+
+                daoRP.add(rp).addOnSuccessListener(suc2 ->
+                {
+                    Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
+                }).addOnFailureListener(er ->
+                {
+                    Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+            }).addOnFailureListener(er -> {
                 Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
             });
+
         });
 
         BTNSubmitAddReview.setOnClickListener(v-> {
