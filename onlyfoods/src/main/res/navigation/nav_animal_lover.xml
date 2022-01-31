@@ -10,26 +10,10 @@
         android:label="@string/about_app_tb_string"
         tools:layout="@layout/fragment_about_app" />
     <fragment
-        android:id="@+id/DestCat"
-        android:name="com.example.onlyfoods.Fragments.CatFragment"
-        android:label="@string/cat"
-        tools:layout="@layout/fragment_cat" />
-    <fragment
-        android:id="@+id/DestDog"
-        android:name="com.example.onlyfoods.Fragments.DogFragment"
-        android:label="@string/dog"
-        tools:layout="@layout/fragment_dog" />
-    <fragment
         android:id="@+id/DestMyProfile"
         android:name="com.example.onlyfoods.Fragments.MyProfileFragment"
         android:label="My Profile"
         tools:layout="@layout/fragment_my_profile">
-        <action
-            android:id="@+id/NextToDog"
-            app:destination="@id/DestDog" />
-        <action
-            android:id="@+id/NextToHedgehog"
-            app:destination="@id/DestHedgehog" />
         <action
             android:id="@+id/NextToEditProfile"
             app:destination="@id/DestEditProfile" />
@@ -40,11 +24,6 @@
             android:id="@+id/NextToRecommendations"
             app:destination="@id/DestRecommendations" />
     </fragment>
-    <fragment
-        android:id="@+id/DestHedgehog"
-        android:name="com.example.onlyfoods.Fragments.HedgehogFragment"
-        android:label="@string/hedgehog"
-        tools:layout="@layout/fragment_hedgehog" />
     <fragment
         android:id="@+id/DestEditProfile"
         android:name="com.example.onlyfoods.Fragments.EditProfileFragment"

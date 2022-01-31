@@ -78,7 +78,7 @@ public class RecentPlacesFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            adapter = new MyRecentPlacesRecyclerViewAdapter(PlaceholderContent.ITEMS, rps);
+            adapter = new MyRecentPlacesRecyclerViewAdapter(getContext(), PlaceholderContent.ITEMS, rps);
             recyclerView.setAdapter(adapter);
         }
 
@@ -90,7 +90,8 @@ public class RecentPlacesFragment extends Fragment {
 
     private void loadData()
     {
-        daoRP.get().addValueEventListener(new ValueEventListener() {
+        // TODO: Replace testUser with the userKey obtained from User
+        daoRP.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot data : snapshot.getChildren())

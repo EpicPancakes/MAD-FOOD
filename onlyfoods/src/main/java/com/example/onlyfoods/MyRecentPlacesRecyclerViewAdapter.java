@@ -2,20 +2,22 @@ package com.example.onlyfoods;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.onlyfoods.DAOs.DAORestaurant;
 import com.example.onlyfoods.Models.RecentPlace;
+import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 import com.example.onlyfoods.databinding.FragmentRecentPlacesItemBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
@@ -25,8 +27,10 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
 
     private ArrayList<RecentPlace> list = new ArrayList<>();
     private final List<PlaceholderItem> mValues;
+    Context context;
 
-    public MyRecentPlacesRecyclerViewAdapter(List<PlaceholderItem> items, ArrayList<RecentPlace> recentPlacesList) {
+    public MyRecentPlacesRecyclerViewAdapter(Context ctx, List<PlaceholderItem> items, ArrayList<RecentPlace> recentPlacesList) {
+        context = ctx;
         mValues = items;
         list = recentPlacesList;
     }
@@ -45,11 +49,22 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
 
         RecentPlace rp = list.get(position);
 
-        holder.TVRestaurantName.setText(rp.getRestaurantKey());
-        holder.TVDaysAgo.setText(new SimpleDateFormat("dd/MM/yyyy").format(rp.getDate()));
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        DAORestaurant daoRest = new DAORestaurant();
+        daoRest.get(rp.getRestaurantKey()).addOnSuccessListener(suc ->{
+            Restaurant restaurant = suc.getValue(Restaurant.class);
+            assert restaurant != null;
+            holder.TVRestaurantName.setText(restaurant.getRestaurantName());
+            holder.TVCategory.setText(restaurant.getCategory());
+            holder.TVDaysAgo.setText(new SimpleDateFormat("dd/MM/yyyy").format(rp.getDate()));
+            holder.TVLocation.setText(restaurant.getLocation());
+            holder.mItem = mValues.get(position);
+            holder.mIdView.setText(mValues.get(position).id);
+            holder.mContentView.setText(mValues.get(position).content);
+        }).addOnFailureListener(er ->{
+            Toast.makeText(context, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+        });
+
+
     }
 
     @Override
@@ -62,6 +77,8 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
         public final TextView mContentView;
         public final TextView TVRestaurantName;
         public final TextView TVDaysAgo;
+        public final TextView TVCategory;
+        public final TextView TVLocation;
         public PlaceholderItem mItem;
 
         public ViewHolder(FragmentRecentPlacesItemBinding binding) {
@@ -70,6 +87,8 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
             mContentView = binding.content;
             TVRestaurantName = binding.TVRPRestaurant;
             TVDaysAgo = binding.TVRPDaysAgo;
+            TVCategory = binding.TVRPCategory;
+            TVLocation = binding.TVRPCity;
         }
 
         @Override

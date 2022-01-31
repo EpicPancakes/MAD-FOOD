@@ -37,6 +37,10 @@ public class DAORecentPlace {
         return databaseReference.orderByKey();
     }
 
+    public Query getByUserKey(String userKey){
+        return databaseReference.orderByChild("userKey").startAt(userKey).endAt(userKey);
+    }
+
     public Task<DataSnapshot> getAll(){
         return databaseReference.get();
     }
