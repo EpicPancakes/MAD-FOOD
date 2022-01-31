@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.onlyfoods.EditBackdropDialog;
 import com.example.onlyfoods.R;
 
 /**
@@ -29,6 +30,8 @@ public class EditProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button BTNEditBackdrop;
 
     public EditProfileFragment() {
         // Required empty public constructor
@@ -71,7 +74,16 @@ public class EditProfileFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
 
-        Button BtnAddRecentPlace = view.findViewById(R.id.BTNAddRecentPlace);
+        BTNEditBackdrop = view.findViewById(R.id.BTNEditBackdrop);
+        BTNEditBackdrop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
+
+
+                Button BtnAddRecentPlace = view.findViewById(R.id.BTNAddRecentPlace);
         View.OnClickListener OCLAddRecentPlace = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,5 +94,10 @@ public class EditProfileFragment extends Fragment {
         
         ImageView IVEditBackdrop = view.findViewById(R.id.IVEditBackdrop);
         IVEditBackdrop.setClipToOutline(true);
+    }
+
+    public void openDialog(){
+        EditBackdropDialog editBackdropDialog = new EditBackdropDialog();
+        editBackdropDialog.show(getParentFragmentManager(), "Edit Backdrop");
     }
 }

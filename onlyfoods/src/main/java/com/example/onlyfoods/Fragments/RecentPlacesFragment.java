@@ -94,6 +94,7 @@ public class RecentPlacesFragment extends Fragment {
         daoRP.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                rps.clear();
                 for(DataSnapshot data : snapshot.getChildren())
                 {
                     RecentPlace rp = data.getValue(RecentPlace.class);
