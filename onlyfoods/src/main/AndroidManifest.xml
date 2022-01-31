@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlyFoods">
         <activity
+            android:name=".MainMenu"
+            android:exported="false" />
+        <activity
             android:name=".haikalLogin"
             android:exported="false" />
         <activity

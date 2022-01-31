@@ -14,9 +14,9 @@ public class haikalLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_haikal_login);
 
-        TextView t1 = (TextView)findViewById(R.id.TVRegister);
+        TextView TVRegister = (TextView)findViewById(R.id.TVRegister);
 
-        t1.setOnClickListener(new View.OnClickListener() {
+        TVRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(haikalLogin.this, haikalRegistration.class);
