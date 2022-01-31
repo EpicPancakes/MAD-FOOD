@@ -104,7 +104,7 @@
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/rounded_rectangle_r2_12dp"
+        android:background="@drawable/rounded_rectangle_r2_button_12dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/recommend_place"
         android:textAllCaps="false"

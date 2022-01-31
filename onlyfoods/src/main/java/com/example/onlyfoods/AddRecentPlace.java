@@ -2,11 +2,24 @@ package com.example.onlyfoods;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.onlyfoods.placeholder.DAORecentPlace;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +73,95 @@ public class AddRecentPlace extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_recent_place, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+
+        final AutoCompleteTextView ETSelectRestaurantRP = (AutoCompleteTextView) view.findViewById(R.id.ACTVRestaurantRP);
+        final EditText ETDateArrived = (EditText) view.findViewById(R.id.ETDateArrived);
+        Button BTNSubmitOnly = view.findViewById(R.id.BTNSubmitOnly);
+        Button BTNSubmitAddReview = view.findViewById(R.id.BTNSubmitAddReview);
+
+
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); // Make sure user insert date into edittext in this format.
+
+        DAORecentPlace dao = new DAORecentPlace();
+        BTNSubmitOnly.setOnClickListener(v-> {
+
+            Date dateObject = null;
+            try{
+
+                String dateArrived=(ETDateArrived.getText().toString());
+
+                dateObject = formatter.parse(dateArrived);
+
+//            date = new SimpleDateFormat("dd/MM/yyyy").format(dateObject);
+//            time = new SimpleDateFormat("h:mmaa").format(dateObject);
+            }
+
+            catch (java.text.ParseException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                Log.i("Date Parsing Error: ", e.toString());
+            }
+
+            RecentPlace rp = new RecentPlace(ETSelectRestaurantRP.getText().toString(), dateObject);
+            dao.add(rp).addOnSuccessListener(suc ->
+            {
+                Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
+            }).addOnFailureListener(er ->
+            {
+                Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        });
+
+        BTNSubmitAddReview.setOnClickListener(v-> {
+
+            // UPDATE
+
+//            Date dateObject = null;
+//            try{
+//
+//                String dateArrived=(ETDateArrived.getText().toString());
+//
+//                dateObject = formatter.parse(dateArrived);
+//
+////            date = new SimpleDateFormat("dd/MM/yyyy").format(dateObject);
+////            time = new SimpleDateFormat("h:mmaa").format(dateObject);
+//            }
+//
+//            catch (java.text.ParseException e)
+//            {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//                Log.i("Date Parsing Error: ", e.toString());
+//            }
+//
+//            HashMap<String, Object> hashMap = new HashMap<>();
+//            hashMap.put("restaurant", ETSelectRestaurantRP.getText().toString());
+//            hashMap.put("date", dateObject);
+//
+////            RecentPlace rp = new RecentPlace(ETSelectRestaurantRP.getText().toString(), dateObject);
+//            dao.update("-MuiaPbcwyBgNac6nSG3", hashMap).addOnSuccessListener(suc ->
+//            {
+//                Toast.makeText(getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
+//            }).addOnFailureListener(er ->
+//            {
+//                Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+//            });
+
+            // REMOVE
+
+//            dao.remove("-MuiaPbcwyBgNac6nSG3").addOnSuccessListener(suc ->
+//            {
+//                Toast.makeText(getContext(), "Record is deleted", Toast.LENGTH_SHORT).show();
+//            }).addOnFailureListener(er ->
+//            {
+//                Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+//            });
+        });
+
     }
 }
