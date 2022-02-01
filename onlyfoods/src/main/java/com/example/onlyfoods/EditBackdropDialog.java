@@ -45,10 +45,25 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
     private Uri mBackdropImageUri;
 
     private StorageReference mStorageRef;
+    private FirebaseStorage mStorage;
     private DAOBackdrop daoBD;
     ActivityResultLauncher<String> mTakePhoto;
 
+    private Backdrop backdrop;
     private View view;
+
+    public static EditBackdropDialog newInstance(int arg, Backdrop backdrop) {
+        EditBackdropDialog frag = new EditBackdropDialog();
+        Bundle args = new Bundle();
+        args.putInt("count", arg);
+        frag.setArguments(args);
+        frag.setBackdrop(backdrop);
+        return frag;
+    }
+
+    public void setBackdrop(Backdrop backdrop) {
+        this.backdrop = backdrop;
+    }
 
     @NonNull
     @Override
@@ -63,6 +78,7 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
         IVEditBackdrop = view.findViewById(R.id.IVUploadedBackdrop);
         PBEditBackdrop = view.findViewById(R.id.PBEditBackdrop);
 
+        mStorage = FirebaseStorage.getInstance();
         mStorageRef = FirebaseStorage.getInstance().getReference("backdrop");
         daoBD = new DAOBackdrop();
 
@@ -120,6 +136,7 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
 
     private void uploadFile() {
         if (mBackdropImageUri != null) {
+            deleteFile();
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mBackdropImageUri));
 
@@ -136,9 +153,6 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
                             }, 500);
 
                             Toast.makeText(view.getContext(), "Upload successful", Toast.LENGTH_LONG).show();
-//                            Backdrop backdrop = new Backdrop("testUser", ETBackdropFileName.getText().toString().trim(),
-//                                    taskSnapshot.getUploadSessionUri().toString());
-
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while(!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
@@ -165,6 +179,23 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
         } else {
             Toast.makeText(view.getContext(), "No file selected", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    private void deleteFile(){
+        if(backdrop != null){
+            String backdropKey = backdrop.getBackdropKey();
+            StorageReference imageRef = mStorage.getReferenceFromUrl(backdrop.getBackdropUrl());
+            imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    daoBD.remove(backdropKey);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), "Error while deleting previous file", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

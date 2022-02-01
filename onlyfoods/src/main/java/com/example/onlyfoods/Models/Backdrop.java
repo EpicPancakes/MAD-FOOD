@@ -1,9 +1,12 @@
 package com.example.onlyfoods.Models;
 
+import com.google.firebase.database.Exclude;
+
 public class Backdrop {
     private String userKey;
     private String imageName;
     private String backdropUrl;
+    private String backdropKey;
 
     public Backdrop(){
         // empty constructor needed for firebase
@@ -40,5 +43,15 @@ public class Backdrop {
 
     public void setBackdropUrl(String backdropUrl) {
         this.backdropUrl = backdropUrl;
+    }
+
+    @Exclude
+    public String getBackdropKey() {
+        return backdropKey;
+    }
+
+    @Exclude
+    public void setBackdropKey(String backdropKey) {
+        this.backdropKey = backdropKey;
     }
 }

@@ -22,6 +22,7 @@ import com.example.onlyfoods.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -43,6 +44,9 @@ public class EditProfileFragment extends Fragment {
     private Button BTNEditBackdrop;
 
     private DAOBackdrop daoBD;
+    private FirebaseStorage mStorage;
+    private ValueEventListener mDBListener;
+
     private Backdrop backdrop;
     private ImageView IVEditBackdrop;
 
@@ -77,6 +81,7 @@ public class EditProfileFragment extends Fragment {
         }
 
         daoBD = new DAOBackdrop();
+        mStorage = FirebaseStorage.getInstance();
     }
 
     @Override
@@ -93,11 +98,12 @@ public class EditProfileFragment extends Fragment {
         BTNEditBackdrop = view.findViewById(R.id.BTNEditBackdrop);
         IVEditBackdrop = view.findViewById(R.id.IVEditBackdrop);
 
-        daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+        mDBListener = daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     backdrop = data.getValue(Backdrop.class);
+                    backdrop.setBackdropKey(data.getKey());
                 }
                 if(backdrop!=null){
                     Picasso.get().load(backdrop.getBackdropUrl()).fit().centerCrop().into(IVEditBackdrop);
@@ -131,7 +137,13 @@ public class EditProfileFragment extends Fragment {
     }
 
     public void openDialog() {
-        EditBackdropDialog editBackdropDialog = new EditBackdropDialog();
+        EditBackdropDialog editBackdropDialog = EditBackdropDialog.newInstance(1, backdrop);
         editBackdropDialog.show(getParentFragmentManager(), "Edit Backdrop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        daoBD.removeListener(mDBListener);
     }
 }
