@@ -92,7 +92,6 @@ public class EditProfileFragment extends Fragment {
 
         BTNEditBackdrop = view.findViewById(R.id.BTNEditBackdrop);
         IVEditBackdrop = view.findViewById(R.id.IVEditBackdrop);
-//        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/onlyfoods-e16b9.appspot.com/o?name=backdrop%2F1643699476998.jpg&uploadType=resumable&upload_id=ADPycdvScak7UbjnKH2iYtZ5enPhLU7U63fgNA0pELIKNGRJvy2GTGb1ECXG9vv5GMdhbWDr4fUZ6_4w5LKwgHHO8T9gVY2WrQ&upload_protocol=resumable").into(IVEditBackdrop);
 
         daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
             @Override
@@ -103,7 +102,6 @@ public class EditProfileFragment extends Fragment {
                 if(backdrop!=null){
                     Picasso.get().load(backdrop.getBackdropUrl()).fit().centerCrop().into(IVEditBackdrop);
                 }
-//                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/onlyfoods-e16b9.appspot.com/o?name=backdrop%2F1643699476998.jpg&uploadType=resumable&upload_id=ADPycdvScak7UbjnKH2iYtZ5enPhLU7U63fgNA0pELIKNGRJvy2GTGb1ECXG9vv5GMdhbWDr4fUZ6_4w5LKwgHHO8T9gVY2WrQ&upload_protocol=resumable").into(IVEditBackdrop);
             }
 
             @Override

@@ -3,8 +3,13 @@ package com.example.onlyfoods;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +33,7 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
     private ArrayList<RecentPlace> list = new ArrayList<>();
     private final List<PlaceholderItem> mValues;
     Context context;
+    private OnItemClickListener mListener;
 
     public MyRecentPlacesRecyclerViewAdapter(Context ctx, List<PlaceholderItem> items, ArrayList<RecentPlace> recentPlacesList) {
         context = ctx;
@@ -72,7 +78,8 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+    View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
         public final TextView mIdView;
         public final TextView mContentView;
         public final TextView TVRestaurantName;
@@ -89,11 +96,62 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
             TVDaysAgo = binding.TVRPDaysAgo;
             TVCategory = binding.TVRPCategory;
             TVLocation = binding.TVRPCity;
+
+            itemView.setOnClickListener(this);
+            itemView.setOnCreateContextMenuListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(mListener != null) {
+                int position = getAbsoluteAdapterPosition();
+                if(position != RecyclerView.NO_POSITION) {
+                    mListener.onItemClick(position);
+                }
+            }
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.setHeaderTitle("Select Action");
+            MenuItem edit = menu.add(Menu.NONE, 1, 1, "Edit");
+            MenuItem delete = menu.add(Menu.NONE, 2, 2, "Delete");
+
+            edit.setOnMenuItemClickListener(this);
+            delete.setOnMenuItemClickListener(this);
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            if(mListener != null) {
+                int position = getAbsoluteAdapterPosition();
+                if(position != RecyclerView.NO_POSITION) {
+                    switch (item.getItemId()){
+                        case 1:
+                            mListener.onEditClick(position);
+                            return true;
+                        case 2:
+                            mListener.onDeleteClick(position);
+                            return true;
+                    }
+                }
+            }
+            return false;
         }
 
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+        void onEditClick(int position);
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
     }
 }

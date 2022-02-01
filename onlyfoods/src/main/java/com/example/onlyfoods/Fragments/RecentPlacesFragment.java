@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.onlyfoods.DAOs.DAORecentPlace;
 import com.example.onlyfoods.Models.RecentPlace;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 /**
  * A fragment representing a list of Items.
  */
-public class RecentPlacesFragment extends Fragment {
+public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecyclerViewAdapter.OnItemClickListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -80,6 +81,7 @@ public class RecentPlacesFragment extends Fragment {
             }
             adapter = new MyRecentPlacesRecyclerViewAdapter(getContext(), PlaceholderContent.ITEMS, rps);
             recyclerView.setAdapter(adapter);
+            adapter.setOnItemClickListener(RecentPlacesFragment.this);
         }
 
         daoRP = new DAORecentPlace();
@@ -108,5 +110,20 @@ public class RecentPlacesFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText(getContext(), "Normal click at position: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onEditClick(int position) {
+        Toast.makeText(getContext(), "Edit click at position: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
+        Toast.makeText(getContext(), "Delete click at position: " + position, Toast.LENGTH_SHORT).show();
     }
 }
