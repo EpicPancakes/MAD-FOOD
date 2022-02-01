@@ -82,16 +82,25 @@
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/ETDateArrived"
+    <TextView
+        android:id="@+id/TVSelectDateArrived"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:ems="10"
         android:hint="@string/select_date"
         android:inputType="date"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVDateArrived" />
+
+    <View
+        android:id="@+id/HLMyProfile2"
+        android:layout_width="360dp"
+        android:layout_height="1.5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVSelectDateArrived" />
 </androidx.constraintlayout.widget.ConstraintLayout>

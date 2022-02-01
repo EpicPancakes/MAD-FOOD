@@ -116,13 +116,13 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
 
     @Override
     public void onItemClick(int position) {
-        Toast.makeText(getContext(), "Normal click at position: " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "Normal click at position: " + position, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onEditClick(int position) {
-        Toast.makeText(getContext(), "Edit click at position: " + position, Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    public void onEditClick(int position) {
+//        Toast.makeText(getContext(), "Edit click at position: " + position, Toast.LENGTH_SHORT).show();
+//    }
 
     @Override
     public void onDeleteClick(int position) {

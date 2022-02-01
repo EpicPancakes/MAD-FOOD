@@ -111,11 +111,10 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.setHeaderTitle("Select Action");
-            MenuItem edit = menu.add(Menu.NONE, 1, 1, "Edit");
-            MenuItem delete = menu.add(Menu.NONE, 2, 2, "Delete");
+            menu.setHeaderTitle("Delete Entry?");
+            MenuItem delete = menu.add(Menu.NONE, 1, 1, "Delete");
 
-            edit.setOnMenuItemClickListener(this);
+//            edit.setOnMenuItemClickListener(this);
             delete.setOnMenuItemClickListener(this);
         }
 
@@ -126,11 +125,11 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
                 if(position != RecyclerView.NO_POSITION) {
                     switch (item.getItemId()){
                         case 1:
-                            mListener.onEditClick(position);
-                            return true;
-                        case 2:
                             mListener.onDeleteClick(position);
                             return true;
+//                        case 2:
+//                            mListener.onDeleteClick(position);
+//                            return true;
                     }
                 }
             }
@@ -145,7 +144,7 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
 
     public interface OnItemClickListener {
         void onItemClick(int position);
-        void onEditClick(int position);
+//        void onEditClick(int position);
         void onDeleteClick(int position);
     }
 

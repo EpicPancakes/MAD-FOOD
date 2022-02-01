@@ -1,5 +1,8 @@
 package com.example.onlyfoods.Fragments;
 
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -15,7 +18,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.onlyfoods.DAOs.DAORecentPlace;
@@ -30,8 +35,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +54,8 @@ public class AddRecentPlaceFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private TextView TVSelectDateArrived;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
     private AutoCompleteTextView ACTVRestaurantRP;
     ArrayList<Restaurant> restaurants = new ArrayList<>();
     ArrayList<String> results = new ArrayList<>();
@@ -97,9 +104,36 @@ public class AddRecentPlaceFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         ACTVRestaurantRP = (AutoCompleteTextView) view.findViewById(R.id.ACTVRestaurantRP);
-        final EditText ETDateArrived = (EditText) view.findViewById(R.id.ETDateArrived);
         Button BTNSubmitOnly = view.findViewById(R.id.BTNSubmitOnly);
         Button BTNSubmitAddReview = view.findViewById(R.id.BTNSubmitAddReview);
+
+        TVSelectDateArrived = (TextView) view.findViewById(R.id.TVSelectDateArrived);
+        TVSelectDateArrived.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dialog = new DatePickerDialog(
+                        getContext(),
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month+1;
+                Log.d("AddRecentPlace", "onDateSet: dd/mm/yyyy: " + dayOfMonth + "/" +month+"/"+year);
+                String date = dayOfMonth + "/" + month + "/" + year;
+                TVSelectDateArrived.setText(date);
+            }
+        };
 
 
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); // Make sure user insert date into edittext in this format.
@@ -146,7 +180,7 @@ public class AddRecentPlaceFragment extends Fragment {
             if (!hasErrors()) {
                 Date dateObject = null;
                 try {
-                    String dateArrived = (ETDateArrived.getText().toString());
+                    String dateArrived = (TVSelectDateArrived.getText().toString());
                     dateObject = formatter.parse(dateArrived);
 //            date = new SimpleDateFormat("dd/MM/yyyy").format(dateObject);
 //            time = new SimpleDateFormat("h:mmaa").format(dateObject);
