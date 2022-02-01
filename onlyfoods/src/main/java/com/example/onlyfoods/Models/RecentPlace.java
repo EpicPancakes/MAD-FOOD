@@ -1,5 +1,7 @@
 package com.example.onlyfoods.Models;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.Date;
 
 public class RecentPlace {
@@ -7,6 +9,7 @@ public class RecentPlace {
     private String restaurantKey;
     private String userKey;
     private Date date;
+    private String recentPlaceKey;
 
     public RecentPlace() { }
 
@@ -38,5 +41,15 @@ public class RecentPlace {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Exclude
+    public String getRecentPlaceKey() {
+        return recentPlaceKey;
+    }
+
+    @Exclude
+    public void setRecentPlaceKey(String recentPlaceKey) {
+        this.recentPlaceKey = recentPlaceKey;
     }
 }

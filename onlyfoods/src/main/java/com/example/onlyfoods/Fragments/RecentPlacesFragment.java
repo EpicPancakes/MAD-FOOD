@@ -19,9 +19,12 @@ import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Adapters.MyRecentPlacesRecyclerViewAdapter;
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -90,16 +93,15 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
         return view;
     }
 
-    private void loadData()
-    {
+    private void loadData() {
         // TODO: Replace testUser with the userKey obtained from User
         daoRP.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 rps.clear();
-                for(DataSnapshot data : snapshot.getChildren())
-                {
+                for (DataSnapshot data : snapshot.getChildren()) {
                     RecentPlace rp = data.getValue(RecentPlace.class);
+                    rp.setRecentPlaceKey(data.getKey());
                     rps.add(rp);
                 }
                 adapter.notifyDataSetChanged();
@@ -124,6 +126,24 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
 
     @Override
     public void onDeleteClick(int position) {
-        Toast.makeText(getContext(), "Delete click at position: " + position, Toast.LENGTH_SHORT).show();
+        deleteFile(position);
+    }
+
+    private void deleteFile(int position) {
+        RecentPlace selectedItem = rps.get(position);
+        if (selectedItem != null) {
+            final String selectedRecentPlaceKey = selectedItem.getRecentPlaceKey();
+            daoRP.remove(selectedRecentPlaceKey).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    Toast.makeText(getContext(), "Removed recent place", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

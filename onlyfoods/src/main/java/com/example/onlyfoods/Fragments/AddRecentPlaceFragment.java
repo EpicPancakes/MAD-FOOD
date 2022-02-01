@@ -1,14 +1,18 @@
 package com.example.onlyfoods.Fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,9 +23,13 @@ import com.example.onlyfoods.DAOs.DAORestaurant;
 import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -40,6 +48,11 @@ public class AddRecentPlaceFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private AutoCompleteTextView ACTVRestaurantRP;
+    ArrayList<Restaurant> restaurants = new ArrayList<>();
+    ArrayList<String> results = new ArrayList<>();
+
 
     public AddRecentPlaceFragment() {
         // Required empty public constructor
@@ -79,10 +92,11 @@ public class AddRecentPlaceFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_add_recent_place, container, false);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
-        final AutoCompleteTextView ETSelectRestaurantRP = (AutoCompleteTextView) view.findViewById(R.id.ACTVRestaurantRP);
+        ACTVRestaurantRP = (AutoCompleteTextView) view.findViewById(R.id.ACTVRestaurantRP);
         final EditText ETDateArrived = (EditText) view.findViewById(R.id.ETDateArrived);
         Button BTNSubmitOnly = view.findViewById(R.id.BTNSubmitOnly);
         Button BTNSubmitAddReview = view.findViewById(R.id.BTNSubmitAddReview);
@@ -92,29 +106,62 @@ public class AddRecentPlaceFragment extends Fragment {
 
         DAORestaurant daoRest = new DAORestaurant();
         DAORecentPlace daoRP = new DAORecentPlace();
-        BTNSubmitOnly.setOnClickListener(v-> {
 
-            Date dateObject = null;
-            try{
-                String dateArrived=(ETDateArrived.getText().toString());
-                dateObject = formatter.parse(dateArrived);
-//            date = new SimpleDateFormat("dd/MM/yyyy").format(dateObject);
-//            time = new SimpleDateFormat("h:mmaa").format(dateObject);
-            } catch (java.text.ParseException e)
-            {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                Log.i("Date Parsing Error: ", e.toString());
+        final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
+
+        daoRest.getReference().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                restaurants.clear();
+                for (DataSnapshot suggestionSnapshot : snapshot.getChildren()) {
+                    Restaurant rest = suggestionSnapshot.getValue(Restaurant.class);
+                    rest.setRestaurantKey(suggestionSnapshot.getKey());
+                    restaurants.add(rest);
+                    String suggestion = suggestionSnapshot.child("restaurantName").getValue(String.class);
+                    autoComplete.add(suggestion);
+                    results.add(suggestion);
+                }
             }
 
-            Restaurant rest = new Restaurant(ETSelectRestaurantRP.getText().toString(), "Western", "Petaling Jaya, Selangor");
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-            Date finalDateObject = dateObject;
-            daoRest.add(rest).addOnSuccessListener(suc -> {
+            }
+        });
 
-                Toast.makeText(getContext(), "Restaurant is inserted", Toast.LENGTH_SHORT).show();
-                RecentPlace rp = new RecentPlace(daoRest.getRestaurantKey(), "testUser", finalDateObject);
+        ACTVRestaurantRP.setAdapter(autoComplete);
+        ACTVRestaurantRP.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (results.size() == 0 ||
+                            !results.contains(ACTVRestaurantRP.getText().toString())) {
+                        ACTVRestaurantRP.setError("Invalid username.");
+                    }
+                    ;
+                }
+            }
+        });
 
+        BTNSubmitOnly.setOnClickListener(v -> {
+            if (!hasErrors()) {
+                Date dateObject = null;
+                try {
+                    String dateArrived = (ETDateArrived.getText().toString());
+                    dateObject = formatter.parse(dateArrived);
+//            date = new SimpleDateFormat("dd/MM/yyyy").format(dateObject);
+//            time = new SimpleDateFormat("h:mmaa").format(dateObject);
+                } catch (java.text.ParseException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    Log.i("Date Parsing Error: ", e.toString());
+                }
+
+//            Restaurant rest = new Restaurant(ACTVRestaurantRP.getText().toString(), "Western", "Petaling Jaya, Selangor");
+
+                ACTVRestaurantRP.getText().toString();
+                Restaurant selectedRestaurant = restaurants.stream().filter(restaurant -> (ACTVRestaurantRP.getText().toString()).equals(restaurant.getRestaurantName())).findFirst().orElse(null);
+                Date finalDateObject = dateObject;
+                RecentPlace rp = new RecentPlace(selectedRestaurant.getRestaurantKey(), "testUser", finalDateObject);
                 daoRP.add(rp).addOnSuccessListener(suc2 ->
                 {
                     Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
@@ -122,14 +169,27 @@ public class AddRecentPlaceFragment extends Fragment {
                 {
                     Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-
-            }).addOnFailureListener(er -> {
-                Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-            });
+//            daoRest.add(rest).addOnSuccessListener(suc -> {
+//
+//                Toast.makeText(getContext(), "Restaurant is inserted", Toast.LENGTH_SHORT).show();
+//                RecentPlace rp = new RecentPlace(daoRest.getRestaurantKey(), "testUser", finalDateObject);
+//
+//                daoRP.add(rp).addOnSuccessListener(suc2 ->
+//                {
+//                    Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
+//                }).addOnFailureListener(er ->
+//                {
+//                    Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+//                });
+//
+//            }).addOnFailureListener(er -> {
+//                Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+//            });
+            }
 
         });
 
-        BTNSubmitAddReview.setOnClickListener(v-> {
+        BTNSubmitAddReview.setOnClickListener(v -> {
 
             // UPDATE
 
@@ -174,6 +234,18 @@ public class AddRecentPlaceFragment extends Fragment {
 //                Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
 //            });
         });
+    }
 
+    private boolean hasErrors() {
+
+        if (ACTVRestaurantRP.getText().toString().isEmpty()) {
+            ACTVRestaurantRP.setError("Please enter a restaurant name.");
+            return true;
+        } else if (results.size() == 0 || !results.contains(ACTVRestaurantRP.getText().toString())) {
+            ACTVRestaurantRP.setError("Invalid restaurant.");
+            return true;
+        }
+
+        return false;
     }
 }

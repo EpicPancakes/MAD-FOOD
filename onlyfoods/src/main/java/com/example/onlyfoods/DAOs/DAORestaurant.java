@@ -41,6 +41,10 @@ public class DAORestaurant {
         return databaseReference.child(restaurantKey).get();
     }
 
+    public DatabaseReference getReference(){
+        return databaseReference;
+    }
+
     public String getRestaurantKey() {
         return restaurantKey;
     }
