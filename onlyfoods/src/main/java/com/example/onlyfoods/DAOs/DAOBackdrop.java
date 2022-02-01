@@ -1,11 +1,11 @@
 package com.example.onlyfoods.DAOs;
 
-
 import com.example.onlyfoods.Models.Backdrop;
-import com.example.onlyfoods.Models.RecentPlace;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.HashMap;
 
@@ -31,5 +31,10 @@ public class DAOBackdrop {
     public Task<Void> remove(String key){
         return databaseReference.child(key).removeValue();
     }
+
+    public Query getByUserKey(String userKey){
+        return databaseReference.orderByChild("userKey").startAt(userKey).endAt(userKey).limitToFirst(1);
+    }
+
 
 }

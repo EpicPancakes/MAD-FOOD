@@ -2,6 +2,7 @@ package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -11,9 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.onlyfoods.DAOs.DAOBackdrop;
 import com.example.onlyfoods.EditBackdropDialog;
+import com.example.onlyfoods.Models.Backdrop;
+import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +41,10 @@ public class EditProfileFragment extends Fragment {
     private String mParam2;
 
     private Button BTNEditBackdrop;
+
+    private DAOBackdrop daoBD;
+    private Backdrop backdrop;
+    private ImageView IVEditBackdrop;
 
     public EditProfileFragment() {
         // Required empty public constructor
@@ -62,6 +75,8 @@ public class EditProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        daoBD = new DAOBackdrop();
     }
 
     @Override
@@ -72,9 +87,31 @@ public class EditProfileFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
 
         BTNEditBackdrop = view.findViewById(R.id.BTNEditBackdrop);
+        IVEditBackdrop = view.findViewById(R.id.IVEditBackdrop);
+//        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/onlyfoods-e16b9.appspot.com/o?name=backdrop%2F1643699476998.jpg&uploadType=resumable&upload_id=ADPycdvScak7UbjnKH2iYtZ5enPhLU7U63fgNA0pELIKNGRJvy2GTGb1ECXG9vv5GMdhbWDr4fUZ6_4w5LKwgHHO8T9gVY2WrQ&upload_protocol=resumable").into(IVEditBackdrop);
+
+        daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    backdrop = data.getValue(Backdrop.class);
+                }
+                if(backdrop!=null){
+                    Picasso.get().load(backdrop.getBackdropUrl()).fit().centerCrop().into(IVEditBackdrop);
+                }
+//                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/onlyfoods-e16b9.appspot.com/o?name=backdrop%2F1643699476998.jpg&uploadType=resumable&upload_id=ADPycdvScak7UbjnKH2iYtZ5enPhLU7U63fgNA0pELIKNGRJvy2GTGb1ECXG9vv5GMdhbWDr4fUZ6_4w5LKwgHHO8T9gVY2WrQ&upload_protocol=resumable").into(IVEditBackdrop);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         BTNEditBackdrop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +120,7 @@ public class EditProfileFragment extends Fragment {
         });
 
 
-                Button BtnAddRecentPlace = view.findViewById(R.id.BTNAddRecentPlace);
+        Button BtnAddRecentPlace = view.findViewById(R.id.BTNAddRecentPlace);
         View.OnClickListener OCLAddRecentPlace = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,12 +128,11 @@ public class EditProfileFragment extends Fragment {
             }
         };
         BtnAddRecentPlace.setOnClickListener(OCLAddRecentPlace);
-        
-        ImageView IVEditBackdrop = view.findViewById(R.id.IVEditBackdrop);
+
         IVEditBackdrop.setClipToOutline(true);
     }
 
-    public void openDialog(){
+    public void openDialog() {
         EditBackdropDialog editBackdropDialog = new EditBackdropDialog();
         editBackdropDialog.show(getParentFragmentManager(), "Edit Backdrop");
     }

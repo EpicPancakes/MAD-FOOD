@@ -1,15 +1,21 @@
 package com.example.onlyfoods.Models;
 
 public class Backdrop {
-
     private String userKey;
-    private String filePath;
+    private String imageName;
+    private String backdropUrl;
 
-    public Backdrop() { }
+    public Backdrop(){
+        // empty constructor needed for firebase
+    }
 
-    public Backdrop(String userKey, String filePath) {
+    public Backdrop(String userKey, String imageName, String backdropUrl) {
+        if (imageName.trim().equals("")) {
+            imageName = "No Name";
+        }
         this.userKey = userKey;
-        this.filePath = filePath;
+        this.imageName = imageName;
+        this.backdropUrl = backdropUrl;
     }
 
     public String getUserKey() {
@@ -20,11 +26,19 @@ public class Backdrop {
         this.userKey = userKey;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getBackdropUrl() {
+        return backdropUrl;
+    }
+
+    public void setBackdropUrl(String backdropUrl) {
+        this.backdropUrl = backdropUrl;
     }
 }

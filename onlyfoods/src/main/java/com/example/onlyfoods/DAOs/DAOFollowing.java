@@ -1,9 +1,7 @@
 package com.example.onlyfoods.DAOs;
 
 
-import com.example.onlyfoods.Models.Backdrop;
 import com.example.onlyfoods.Models.Following;
-import com.example.onlyfoods.Models.RecentPlace;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
