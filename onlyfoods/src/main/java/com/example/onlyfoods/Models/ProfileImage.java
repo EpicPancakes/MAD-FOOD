@@ -1,15 +1,18 @@
 package com.example.onlyfoods.Models;
 
+import com.google.firebase.database.Exclude;
+
 public class ProfileImage {
 
     private String userKey;
-    private String filePath;
+    private String profileImageUrl;
+    private String profileImageKey;
 
     public ProfileImage() { }
 
-    public ProfileImage(String userKey, String filePath) {
+    public ProfileImage(String userKey, String profileImageUrl) {
         this.userKey = userKey;
-        this.filePath = filePath;
+        this.profileImageUrl = profileImageUrl;
     }
 
     public String getUserKey() {
@@ -20,11 +23,21 @@ public class ProfileImage {
         this.userKey = userKey;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    @Exclude
+    public String getProfileImageKey() {
+        return profileImageKey;
+    }
+
+    @Exclude
+    public void setProfileImageKey(String profileImageKey) {
+        this.profileImageKey = profileImageKey;
     }
 }

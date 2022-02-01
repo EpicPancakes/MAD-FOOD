@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onlyfoods.FollowersRecyclerViewAdapter;
+import com.example.onlyfoods.Adapters.FollowersRecyclerViewAdapter;
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
 

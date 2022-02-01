@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.onlyfoods.DAOs.DAORecentPlace;
 import com.example.onlyfoods.Models.RecentPlace;
-import com.example.onlyfoods.MyRecentPlacesRecyclerViewAdapter;
+import com.example.onlyfoods.Adapters.MyRecentPlacesRecyclerViewAdapter;
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
 import com.google.firebase.database.DataSnapshot;

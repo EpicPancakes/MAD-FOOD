@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.onlyfoods.MyReviewsRecyclerViewAdapter;
+import com.example.onlyfoods.Adapters.MyReviewsRecyclerViewAdapter;
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
 

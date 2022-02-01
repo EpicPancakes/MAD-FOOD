@@ -1,4 +1,4 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -23,8 +23,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import com.example.onlyfoods.DAOs.DAOBackdrop;
-import com.example.onlyfoods.Models.Backdrop;
+import com.example.onlyfoods.DAOs.DAOProfileImage;
+import com.example.onlyfoods.Models.ProfileImage;
+import com.example.onlyfoods.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -34,35 +35,34 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-public class EditBackdropDialog extends AppCompatDialogFragment {
+public class EditProfileImageDialog extends AppCompatDialogFragment {
 
     private static final int PICK_IMAGE_REQUEST = 1;
-    private Button BTNChooseBackdrop;
-    private EditText ETBackdropFileName;
-    private ImageView IVEditBackdrop;
-    private ProgressBar PBEditBackdrop;
+    private Button BTNChooseProfileImage;
+    private ImageView IVEditProfileImage;
+    private ProgressBar PBEditProfileImage;
 
-    private Uri mBackdropImageUri;
+    private Uri mProfileImageImageUri;
 
     private StorageReference mStorageRef;
     private FirebaseStorage mStorage;
-    private DAOBackdrop daoBD;
+    private DAOProfileImage daoBD;
     ActivityResultLauncher<String> mTakePhoto;
 
-    private Backdrop backdrop;
+    private ProfileImage profileImage;
     private View view;
 
-    public static EditBackdropDialog newInstance(int arg, Backdrop backdrop) {
-        EditBackdropDialog frag = new EditBackdropDialog();
+    public static EditProfileImageDialog newInstance(int arg, ProfileImage profileImage) {
+        EditProfileImageDialog frag = new EditProfileImageDialog();
         Bundle args = new Bundle();
         args.putInt("count", arg);
         frag.setArguments(args);
-        frag.setBackdrop(backdrop);
+        frag.setProfileImage(profileImage);
         return frag;
     }
 
-    public void setBackdrop(Backdrop backdrop) {
-        this.backdrop = backdrop;
+    public void setProfileImage(ProfileImage profileImage) {
+        this.profileImage = profileImage;
     }
 
     @NonNull
@@ -71,16 +71,15 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        view = inflater.inflate(R.layout.dialog_edit_backdrop, null);
+        view = inflater.inflate(R.layout.dialog_edit_profile_image, null);
 
-        BTNChooseBackdrop = view.findViewById(R.id.BTNChooseBackdrop);
-        ETBackdropFileName = view.findViewById(R.id.ETBackdropFileName);
-        IVEditBackdrop = view.findViewById(R.id.IVUploadedBackdrop);
-        PBEditBackdrop = view.findViewById(R.id.PBEditBackdrop);
+        BTNChooseProfileImage = view.findViewById(R.id.BTNChooseProfileImage);
+        IVEditProfileImage = view.findViewById(R.id.IVUploadedProfileImage);
+        PBEditProfileImage = view.findViewById(R.id.PBEditProfileImage);
 
         mStorage = FirebaseStorage.getInstance();
-        mStorageRef = FirebaseStorage.getInstance().getReference("backdrop");
-        daoBD = new DAOBackdrop();
+        mStorageRef = FirebaseStorage.getInstance().getReference("profileImage");
+        daoBD = new DAOProfileImage();
 
         mTakePhoto = registerForActivityResult(
                 new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
@@ -88,16 +87,16 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
                     public void onActivityResult(Uri result) {
 
                         if (result != null) {
-                            mBackdropImageUri = result;
+                            mProfileImageImageUri = result;
                         }
 
-                        Picasso.get().load(mBackdropImageUri).into(IVEditBackdrop);
+                        Picasso.get().load(mProfileImageImageUri).into(IVEditProfileImage);
 
                     }
                 }
         );
 
-        BTNChooseBackdrop.setOnClickListener(new View.OnClickListener() {
+        BTNChooseProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFileChooser();
@@ -106,7 +105,7 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
 
 
         builder.setView(view)
-                .setTitle("Edit Backdrop")
+                .setTitle("Edit Profile Image")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -135,12 +134,12 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
     }
 
     private void uploadFile() {
-        if (mBackdropImageUri != null) {
+        if (mProfileImageImageUri != null) {
             deleteFile();
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
-                    + "." + getFileExtension(mBackdropImageUri));
+                    + "." + getFileExtension(mProfileImageImageUri));
 
-            fileReference.putFile(mBackdropImageUri)
+            fileReference.putFile(mProfileImageImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -148,7 +147,7 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    PBEditBackdrop.setProgress(0);
+                                    PBEditProfileImage.setProgress(0);
                                 }
                             }, 500);
 
@@ -157,9 +156,9 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
                             while(!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
 
-                            Backdrop backdrop = new Backdrop("testUser", ETBackdropFileName.getText().toString().trim(), downloadUrl.toString());
+                            ProfileImage profileImage = new ProfileImage("testUser", downloadUrl.toString());
 
-                            daoBD.add(backdrop);
+                            daoBD.add(profileImage);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -172,7 +171,7 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
                         @Override
                         public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                             double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                            PBEditBackdrop.setProgress((int) progress);
+                            PBEditProfileImage.setProgress((int) progress);
                         }
                     });
 
@@ -182,13 +181,13 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
     }
 
     private void deleteFile(){
-        if(backdrop != null){
-            String backdropKey = backdrop.getBackdropKey();
-            StorageReference imageRef = mStorage.getReferenceFromUrl(backdrop.getBackdropUrl());
+        if(profileImage != null){
+            String profileImageKey = profileImage.getProfileImageKey();
+            StorageReference imageRef = mStorage.getReferenceFromUrl(profileImage.getProfileImageUrl());
             imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
-                    daoBD.remove(backdropKey);
+                    daoBD.remove(profileImageKey);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

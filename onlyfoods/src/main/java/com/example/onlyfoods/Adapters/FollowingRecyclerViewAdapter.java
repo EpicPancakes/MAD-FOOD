@@ -1,4 +1,4 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onlyfoods.databinding.FragmentFollowersItemBinding;
+import com.example.onlyfoods.databinding.FragmentFollowingItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 
 import java.util.List;
@@ -15,18 +15,18 @@ import java.util.List;
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<FollowersRecyclerViewAdapter.ViewHolder> {
+public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<FollowingRecyclerViewAdapter.ViewHolder> {
 
     private final List<PlaceholderItem> mValues;
 
-    public FollowersRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public FollowingRecyclerViewAdapter(List<PlaceholderItem> items) {
         mValues = items;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new ViewHolder(FragmentFollowersItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(FragmentFollowingItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
 
@@ -47,7 +47,7 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
         public final TextView mContentView;
         public PlaceholderItem mItem;
 
-        public ViewHolder(FragmentFollowersItemBinding binding) {
+        public ViewHolder(FragmentFollowingItemBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber;
             mContentView = binding.content;

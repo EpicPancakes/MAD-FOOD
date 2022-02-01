@@ -2,6 +2,7 @@ package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -11,12 +12,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.onlyfoods.DAOs.DAOBackdrop;
+import com.example.onlyfoods.DAOs.DAOProfileImage;
+import com.example.onlyfoods.Models.Backdrop;
+import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.R;
-import com.example.onlyfoods.ViewPagerAdapter;
+import com.example.onlyfoods.Adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +45,17 @@ public class MyProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private DAOBackdrop daoBD;
+    private ValueEventListener mDBListenerBD;
+
+    private DAOProfileImage daoPI;
+    private ValueEventListener mDBListenerPI;
+
+    ImageView IVBackdrop;
+    Backdrop backdrop;
+
+    ImageView IVProfileImage;
+    ProfileImage profileImage;
 
     // ViewPager implementation to slide between recent places and reviews
     TabLayout tabLayout;
@@ -68,6 +90,8 @@ public class MyProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        daoBD = new DAOBackdrop();
+        daoPI = new DAOProfileImage();
     }
 
 
@@ -97,6 +121,44 @@ public class MyProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+
+        IVBackdrop = view.findViewById(R.id.IVBackdrop);
+        mDBListenerBD = daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    backdrop = data.getValue(Backdrop.class);
+                    backdrop.setBackdropKey(data.getKey());
+                }
+                if(backdrop!=null){
+                    Picasso.get().load(backdrop.getBackdropUrl()).fit().centerCrop().into(IVBackdrop);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        IVProfileImage = view.findViewById(R.id.IVProfileImage);
+        mDBListenerPI = daoPI.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    profileImage = data.getValue(ProfileImage.class);
+                    profileImage.setProfileImageKey(data.getKey());
+                }
+                if(profileImage!=null){
+                    Picasso.get().load(profileImage.getProfileImageUrl()).fit().centerCrop().into(IVProfileImage);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         TextView TVFollowers = (TextView) view.findViewById(R.id.TVFollowers);
         View.OnClickListener OCLFollowers = new View.OnClickListener() {
@@ -133,6 +195,13 @@ public class MyProfileFragment extends Fragment {
             }
         };
         BtnRecommendations.setOnClickListener(OCLRecommendations);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        daoBD.removeListener(mDBListenerBD);
+        daoPI.removeListener(mDBListenerPI);
     }
 
 }

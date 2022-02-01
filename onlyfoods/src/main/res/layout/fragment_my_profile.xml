@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/food1" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/IVProfilePicture"
+        android:id="@+id/IVProfileImage"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:background="#00FFFFFF"
@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IVProfilePicture"
+        app:layout_constraintTop_toBottomOf="@+id/IVProfileImage"
         app:layout_constraintVertical_bias="0.043" />
 
     <TextView

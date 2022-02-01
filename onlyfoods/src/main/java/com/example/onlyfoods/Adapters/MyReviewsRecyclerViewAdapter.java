@@ -1,13 +1,13 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Adapters;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.onlyfoods.databinding.FragmentFollowingItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
+import com.example.onlyfoods.databinding.FragmentReviewsItemBinding;
 
 import java.util.List;
 
@@ -15,18 +15,18 @@ import java.util.List;
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<FollowingRecyclerViewAdapter.ViewHolder> {
+public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviewsRecyclerViewAdapter.ViewHolder> {
 
     private final List<PlaceholderItem> mValues;
 
-    public FollowingRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public MyReviewsRecyclerViewAdapter(List<PlaceholderItem> items) {
         mValues = items;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new ViewHolder(FragmentFollowingItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(FragmentReviewsItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
 
@@ -47,10 +47,10 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
         public final TextView mContentView;
         public PlaceholderItem mItem;
 
-        public ViewHolder(FragmentFollowingItemBinding binding) {
+        public ViewHolder(FragmentReviewsItemBinding binding) {
             super(binding.getRoot());
-            mIdView = binding.itemNumber;
-            mContentView = binding.content;
+            mIdView = binding.itemNumber2;
+            mContentView = binding.content2;
         }
 
         @Override

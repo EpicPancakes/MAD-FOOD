@@ -11,18 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.onlyfoods.DAOs.DAOBackdrop;
-import com.example.onlyfoods.EditBackdropDialog;
+import com.example.onlyfoods.DAOs.DAOProfileImage;
 import com.example.onlyfoods.Models.Backdrop;
-import com.example.onlyfoods.Models.RecentPlace;
+import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -42,13 +42,17 @@ public class EditProfileFragment extends Fragment {
     private String mParam2;
 
     private Button BTNEditBackdrop;
+    private ImageButton IBEditProfileImage;
 
     private DAOBackdrop daoBD;
-    private FirebaseStorage mStorage;
-    private ValueEventListener mDBListener;
+    private DAOProfileImage daoPI;
+    private ValueEventListener mDBListenerBD;
+    private ValueEventListener mDBListenerPI;
 
     private Backdrop backdrop;
+    private ProfileImage profileImage;
     private ImageView IVEditBackdrop;
+    private ImageView IVEditProfileImage;
 
     public EditProfileFragment() {
         // Required empty public constructor
@@ -81,7 +85,7 @@ public class EditProfileFragment extends Fragment {
         }
 
         daoBD = new DAOBackdrop();
-        mStorage = FirebaseStorage.getInstance();
+        daoPI = new DAOProfileImage();
     }
 
     @Override
@@ -97,8 +101,10 @@ public class EditProfileFragment extends Fragment {
 
         BTNEditBackdrop = view.findViewById(R.id.BTNEditBackdrop);
         IVEditBackdrop = view.findViewById(R.id.IVEditBackdrop);
+        IBEditProfileImage = view.findViewById(R.id.IBEditProfileImage);
+        IVEditProfileImage = view.findViewById(R.id.IVEditProfileImage);
 
-        mDBListener = daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+        mDBListenerBD = daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
@@ -109,7 +115,23 @@ public class EditProfileFragment extends Fragment {
                     Picasso.get().load(backdrop.getBackdropUrl()).fit().centerCrop().into(IVEditBackdrop);
                 }
             }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        mDBListenerPI = daoPI.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    profileImage = data.getValue(ProfileImage.class);
+                    profileImage.setProfileImageKey(data.getKey());
+                }
+                if(profileImage!=null){
+                    Picasso.get().load(profileImage.getProfileImageUrl()).fit().centerCrop().into(IVEditProfileImage);
+                }
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
@@ -119,7 +141,14 @@ public class EditProfileFragment extends Fragment {
         BTNEditBackdrop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDialog();
+                openBDDialog();
+            }
+        });
+
+        IBEditProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openPIDialog();
             }
         });
 
@@ -136,14 +165,20 @@ public class EditProfileFragment extends Fragment {
         IVEditBackdrop.setClipToOutline(true);
     }
 
-    public void openDialog() {
+    public void openBDDialog() {
         EditBackdropDialog editBackdropDialog = EditBackdropDialog.newInstance(1, backdrop);
         editBackdropDialog.show(getParentFragmentManager(), "Edit Backdrop");
+    }
+
+    public void openPIDialog() {
+        EditProfileImageDialog editProfileImageDialog = EditProfileImageDialog.newInstance(1, profileImage);
+        editProfileImageDialog.show(getParentFragmentManager(), "Edit Profile Image");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        daoBD.removeListener(mDBListener);
+        daoBD.removeListener(mDBListenerBD);
+        daoPI.removeListener(mDBListenerPI);
     }
 }

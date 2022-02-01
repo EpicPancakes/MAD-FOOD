@@ -1,12 +1,12 @@
 package com.example.onlyfoods.DAOs;
 
 
-import com.example.onlyfoods.Models.Following;
 import com.example.onlyfoods.Models.ProfileImage;
-import com.example.onlyfoods.Models.RecentPlace;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -19,9 +19,9 @@ public class DAOProfileImage {
         databaseReference = db.getReference(ProfileImage.class.getSimpleName());
     }
 
-    public Task<Void> add(ProfileImage profileImage)
+    public Task<Void> add(ProfileImage bd)
     {
-        return databaseReference.push().setValue(profileImage);
+        return databaseReference.push().setValue(bd);
     }
 
     public Task<Void> update(String key, HashMap<String, Object> hashMap)
@@ -32,5 +32,14 @@ public class DAOProfileImage {
     public Task<Void> remove(String key){
         return databaseReference.child(key).removeValue();
     }
+
+    public Query getByUserKey(String userKey){
+        return databaseReference.orderByChild("userKey").startAt(userKey).endAt(userKey).limitToFirst(1);
+    }
+
+    public void removeListener(ValueEventListener listener){
+        databaseReference.removeEventListener(listener);
+    }
+
 
 }

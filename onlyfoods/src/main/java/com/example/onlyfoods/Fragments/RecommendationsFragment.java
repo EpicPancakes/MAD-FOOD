@@ -14,7 +14,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.Recommendation;
-import com.example.onlyfoods.RecommendationsAdapter;
+import com.example.onlyfoods.Adapters.RecommendationsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
