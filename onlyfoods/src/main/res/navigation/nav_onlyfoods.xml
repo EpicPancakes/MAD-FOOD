@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/DestRecommendations"
         android:name="com.example.onlyfoods.Fragments.RecommendationsFragment"
-        android:label="@string/recommendationOlds" >
+        android:label="@string/recommendation">
         <action
             android:id="@+id/NextToAddRecommendation"
             app:destination="@id/DestAddRecommendation" />
