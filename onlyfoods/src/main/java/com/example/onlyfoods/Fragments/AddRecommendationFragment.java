@@ -19,8 +19,10 @@ import android.widget.Toast;
 
 import com.example.onlyfoods.DAOs.DAORecommendation;
 import com.example.onlyfoods.DAOs.DAORestaurant;
+import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Recommendation;
 import com.example.onlyfoods.Models.Restaurant;
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,6 +54,7 @@ public class AddRecommendationFragment extends Fragment {
     private EditText ETRecommendMessage;
     ArrayList<Restaurant> restaurants = new ArrayList<>();
     ArrayList<String> results = new ArrayList<>();
+    private User user;
 
     public AddRecommendationFragment() {
         // Required empty public constructor
@@ -142,6 +147,39 @@ public class AddRecommendationFragment extends Fragment {
                 Recommendation rec = new Recommendation("testUser", selectedRestaurant.getRestaurantKey(),"robert", new Date(), ETRecommendMessage.getText().toString());
                 daoRec.add(rec).addOnSuccessListener(suc2 ->
                 {
+
+                    // Include recent place key in user's recent places list by updating user
+                    DAOUser daoUser = new DAOUser();
+                    daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            user = snapshot.getValue(User.class);
+                            user.setUserKey(snapshot.getKey());
+                            if (user != null) {
+                                Map<String, Object> objectHM = new HashMap<>();
+                                Map<String, Boolean> booleanHM;
+                                if(user.getRecommendations()!=null){
+                                    booleanHM = user.getRecommendations();
+                                }else{
+                                    booleanHM = new HashMap<>();
+                                }
+                                booleanHM.put(daoRec.getRecommendationKey(), true);
+                                objectHM.put("recommendations", booleanHM);
+
+                                daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
+//                                    Toast.makeText(view.getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
+                                }).addOnFailureListener(er ->
+                                {
+                                    Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
                     Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();
                 }).addOnFailureListener(er ->

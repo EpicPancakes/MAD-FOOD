@@ -228,7 +228,7 @@ public class AddRecentPlaceFragment extends Fragment {
                             booleanHM.put(daoRP.getRecentPlaceKey(), true);
                             objectHM.put("recentPlaces", booleanHM);
                             daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
-                                Toast.makeText(view.getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(view.getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
                             }).addOnFailureListener(er ->
                             {
                                 Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();

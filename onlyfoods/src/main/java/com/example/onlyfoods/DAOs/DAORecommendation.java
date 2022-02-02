@@ -12,15 +12,18 @@ import java.util.HashMap;
 public class DAORecommendation {
 
     private DatabaseReference databaseReference;
+    private String recommendationKey;
+
     public DAORecommendation()
     {
         FirebaseDatabase db = FirebaseDatabase.getInstance("https://onlyfoods-e16b9-default-rtdb.asia-southeast1.firebasedatabase.app");
         databaseReference = db.getReference(Recommendation.class.getSimpleName());
     }
 
-    public Task<Void> add(Recommendation rp)
+    public Task<Void> add(Recommendation rec)
     {
-        return databaseReference.push().setValue(rp);
+        recommendationKey = databaseReference.push().getKey();
+        return databaseReference.child(recommendationKey).setValue(rec);
     }
 
     public Task<Void> update(String key, HashMap<String, Object> hashMap)
@@ -44,4 +47,7 @@ public class DAORecommendation {
         return databaseReference.get();
     }
 
+    public String getRecommendationKey() {
+        return recommendationKey;
+    }
 }
