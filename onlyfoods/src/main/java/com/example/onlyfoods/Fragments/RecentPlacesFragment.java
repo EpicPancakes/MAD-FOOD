@@ -97,8 +97,8 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
     }
 
     private void loadData() {
-        // TODO: Replace testUser with the userKey obtained from User
-        daoRP.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+        // TODO: Replace userKey with the session key obtained from User
+        daoRP.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 rps.clear();

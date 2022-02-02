@@ -155,7 +155,7 @@ public class EditProfileImageDialog extends AppCompatDialogFragment {
                             while(!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
 
-                            ProfileImage profileImage = new ProfileImage("testUser", downloadUrl.toString());
+                            ProfileImage profileImage = new ProfileImage("-MutmLS6FPIkhneAJSGT", downloadUrl.toString());
 
                             daoBD.add(profileImage);
                         }

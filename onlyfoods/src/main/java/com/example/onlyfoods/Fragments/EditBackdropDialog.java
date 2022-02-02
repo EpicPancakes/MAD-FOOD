@@ -158,7 +158,7 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
                             while(!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
 
-                            Backdrop backdrop = new Backdrop("testUser", ETBackdropFileName.getText().toString().trim(), downloadUrl.toString());
+                            Backdrop backdrop = new Backdrop("-MutmLS6FPIkhneAJSGT", ETBackdropFileName.getText().toString().trim(), downloadUrl.toString());
 
                             daoBD.add(backdrop);
                         }

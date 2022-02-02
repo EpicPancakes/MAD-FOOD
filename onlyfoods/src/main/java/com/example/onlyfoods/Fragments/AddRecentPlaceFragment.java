@@ -198,7 +198,7 @@ public class AddRecentPlaceFragment extends Fragment {
                 ACTVRestaurantRP.getText().toString();
                 Restaurant selectedRestaurant = restaurants.stream().filter(restaurant -> (ACTVRestaurantRP.getText().toString()).equals(restaurant.getRestaurantName())).findFirst().orElse(null);
                 Date finalDateObject = dateObject;
-                RecentPlace rp = new RecentPlace(selectedRestaurant.getRestaurantKey(), "testUser", finalDateObject);
+                RecentPlace rp = new RecentPlace(selectedRestaurant.getRestaurantKey(), "-MutmLS6FPIkhneAJSGT", finalDateObject);
                 daoRP.add(rp).addOnSuccessListener(suc2 ->
                 {
                     Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();

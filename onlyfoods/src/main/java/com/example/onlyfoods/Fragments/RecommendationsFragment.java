@@ -113,8 +113,8 @@ public class RecommendationsFragment extends Fragment implements Recommendations
     }
 
     private void loadData() {
-        // TODO: Replace testUser with the userKey obtained from User
-        daoRec.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+        // TODO: Replace userKey with the session key obtained from User
+        daoRec.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 recs.clear();

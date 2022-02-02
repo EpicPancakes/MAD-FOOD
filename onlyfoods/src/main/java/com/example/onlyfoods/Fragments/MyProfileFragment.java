@@ -154,7 +154,7 @@ public class MyProfileFragment extends Fragment {
             }
         });
 
-        mDBListenerBD = daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+        mDBListenerBD = daoBD.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
@@ -173,7 +173,7 @@ public class MyProfileFragment extends Fragment {
         });
 
         IVProfileImage = view.findViewById(R.id.IVProfileImage);
-        mDBListenerPI = daoPI.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+        mDBListenerPI = daoPI.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {

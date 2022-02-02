@@ -2,7 +2,9 @@ package com.example.onlyfoods.DAOs;
 
 
 import com.example.onlyfoods.Models.User;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -36,8 +38,16 @@ public class DAOUser {
         return databaseReference.child(userKey);
     }
 
+    public Task<DataSnapshot> getByUserKeyOnce(String userKey){
+        return databaseReference.child(userKey).get();
+    }
+
     public Query getFollowersByUserKey(String userKey){
         return databaseReference.child(userKey).child("followers");
+    }
+
+    public Task<DataSnapshot> checkIfFollows(String userKey, String followsUserKey){
+        return databaseReference.child(userKey).child("following").child(followsUserKey).get();
     }
 
 }

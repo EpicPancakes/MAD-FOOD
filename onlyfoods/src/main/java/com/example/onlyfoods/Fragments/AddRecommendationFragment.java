@@ -143,7 +143,7 @@ public class AddRecommendationFragment extends Fragment {
                 ACTVRestaurantRec.getText().toString();
                 Restaurant selectedRestaurant = restaurants.stream().filter(restaurant -> (ACTVRestaurantRec.getText().toString()).equals(restaurant.getRestaurantName())).findFirst().orElse(null);
                 Calendar calendar = Calendar.getInstance();
-                Recommendation rec = new Recommendation("testUser", selectedRestaurant.getRestaurantKey(),"robert", new Date(), ETRecommendMessage.getText().toString());
+                Recommendation rec = new Recommendation("-MutmLS6FPIkhneAJSGT", selectedRestaurant.getRestaurantKey(),"robert", new Date(), ETRecommendMessage.getText().toString());
                 daoRec.add(rec).addOnSuccessListener(suc2 ->
                 {
 

@@ -103,7 +103,7 @@ public class EditProfileFragment extends Fragment {
         IBEditProfileImage = view.findViewById(R.id.IBEditProfileImage);
         IVEditProfileImage = view.findViewById(R.id.IVEditProfileImage);
 
-        mDBListenerBD = daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+        mDBListenerBD = daoBD.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
@@ -120,7 +120,7 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
-        mDBListenerPI = daoPI.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+        mDBListenerPI = daoPI.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
