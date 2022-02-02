@@ -37,7 +37,11 @@
         android:id="@+id/DestFollows"
         android:name="com.example.onlyfoods.Fragments.FollowsFragment"
         android:label="Follows"
-        tools:layout="@layout/fragment_follows" />
+        tools:layout="@layout/fragment_follows" >
+        <action
+            android:id="@+id/NextToUserProfile"
+            app:destination="@id/DestUserProfile" />
+    </fragment>
     <fragment
         android:id="@+id/DestRecommendations"
         android:name="com.example.onlyfoods.Fragments.RecommendationsFragment"
@@ -56,4 +60,12 @@
         android:name="com.example.onlyfoods.Fragments.AddRecentPlaceFragment"
         android:label="Add Recent Place"
         tools:layout="@layout/fragment_add_recent_place" />
+    <fragment
+        android:id="@+id/DestUserProfile"
+        android:name="com.example.onlyfoods.Fragments.UserProfileFragment"
+        android:label="User Profile" >
+        <action
+            android:id="@+id/UPNextToFollows"
+            app:destination="@id/DestFollows" />
+    </fragment>
 </navigation>

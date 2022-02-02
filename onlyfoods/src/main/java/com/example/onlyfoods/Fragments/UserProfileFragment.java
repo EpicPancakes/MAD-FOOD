@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,8 +17,10 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.onlyfoods.Adapters.ViewPagerAdapter;
 import com.example.onlyfoods.DAOs.DAOBackdrop;
 import com.example.onlyfoods.DAOs.DAOProfileImage;
+import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Backdrop;
 import com.example.onlyfoods.Models.ProfileImage;
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -44,13 +45,21 @@ public class UserProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private String userKey;
+    private TextView TVUPName;
+    private TextView TVUPFollowers;
+    private TextView TVUPFollowing;
+
+    private User user;
+    private DAOUser daoUser;
+
     private DAOBackdrop daoBD;
     private ValueEventListener mDBListenerBD;
 
     private DAOProfileImage daoPI;
     private ValueEventListener mDBListenerPI;
 
-    ImageView IVBackdrop;
+    ImageView IVUPBackdrop;
     Backdrop backdrop;
 
     ImageView IVProfileImage;
@@ -89,8 +98,14 @@ public class UserProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        daoUser = new DAOUser();
         daoBD = new DAOBackdrop();
         daoPI = new DAOProfileImage();
+        Bundle bundle = this.getArguments();
+
+        if(bundle != null){
+            userKey = bundle.getString("userKey");
+        }
     }
 
 
@@ -98,14 +113,14 @@ public class UserProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_my_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
         addFragment(view);
         return view;
     }
 
     private void addFragment(View view){
-        tabLayout = view.findViewById(R.id.TLFollows);
-        viewPager = view.findViewById(R.id.VPFollows);
+        tabLayout = view.findViewById(R.id.TLUPFollows);
+        viewPager = view.findViewById(R.id.VPUPFollows);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), getLifecycle());
         adapter.addFragment(new RecentPlacesFragment(), "Recent Places");
         adapter.addFragment(new ReviewsFragment(), "Reviews");
@@ -121,82 +136,84 @@ public class UserProfileFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
 
-        IVBackdrop = view.findViewById(R.id.IVBackdrop);
-        mDBListenerBD = daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    backdrop = data.getValue(Backdrop.class);
-                    backdrop.setBackdropKey(data.getKey());
+        IVUPBackdrop = view.findViewById(R.id.IVUPBackdrop);
+        TVUPName = view.findViewById(R.id.TVUPName);
+        TVUPFollowers = view.findViewById(R.id.TVUPFollowers);
+        TVUPFollowing = view.findViewById(R.id.TVUPFollowing);
+        if(userKey != null){
+            daoUser.getByUserKey(userKey).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    user = snapshot.getValue(User.class);
+                    TVUPName.setText(user.getUsername());
+                    String followersCountText = String.valueOf(user.getFollowersCount()) + " Followers";
+                    TVUPFollowers.setText(followersCountText);
+                    String followingCountText = String.valueOf(user.getFollowingCount()) + " Following";
+                    TVUPFollowing.setText(followingCountText);
                 }
-                if(backdrop!=null){
-                    Picasso.get().load(backdrop.getBackdropUrl()).fit().centerCrop().into(IVBackdrop);
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        IVProfileImage = view.findViewById(R.id.IVProfileImage);
-        mDBListenerPI = daoPI.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    profileImage = data.getValue(ProfileImage.class);
-                    profileImage.setProfileImageKey(data.getKey());
+            mDBListenerBD = daoBD.getByUserKey(userKey).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot data : snapshot.getChildren()) {
+                        backdrop = data.getValue(Backdrop.class);
+                        backdrop.setBackdropKey(data.getKey());
+                    }
+                    if(backdrop!=null){
+                        Picasso.get().load(backdrop.getBackdropUrl()).fit().centerCrop().into(IVUPBackdrop);
+                    }
                 }
-                if(profileImage!=null){
-                    Picasso.get().load(profileImage.getProfileImageUrl()).fit().centerCrop().into(IVProfileImage);
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            IVProfileImage = view.findViewById(R.id.IVUPProfileImage);
+            mDBListenerPI = daoPI.getByUserKey(userKey).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot data : snapshot.getChildren()) {
+                        profileImage = data.getValue(ProfileImage.class);
+                        profileImage.setProfileImageKey(data.getKey());
+                    }
+                    if(profileImage!=null){
+                        Picasso.get().load(profileImage.getProfileImageUrl()).fit().centerCrop().into(IVProfileImage);
+                    }
+                }
 
-        TextView TVFollowers = (TextView) view.findViewById(R.id.TVFollowers);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        TextView TVFollowers = (TextView) view.findViewById(R.id.TVUPFollowers);
         View.OnClickListener OCLFollowers = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.DestFollows);
+                Navigation.findNavController(view).navigate(R.id.UPNextToFollows);
             }
         };
         TVFollowers.setOnClickListener(OCLFollowers);
 
-        TextView TVFollowing = (TextView) view.findViewById(R.id.TVFollowing);
+        TextView TVFollowing = (TextView) view.findViewById(R.id.TVUPFollowing);
         View.OnClickListener OCLFollowing = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.DestFollows);
+                Navigation.findNavController(view).navigate(R.id.UPNextToFollows);
             }
         };
         TVFollowing.setOnClickListener(OCLFollowers);
 
-        Button BtnEditProfile = view.findViewById(R.id.BtnEditProfile);
-        View.OnClickListener OCLEditProfile = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                DAOUser daoUser = new DAOUser();
-//                User user = new User("testUser");
-//                daoUser.add(user);
-                Navigation.findNavController(view).navigate(R.id.NextToEditProfile);
-            }
-        };
-        BtnEditProfile.setOnClickListener(OCLEditProfile);
-
-        Button BtnRecommendations = view.findViewById(R.id.BtnRecommendations);
-        View.OnClickListener OCLRecommendations = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.NextToRecommendations);
-            }
-        };
-        BtnRecommendations.setOnClickListener(OCLRecommendations);
     }
 
     @Override

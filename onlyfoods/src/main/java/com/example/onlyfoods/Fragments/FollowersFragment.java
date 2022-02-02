@@ -5,14 +5,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfoods.Adapters.FollowersRecyclerViewAdapter;
+import com.example.onlyfoods.Adapters.RecommendationsAdapter;
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.User;
@@ -27,7 +30,7 @@ import java.util.ArrayList;
 /**
  * A fragment representing a list of Items.
  */
-public class FollowersFragment extends Fragment {
+public class FollowersFragment extends Fragment implements FollowersRecyclerViewAdapter.OnItemClickListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -81,6 +84,7 @@ public class FollowersFragment extends Fragment {
             }
             adapter = new FollowersRecyclerViewAdapter(followers);
             recyclerView.setAdapter(adapter);
+            adapter.setOnItemClickListener(FollowersFragment.this);
         }
 
         daoUser = new DAOUser();
@@ -94,6 +98,7 @@ public class FollowersFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 followers.clear();
+                adapter.notifyDataSetChanged();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     daoUser.getByUserKey(data.getKey()).addValueEventListener(new ValueEventListener() {
                         @Override
@@ -116,5 +121,21 @@ public class FollowersFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString("userKey", followers.get(position).getUserKey());
+        Navigation.findNavController(getView()).navigate(R.id.NextToUserProfile, bundle);
+//        UserProfileFragment userProfileFragment = new UserProfileFragment();
+//        userProfileFragment.setArguments(bundle);
+//        for (Fragment fragment : getParentFragmentManager().getFragments()) {
+//            if (fragment != null) {
+//                getParentFragmentManager().beginTransaction().remove(fragment).commit();
+//            }
+//        }
+//        getParentFragmentManager().beginTransaction().add(userProfileFragment, "User Profile").commit();
+        Toast.makeText(getContext(), "Navigating to user", Toast.LENGTH_SHORT).show();
     }
 }

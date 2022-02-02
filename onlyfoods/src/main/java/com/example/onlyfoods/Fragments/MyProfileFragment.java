@@ -49,7 +49,12 @@ public class MyProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private TextView TVName;
+    private TextView TVFollowers;
+    private TextView TVFollowing;
+
     private User user;
+    private DAOUser daoUser;
 
     private DAOBackdrop daoBD;
     private ValueEventListener mDBListenerBD;
@@ -98,6 +103,7 @@ public class MyProfileFragment extends Fragment {
         }
         daoBD = new DAOBackdrop();
         daoPI = new DAOProfileImage();
+        daoUser = new DAOUser();
     }
 
 
@@ -110,7 +116,7 @@ public class MyProfileFragment extends Fragment {
         return view;
     }
 
-    private void addFragment(View view){
+    private void addFragment(View view) {
         tabLayout = view.findViewById(R.id.TLFollows);
         viewPager = view.findViewById(R.id.VPFollows);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), getLifecycle());
@@ -118,7 +124,7 @@ public class MyProfileFragment extends Fragment {
         adapter.addFragment(new ReviewsFragment(), "Reviews");
         viewPager.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            if(position == 0)
+            if (position == 0)
                 tab.setText("Recent Places");
             else
                 tab.setText("Reviews");
@@ -126,9 +132,28 @@ public class MyProfileFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         IVBackdrop = view.findViewById(R.id.IVBackdrop);
+        TVName = view.findViewById(R.id.TVName);
+        TVFollowers = view.findViewById(R.id.TVFollowers);
+        TVFollowing = view.findViewById(R.id.TVFollowing);
+        daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user = snapshot.getValue(User.class);
+                TVName.setText(user.getUsername());
+                String followersCountText = String.valueOf(user.getFollowersCount()) + " Followers";
+                TVFollowers.setText(followersCountText);
+                String followingCountText = String.valueOf(user.getFollowingCount()) + " Following";
+                TVFollowing.setText(followingCountText);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         mDBListenerBD = daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -136,7 +161,7 @@ public class MyProfileFragment extends Fragment {
                     backdrop = data.getValue(Backdrop.class);
                     backdrop.setBackdropKey(data.getKey());
                 }
-                if(backdrop!=null){
+                if (backdrop != null) {
                     Picasso.get().load(backdrop.getBackdropUrl()).fit().centerCrop().into(IVBackdrop);
                 }
             }
@@ -155,7 +180,7 @@ public class MyProfileFragment extends Fragment {
                     profileImage = data.getValue(ProfileImage.class);
                     profileImage.setProfileImageKey(data.getKey());
                 }
-                if(profileImage!=null){
+                if (profileImage != null) {
                     Picasso.get().load(profileImage.getProfileImageUrl()).fit().centerCrop().into(IVProfileImage);
                 }
             }
@@ -170,7 +195,7 @@ public class MyProfileFragment extends Fragment {
         View.OnClickListener OCLFollowers = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.DestFollows);
+                Navigation.findNavController(view).navigate(R.id.NextToFollows);
             }
         };
         TVFollowers.setOnClickListener(OCLFollowers);
@@ -179,7 +204,7 @@ public class MyProfileFragment extends Fragment {
         View.OnClickListener OCLFollowing = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.DestFollows);
+                Navigation.findNavController(view).navigate(R.id.NextToFollows);
             }
         };
         TVFollowing.setOnClickListener(OCLFollowers);
