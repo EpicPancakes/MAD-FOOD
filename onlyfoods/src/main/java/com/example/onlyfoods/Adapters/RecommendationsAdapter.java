@@ -121,5 +121,6 @@ public class RecommendationsAdapter extends
                 }
             }
         }
+
     }
 }

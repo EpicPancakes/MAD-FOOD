@@ -1,23 +1,24 @@
 package com.example.onlyfoods.Models;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.Map;
 
 public class User {
 
     private String username;
-    private String password;
     private Map<String, Boolean> recentPlaces; // <recentPlaceKey, true>
     private Map<String, Boolean> reviews; // <recentPlaceKey, true>
     private Map<String, Boolean> recommendations; // <recentPlaceKey, true>
     private Map<String, Boolean> followers; // <recentPlaceKey, true>
     private Map<String, Boolean> following; // <recentPlaceKey, true>
+    private String userKey;
 
 
     public User() { }
 
-    public User(String username, String password) {
+    public User(String username) {
         this.username = username;
-        this.password = password;
     }
 
     public String getUsername() {
@@ -26,14 +27,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Map<String, Boolean> getRecentPlaces() {
@@ -74,5 +67,15 @@ public class User {
 
     public void setRecommendations(Map<String, Boolean> recommendations) {
         this.recommendations = recommendations;
+    }
+
+    @Exclude
+    public String getUserKey() {
+        return userKey;
+    }
+
+    @Exclude
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
 }

@@ -7,8 +7,10 @@ import com.example.onlyfoods.Models.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class DAOUser {
 
@@ -24,13 +26,17 @@ public class DAOUser {
         return databaseReference.push().setValue(user);
     }
 
-    public Task<Void> update(String key, HashMap<String, Object> hashMap)
+    public Task<Void> update(String key, Map<String, Object> hashMap)
     {
         return databaseReference.child(key).updateChildren(hashMap);
     }
 
     public Task<Void> remove(String key){
         return databaseReference.child(key).removeValue();
+    }
+
+    public Query getByUserKey(String userKey){
+        return databaseReference.child(userKey);
     }
 
 }

@@ -18,8 +18,10 @@ import android.widget.Toast;
 
 import com.example.onlyfoods.DAOs.DAOBackdrop;
 import com.example.onlyfoods.DAOs.DAOProfileImage;
+import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Backdrop;
 import com.example.onlyfoods.Models.ProfileImage;
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.Adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -182,6 +184,9 @@ public class MyProfileFragment extends Fragment {
         View.OnClickListener OCLEditProfile = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                DAOUser daoUser = new DAOUser();
+//                User user = new User("testUser");
+//                daoUser.add(user);
                 Navigation.findNavController(view).navigate(R.id.NextToEditProfile);
             }
         };

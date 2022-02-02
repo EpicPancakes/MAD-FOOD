@@ -13,6 +13,9 @@ import java.util.HashMap;
 public class DAORecentPlace {
 
     private DatabaseReference databaseReference;
+    private String recentPlaceKey;
+
+
     public DAORecentPlace()
     {
         FirebaseDatabase db = FirebaseDatabase.getInstance("https://onlyfoods-e16b9-default-rtdb.asia-southeast1.firebasedatabase.app");
@@ -21,7 +24,8 @@ public class DAORecentPlace {
 
     public Task<Void> add(RecentPlace rp)
     {
-        return databaseReference.push().setValue(rp);
+        recentPlaceKey = databaseReference.push().getKey();
+        return databaseReference.child(recentPlaceKey).setValue(rp);
     }
 
     public Task<Void> update(String key, HashMap<String, Object> hashMap)
@@ -43,6 +47,10 @@ public class DAORecentPlace {
 
     public Task<DataSnapshot> getAll(){
         return databaseReference.get();
+    }
+
+    public String getRecentPlaceKey() {
+        return recentPlaceKey;
     }
 
 }

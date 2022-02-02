@@ -15,8 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.onlyfoods.DAOs.DAORecentPlace;
+import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Adapters.MyRecentPlacesRecyclerViewAdapter;
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,6 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A fragment representing a list of Items.
@@ -40,6 +44,7 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
     DAORecentPlace daoRP;
     MyRecentPlacesRecyclerViewAdapter adapter;
     ArrayList<RecentPlace> rps = new ArrayList<>();
+    private User user;
 
 
     /**
@@ -136,6 +141,7 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
             daoRP.remove(selectedRecentPlaceKey).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
+                    deleteRPinUser(selectedRecentPlaceKey);
                     Toast.makeText(getContext(), "Removed recent place", Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -145,5 +151,38 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
                 }
             });
         }
+    }
+
+    private void deleteRPinUser(String rpKey){
+        // Include recent place key in user's recent places list by updating user
+        DAOUser daoUser = new DAOUser();
+        daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user = snapshot.getValue(User.class);
+                user.setUserKey(snapshot.getKey());
+                if (user != null) {
+                    Map<String, Object> objectHM = new HashMap<>();
+                    Map<String, Boolean> booleanHM;
+                    if(user.getRecentPlaces()!=null){
+                        booleanHM = user.getRecentPlaces();
+                    }else{
+                        booleanHM = new HashMap<>();
+                    }
+                    booleanHM.remove(rpKey);
+                    objectHM.put("recentPlaces", booleanHM);
+                    daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
+                        Toast.makeText(getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
+                    }).addOnFailureListener(er ->
+                    {
+                        Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
