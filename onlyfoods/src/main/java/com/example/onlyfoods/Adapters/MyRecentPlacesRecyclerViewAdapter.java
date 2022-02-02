@@ -1,7 +1,5 @@
 package com.example.onlyfoods.Adapters;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -12,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.onlyfoods.DAOs.DAORestaurant;
 import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.Restaurant;
-import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 import com.example.onlyfoods.databinding.FragmentRecentPlacesItemBinding;
+import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

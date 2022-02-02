@@ -78,4 +78,31 @@ public class User {
     public void setUserKey(String userKey) {
         this.userKey = userKey;
     }
+
+    @Exclude
+    public int getFollowersCount(){
+        if(followers!= null){
+            return followers.size();
+        }else{
+            return 0;
+        }
+    }
+
+    @Exclude
+    public int getFollowingCount(){
+        if(following!=null){
+            return following.size();
+        }else{
+            return 0;
+        }
+    }
+
+    @Exclude
+    public int getReviewsCount(){
+        if(reviews!=null){
+            return reviews.size();
+        }else{
+            return 0;
+        }
+    }
 }

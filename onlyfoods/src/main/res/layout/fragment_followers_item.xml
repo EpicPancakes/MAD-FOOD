@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CLFollowers"
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:background="@drawable/gray_border">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/BtnFollowsFollowing"
+        android:id="@+id/BtnFollowerFollow"
         android:layout_width="90dp"
         android:layout_height="35dp"
         android:background="@drawable/follow_button"
@@ -41,31 +40,7 @@
         app:strokeWidth="3dp" />
 
     <TextView
-        android:id="@+id/item_number"
-        android:layout_width="26dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="48dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="4dp"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
-
-    <TextView
-        android:id="@+id/TVRPRestaurant"
+        android:id="@+id/TVFollowerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

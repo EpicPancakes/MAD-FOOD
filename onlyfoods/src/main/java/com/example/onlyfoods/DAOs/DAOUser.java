@@ -1,15 +1,12 @@
 package com.example.onlyfoods.DAOs;
 
 
-import com.example.onlyfoods.Models.RecentPlace;
-import com.example.onlyfoods.Models.Review;
 import com.example.onlyfoods.Models.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class DAOUser {
@@ -37,6 +34,10 @@ public class DAOUser {
 
     public Query getByUserKey(String userKey){
         return databaseReference.child(userKey);
+    }
+
+    public Query getFollowersByUserKey(String userKey){
+        return databaseReference.child(userKey).child("followers");
     }
 
 }

@@ -2,8 +2,6 @@ package com.example.onlyfoods.Models;
 
 import com.google.firebase.database.Exclude;
 
-import java.util.Date;
-
 public class Restaurant {
 
     private String restaurantName;

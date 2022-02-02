@@ -13,7 +13,7 @@
         android:id="@+id/DestMyProfile"
         android:name="com.example.onlyfoods.Fragments.MyProfileFragment"
         android:label="My Profile"
-        tools:layout="@layout/fragment_my_profile">
+        tools:layout="@layout/fragment_user_profile">
         <action
             android:id="@+id/NextToEditProfile"
             app:destination="@id/DestEditProfile" />

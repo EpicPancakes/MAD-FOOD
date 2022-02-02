@@ -2,12 +2,16 @@ package com.example.onlyfoods.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.databinding.FragmentFollowersItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -17,10 +21,10 @@ import java.util.List;
  */
 public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<FollowersRecyclerViewAdapter.ViewHolder> {
 
-    private final List<PlaceholderItem> mValues;
+    private final List<User> followers;
 
-    public FollowersRecyclerViewAdapter(List<PlaceholderItem> items) {
-        mValues = items;
+    public FollowersRecyclerViewAdapter(List<User> followers) {
+        this.followers = followers;
     }
 
     @Override
@@ -32,30 +36,34 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        User follower = followers.get(position);
+        holder.TVFollowerName.setText(follower.getUsername());
+        holder.TVFollowersNum.setText(String.valueOf(follower.getFollowersCount()));
+        holder.TVReviewsNum.setText(String.valueOf(follower.getReviewsCount()));
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return followers.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public PlaceholderItem mItem;
+        public final TextView TVFollowerName;
+        public final Button BTNFollowerFollow;
+        public final TextView TVFollowersNum;
+        public final TextView TVReviewsNum;
 
         public ViewHolder(FragmentFollowersItemBinding binding) {
             super(binding.getRoot());
-            mIdView = binding.itemNumber;
-            mContentView = binding.content;
+            TVFollowerName = binding.TVFollowerName;
+            BTNFollowerFollow = binding.BtnFollowerFollow;
+            TVFollowersNum = binding.TVFollowersNum;
+            TVReviewsNum = binding.TVReviewsNum;
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + "'";
         }
     }
 }

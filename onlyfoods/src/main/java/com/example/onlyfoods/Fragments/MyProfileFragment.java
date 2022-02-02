@@ -1,13 +1,6 @@
 package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.onlyfoods.Adapters.ViewPagerAdapter;
 import com.example.onlyfoods.DAOs.DAOBackdrop;
 import com.example.onlyfoods.DAOs.DAOProfileImage;
 import com.example.onlyfoods.DAOs.DAOUser;
@@ -23,13 +23,15 @@ import com.example.onlyfoods.Models.Backdrop;
 import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
-import com.example.onlyfoods.Adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +48,8 @@ public class MyProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private User user;
 
     private DAOBackdrop daoBD;
     private ValueEventListener mDBListenerBD;
@@ -184,9 +188,6 @@ public class MyProfileFragment extends Fragment {
         View.OnClickListener OCLEditProfile = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                DAOUser daoUser = new DAOUser();
-//                User user = new User("testUser");
-//                daoUser.add(user);
                 Navigation.findNavController(view).navigate(R.id.NextToEditProfile);
             }
         };
@@ -210,3 +211,43 @@ public class MyProfileFragment extends Fragment {
     }
 
 }
+
+
+//                DAOUser daoUser = new DAOUser();
+//                User user = new User("testUser");
+//                daoUser.add(user);
+
+// Include recent place key in user's recent places list by updating user
+//                DAOUser daoUser = new DAOUser();
+//                daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        user = snapshot.getValue(User.class);
+//                        user.setUserKey(snapshot.getKey());
+//                        if (user != null) {
+//                            Map<String, Object> objectHM = new HashMap<>();
+//                            Map<String, Boolean> booleanHM;
+//                            if(user.getFollowers()!=null){
+//                                booleanHM = user.getFollowers();
+//                            }else{
+//                                booleanHM = new HashMap<>();
+//                            }
+//                            booleanHM.put("-MuutRjvNVBKBLgtgoay", true);
+//                            booleanHM.put("-MuutSTwAsOozQY-4q__", true);
+//                            booleanHM.put("-MuutT3u5vHv0aGdAzEi", true);
+//                            booleanHM.put("-MuutTWbptHyoyd45QuL", true);
+//                            booleanHM.put("-MuutVzOns5vF6LrOxce", true);
+//                            objectHM.put("followers", booleanHM);
+//                            daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
+////                                Toast.makeText(view.getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
+//                            }).addOnFailureListener(er ->
+//                            {
+//                                Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+//                            });
+//                        }
+//                    }
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });

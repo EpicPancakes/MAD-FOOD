@@ -6,14 +6,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfoods.Adapters.FollowersRecyclerViewAdapter;
+import com.example.onlyfoods.DAOs.DAOUser;
+import com.example.onlyfoods.Models.RecentPlace;
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -24,6 +33,11 @@ public class FollowersFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+
+    private User user;
+    private DAOUser daoUser;
+    ArrayList<User> followers = new ArrayList<>();
+    private FollowersRecyclerViewAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -65,8 +79,42 @@ public class FollowersFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new FollowersRecyclerViewAdapter(PlaceholderContent.ITEMS));
+            adapter = new FollowersRecyclerViewAdapter(followers);
+            recyclerView.setAdapter(adapter);
         }
+
+        daoUser = new DAOUser();
+        loadData();
         return view;
+    }
+
+    private void loadData() {
+        // TODO: Replace userKey with the current user in session
+        daoUser.getFollowersByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                followers.clear();
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    daoUser.getByUserKey(data.getKey()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot userSnapshot) {
+                            User follower = userSnapshot.getValue(User.class);
+                            follower.setUserKey(userSnapshot.getKey());
+                            followers.add(follower);
+                            adapter.notifyItemInserted(followers.size()-1);
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

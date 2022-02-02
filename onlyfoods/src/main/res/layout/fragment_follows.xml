@@ -8,14 +8,14 @@
     tools:context=".Fragments.FollowsFragment" >
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/VPFollows"
+        android:id="@+id/VPUPFollows"
         android:layout_width="match_parent"
         android:layout_height="525dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TLFollows"
+        app:layout_constraintTop_toBottomOf="@+id/TLUPFollows"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/TLFollows"
+        android:id="@+id/TLUPFollows"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -46,13 +46,13 @@
         app:layout_constraintTop_toBottomOf="@+id/TVFollowProfileName">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/TIFollowers"
+            android:id="@+id/TIUPFollowers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/followers" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/TIFollowing"
+            android:id="@+id/TIUPFollowing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/following" />
@@ -67,5 +67,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TLFollows" />
+        app:layout_constraintTop_toBottomOf="@+id/TLUPFollows" />
 </androidx.constraintlayout.widget.ConstraintLayout>

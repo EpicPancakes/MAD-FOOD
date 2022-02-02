@@ -5,20 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.onlyfoods.Adapters.ViewPagerAdapter;
 import com.example.onlyfoods.DAOs.DAOBackdrop;
 import com.example.onlyfoods.DAOs.DAOProfileImage;
 import com.example.onlyfoods.Models.Backdrop;
 import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.R;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -26,10 +30,10 @@ import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link EditProfileFragment#newInstance} factory method to
+ * Use the {@link UserProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EditProfileFragment extends Fragment {
+public class UserProfileFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,20 +44,23 @@ public class EditProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private Button BTNEditBackdrop;
-    private ImageButton IBEditProfileImage;
-
     private DAOBackdrop daoBD;
-    private DAOProfileImage daoPI;
     private ValueEventListener mDBListenerBD;
+
+    private DAOProfileImage daoPI;
     private ValueEventListener mDBListenerPI;
 
-    private Backdrop backdrop;
-    private ProfileImage profileImage;
-    private ImageView IVEditBackdrop;
-    private ImageView IVEditProfileImage;
+    ImageView IVBackdrop;
+    Backdrop backdrop;
 
-    public EditProfileFragment() {
+    ImageView IVProfileImage;
+    ProfileImage profileImage;
+
+    // ViewPager implementation to slide between recent places and reviews
+    TabLayout tabLayout;
+    ViewPager2 viewPager;
+
+    public UserProfileFragment() {
         // Required empty public constructor
     }
 
@@ -63,11 +70,11 @@ public class EditProfileFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment EditProfileFragment.
+     * @return A new instance of fragment HomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EditProfileFragment newInstance(String param1, String param2) {
-        EditProfileFragment fragment = new EditProfileFragment();
+    public static UserProfileFragment newInstance(String param1, String param2) {
+        UserProfileFragment fragment = new UserProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -82,27 +89,39 @@ public class EditProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
         daoBD = new DAOBackdrop();
         daoPI = new DAOProfileImage();
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_profile, container, false);
+        addFragment(view);
+        return view;
+    }
+
+    private void addFragment(View view){
+        tabLayout = view.findViewById(R.id.TLFollows);
+        viewPager = view.findViewById(R.id.VPFollows);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), getLifecycle());
+        adapter.addFragment(new RecentPlacesFragment(), "Recent Places");
+        adapter.addFragment(new ReviewsFragment(), "Reviews");
+        viewPager.setAdapter(adapter);
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            if(position == 0)
+                tab.setText("Recent Places");
+            else
+                tab.setText("Reviews");
+        }).attach();
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
 
-
-        BTNEditBackdrop = view.findViewById(R.id.BTNEditBackdrop);
-        IVEditBackdrop = view.findViewById(R.id.IVEditBackdrop);
-        IBEditProfileImage = view.findViewById(R.id.IBEditProfileImage);
-        IVEditProfileImage = view.findViewById(R.id.IVEditProfileImage);
-
+        IVBackdrop = view.findViewById(R.id.IVBackdrop);
         mDBListenerBD = daoBD.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -111,15 +130,17 @@ public class EditProfileFragment extends Fragment {
                     backdrop.setBackdropKey(data.getKey());
                 }
                 if(backdrop!=null){
-                    Picasso.get().load(backdrop.getBackdropUrl()).fit().centerCrop().into(IVEditBackdrop);
+                    Picasso.get().load(backdrop.getBackdropUrl()).fit().centerCrop().into(IVBackdrop);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
+        IVProfileImage = view.findViewById(R.id.IVProfileImage);
         mDBListenerPI = daoPI.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -128,50 +149,54 @@ public class EditProfileFragment extends Fragment {
                     profileImage.setProfileImageKey(data.getKey());
                 }
                 if(profileImage!=null){
-                    Picasso.get().load(profileImage.getProfileImageUrl()).fit().centerCrop().into(IVEditProfileImage);
+                    Picasso.get().load(profileImage.getProfileImageUrl()).fit().centerCrop().into(IVProfileImage);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        BTNEditBackdrop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openBDDialog();
-            }
-        });
-
-        IBEditProfileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openPIDialog();
-            }
-        });
-
-
-        Button BtnAddRecentPlace = view.findViewById(R.id.BTNAddRecentPlace);
-        View.OnClickListener OCLAddRecentPlace = new View.OnClickListener() {
+        TextView TVFollowers = (TextView) view.findViewById(R.id.TVFollowers);
+        View.OnClickListener OCLFollowers = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.NextToAddRecentPlace);
+                Navigation.findNavController(view).navigate(R.id.DestFollows);
             }
         };
-        BtnAddRecentPlace.setOnClickListener(OCLAddRecentPlace);
+        TVFollowers.setOnClickListener(OCLFollowers);
 
-        IVEditBackdrop.setClipToOutline(true);
-    }
+        TextView TVFollowing = (TextView) view.findViewById(R.id.TVFollowing);
+        View.OnClickListener OCLFollowing = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.DestFollows);
+            }
+        };
+        TVFollowing.setOnClickListener(OCLFollowers);
 
-    public void openBDDialog() {
-        EditBackdropDialog editBackdropDialog = EditBackdropDialog.newInstance(1, backdrop);
-        editBackdropDialog.show(getParentFragmentManager(), "Edit Backdrop");
-    }
+        Button BtnEditProfile = view.findViewById(R.id.BtnEditProfile);
+        View.OnClickListener OCLEditProfile = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                DAOUser daoUser = new DAOUser();
+//                User user = new User("testUser");
+//                daoUser.add(user);
+                Navigation.findNavController(view).navigate(R.id.NextToEditProfile);
+            }
+        };
+        BtnEditProfile.setOnClickListener(OCLEditProfile);
 
-    public void openPIDialog() {
-        EditProfileImageDialog editProfileImageDialog = EditProfileImageDialog.newInstance(1, profileImage);
-        editProfileImageDialog.show(getParentFragmentManager(), "Edit Profile Image");
+        Button BtnRecommendations = view.findViewById(R.id.BtnRecommendations);
+        View.OnClickListener OCLRecommendations = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.NextToRecommendations);
+            }
+        };
+        BtnRecommendations.setOnClickListener(OCLRecommendations);
     }
 
     @Override
@@ -180,4 +205,5 @@ public class EditProfileFragment extends Fragment {
         daoBD.removeListener(mDBListenerBD);
         daoPI.removeListener(mDBListenerPI);
     }
+
 }

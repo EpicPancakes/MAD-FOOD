@@ -1,17 +1,16 @@
 package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.onlyfoods.R;
 import com.example.onlyfoods.Adapters.ViewPagerAdapter;
+import com.example.onlyfoods.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -78,8 +77,8 @@ public class FollowsFragment extends Fragment {
     }
 
     private void addFragment(View view){
-        tabLayout = view.findViewById(R.id.TLFollows);
-        viewPager = view.findViewById(R.id.VPFollows);
+        tabLayout = view.findViewById(R.id.TLUPFollows);
+        viewPager = view.findViewById(R.id.VPUPFollows);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), getLifecycle());
         adapter.addFragment(new FollowersFragment(), "Followers");
         adapter.addFragment(new FollowingFragment(), "Following");

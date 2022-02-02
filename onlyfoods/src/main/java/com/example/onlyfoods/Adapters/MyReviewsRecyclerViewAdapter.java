@@ -1,13 +1,13 @@
 package com.example.onlyfoods.Adapters;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.onlyfoods.databinding.FragmentReviewsItemBinding;
+import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 
 import java.util.List;
 
