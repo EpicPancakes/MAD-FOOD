@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -12,11 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.onlyfoods.DAOs.DAORecommendation;
+import com.example.onlyfoods.Models.Recommendation;
 import com.example.onlyfoods.R;
-import com.example.onlyfoods.Recommendation;
+import com.example.onlyfoods.RecommendationOld;
 import com.example.onlyfoods.Adapters.RecommendationsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -40,7 +46,12 @@ public class RecommendationsFragment extends Fragment {
     // ViewPager implementation to slide between recent places and reviews
     TabLayout tabLayout;
     ViewPager2 viewPager;
-    ArrayList<Recommendation> recommendations;
+    ArrayList<RecommendationOld> recommendationOlds;
+    DAORecommendation daoRec;
+    RecommendationsAdapter adapter;
+    ArrayList<Recommendation> recs = new ArrayList<>();
+
+
 
     public RecommendationsFragment() {
         // Required empty public constructor
@@ -89,14 +100,39 @@ public class RecommendationsFragment extends Fragment {
         RecyclerView rvRecommendations = (RecyclerView) view.findViewById(R.id.RVRecommendations);
 
         // Initialize recommendations
-        recommendations = Recommendation.createRecommendationsList(20);
+        recommendationOlds = RecommendationOld.createRecommendationsList(20);
         // Create adapter passing in the sample user data
-        RecommendationsAdapter adapter = new RecommendationsAdapter(recommendations);
+        adapter = new RecommendationsAdapter(recs);
         // Attach the adapter to the recyclerview to populate items
         rvRecommendations.setAdapter(adapter);
+
+        daoRec = new DAORecommendation();
+        loadData();
+
         // Set layout manager to position the items
         rvRecommendations.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
+    }
+
+    private void loadData() {
+        // TODO: Replace testUser with the userKey obtained from User
+        daoRec.getByUserKey("testUser").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                recs.clear();
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    Recommendation rec = data.getValue(Recommendation.class);
+                    rec.setRecommendationKey(data.getKey());
+                    recs.add(rec);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override

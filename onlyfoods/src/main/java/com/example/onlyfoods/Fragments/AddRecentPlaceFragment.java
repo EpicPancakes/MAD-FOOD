@@ -169,7 +169,7 @@ public class AddRecentPlaceFragment extends Fragment {
                 if (!hasFocus) {
                     if (results.size() == 0 ||
                             !results.contains(ACTVRestaurantRP.getText().toString())) {
-                        ACTVRestaurantRP.setError("Invalid username.");
+                        ACTVRestaurantRP.setError("Invalid restaurant.");
                     }
                     ;
                 }
@@ -199,6 +199,7 @@ public class AddRecentPlaceFragment extends Fragment {
                 daoRP.add(rp).addOnSuccessListener(suc2 ->
                 {
                     Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
+                    getActivity().onBackPressed();
                 }).addOnFailureListener(er ->
                 {
                     Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();

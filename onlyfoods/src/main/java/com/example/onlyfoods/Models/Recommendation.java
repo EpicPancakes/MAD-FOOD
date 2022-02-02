@@ -1,5 +1,7 @@
 package com.example.onlyfoods.Models;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.Date;
 
 public class Recommendation {
@@ -9,6 +11,7 @@ public class Recommendation {
     private String recommendedUserKey;
     private Date date;
     private String recommendationMsg;
+    private String recommendationKey;
 
     public Recommendation() {
     }
@@ -59,5 +62,15 @@ public class Recommendation {
 
     public void setRecommendationMsg(String recommendationMsg) {
         this.recommendationMsg = recommendationMsg;
+    }
+
+    @Exclude
+    public String getRecommendationKey() {
+        return recommendationKey;
+    }
+
+    @Exclude
+    public void setRecommendationKey(String recommendationKey) {
+        this.recommendationKey = recommendationKey;
     }
 }

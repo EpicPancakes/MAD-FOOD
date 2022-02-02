@@ -2,11 +2,11 @@ package com.example.onlyfoods;
 
 import java.util.ArrayList;
 
-public class Recommendation {
+public class RecommendationOld {
     private String mName;
     private boolean mOnline;
 
-    public Recommendation(String name, boolean online) {
+    public RecommendationOld(String name, boolean online) {
         mName = name;
         mOnline = online;
     }
@@ -21,11 +21,11 @@ public class Recommendation {
 
     private static int lastRecommendationId = 0;
 
-    public static ArrayList<Recommendation> createRecommendationsList(int numRecommendations) {
-        ArrayList<Recommendation> contacts = new ArrayList<Recommendation>();
+    public static ArrayList<RecommendationOld> createRecommendationsList(int numRecommendations) {
+        ArrayList<RecommendationOld> contacts = new ArrayList<RecommendationOld>();
 
         for (int i = 1; i <= numRecommendations; i++) {
-            contacts.add(new Recommendation( ""+ ++lastRecommendationId, i <= numRecommendations / 2));
+            contacts.add(new RecommendationOld( ""+ ++lastRecommendationId, i <= numRecommendations / 2));
         }
 
         return contacts;

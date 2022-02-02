@@ -107,7 +107,7 @@
         android:layout_height="32dp"
         android:background="@drawable/yellow_button"
         android:fontFamily="@font/montserrat"
-        android:text="@string/recommendations"
+        android:text="@string/recommendationOlds"
         android:textAllCaps="false"
         android:textSize="10sp"
         android:textStyle="bold"
