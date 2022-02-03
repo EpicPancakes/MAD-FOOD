@@ -155,14 +155,21 @@ public class UserProfileFragment extends Fragment {
         if (userKey != null) {
 
             // check if session user is currently following viewed user
-            daoUser.checkIfFollows("-MutmLS6FPIkhneAJSGT", userKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            daoUser.checkIfFollows("-MutmLS6FPIkhneAJSGT", userKey).addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onSuccess(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
                         BTNUPFollowing.setVisibility(View.VISIBLE);
+                        BTNUPFollow.setVisibility(View.INVISIBLE);
                     } else {
                         BTNUPFollow.setVisibility(View.VISIBLE);
+                        BTNUPFollowing.setVisibility(View.INVISIBLE);
                     }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
                 }
             });
 
@@ -269,8 +276,8 @@ public class UserProfileFragment extends Fragment {
                                 booleanHM2.put(sessionUser.getUserKey(), true);
                                 objectHM2.put("followers", booleanHM2);
                                 daoUser.update(userKey, objectHM2).addOnSuccessListener(suc2 -> {
-                                    BTNUPFollowing.setVisibility(View.VISIBLE);
-                                    BTNUPFollow.setVisibility(View.INVISIBLE);
+//                                    BTNUPFollowing.setVisibility(View.VISIBLE);
+//                                    BTNUPFollow.setVisibility(View.INVISIBLE);
                                     Toast.makeText(view.getContext(), "User followed", Toast.LENGTH_SHORT).show();
                                 });
 
@@ -321,8 +328,8 @@ public class UserProfileFragment extends Fragment {
                                 booleanHM2.remove(sessionUser.getUserKey());
                                 objectHM2.put("followers", booleanHM2);
                                 daoUser.update(userKey, objectHM2).addOnSuccessListener(suc2 -> {
-                                    BTNUPFollowing.setVisibility(View.INVISIBLE);
-                                    BTNUPFollow.setVisibility(View.VISIBLE);
+//                                    BTNUPFollowing.setVisibility(View.INVISIBLE);
+//                                    BTNUPFollow.setVisibility(View.VISIBLE);
                                     Toast.makeText(view.getContext(), "User unfollowed", Toast.LENGTH_SHORT).show();
                                 });
 

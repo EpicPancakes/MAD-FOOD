@@ -10,12 +10,31 @@
         android:id="@+id/BTNFollowingFollow"
         android:layout_width="90dp"
         android:layout_height="35dp"
+        android:background="@drawable/follow_button"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/follow"
+        android:textAllCaps="false"
+        android:textColor="@color/Y5"
+        android:textSize="11sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BTNFollowingFollowing"
+        android:layout_width="90dp"
+        android:layout_height="35dp"
         android:background="@drawable/following_button"
         android:fontFamily="@font/montserrat"
         android:text="@string/following"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="11sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.952"
@@ -64,7 +83,7 @@
         app:layout_constraintVertical_bias="0.96" />
 
     <TextView
-        android:id="@+id/TVRPRestaurant"
+        android:id="@+id/TVFollowingName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -86,12 +105,12 @@
         android:textColor="@color/gray"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TVReviewsNum"
+        app:layout_constraintStart_toEndOf="@+id/TVFollowingReviewsNum"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.70" />
 
     <TextView
-        android:id="@+id/TVFollowersNum"
+        android:id="@+id/TVFollowingFollowersNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
@@ -116,7 +135,7 @@
         app:layout_constraintVertical_bias="0.70" />
 
     <TextView
-        android:id="@+id/TVReviewsNum"
+        android:id="@+id/TVFollowingReviewsNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -137,7 +156,7 @@
         android:textColor="@color/gray"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TVFollowersNum"
+        app:layout_constraintStart_toEndOf="@+id/TVFollowingFollowersNum"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.7" />
 

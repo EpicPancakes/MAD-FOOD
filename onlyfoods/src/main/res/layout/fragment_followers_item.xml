@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/IVFollowingPicture"
+        android:id="@+id/IVFollowerPicture"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
@@ -68,7 +68,7 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IVFollowingPicture"
+        app:layout_constraintStart_toEndOf="@+id/IVFollowerPicture"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.35000002" />
 
@@ -81,12 +81,12 @@
         android:textColor="@color/gray"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TVReviewsNum"
+        app:layout_constraintStart_toEndOf="@+id/TVFollowerReviewsNum"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.70" />
 
     <TextView
-        android:id="@+id/TVFollowersNum"
+        android:id="@+id/TVFollowerFollowersNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
@@ -111,7 +111,7 @@
         app:layout_constraintVertical_bias="0.70" />
 
     <TextView
-        android:id="@+id/TVReviewsNum"
+        android:id="@+id/TVFollowerReviewsNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -119,7 +119,7 @@
         android:textColor="@color/gray"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IVFollowingPicture"
+        app:layout_constraintStart_toEndOf="@+id/IVFollowerPicture"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.70" />
 
@@ -132,7 +132,7 @@
         android:textColor="@color/gray"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TVFollowersNum"
+        app:layout_constraintStart_toEndOf="@+id/TVFollowerFollowersNum"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.7" />
 

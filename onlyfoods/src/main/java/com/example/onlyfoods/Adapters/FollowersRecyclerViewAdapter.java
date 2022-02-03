@@ -17,6 +17,8 @@ import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -48,20 +50,26 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        User follower = followers.get(position);
-        holder.TVFollowerName.setText(follower.getUsername());
-        holder.TVFollowersNum.setText(String.valueOf(follower.getFollowersCount()));
-        holder.TVReviewsNum.setText(String.valueOf(follower.getReviewsCount()));
+        User followerUser = followers.get(position);
+        holder.TVFollowerName.setText(followerUser.getUsername());
+        holder.TVFollowersNum.setText(String.valueOf(followerUser.getFollowersCount()));
+        holder.TVReviewsNum.setText(String.valueOf(followerUser.getReviewsCount()));
 
         // check if session user is currently following viewed user
-        daoUser.checkIfFollows("-MutmLS6FPIkhneAJSGT", follower.getUserKey()).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+        daoUser.checkIfFollows("-MutmLS6FPIkhneAJSGT", followerUser.getUserKey()).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onSuccess(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
                     holder.BTNFollowerFollowing.setVisibility(View.VISIBLE);
+                    holder.BTNFollowerFollow.setVisibility(View.INVISIBLE);
                 } else {
                     holder.BTNFollowerFollow.setVisibility(View.VISIBLE);
+                    holder.BTNFollowerFollowing.setVisibility(View.INVISIBLE);
                 }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -74,31 +82,33 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         User sessionUser = dataSnapshot.getValue(User.class);
-                        if (sessionUser != null && follower.getUserKey() != null) {
+                        if (sessionUser != null && followerUser.getUserKey() != null) {
                             sessionUser.setUserKey(dataSnapshot.getKey());
-                            Map<String, Object> objectHM = new HashMap<>();
-                            Map<String, Boolean> booleanHM;
-                            if (sessionUser.getFollowing() != null) {
-                                booleanHM = sessionUser.getFollowing();
-                            } else {
-                                booleanHM = new HashMap<>();
-                            }
-                            booleanHM.put(follower.getUserKey(), true);
-                            objectHM.put("following", booleanHM);
-                            daoUser.update(sessionUser.getUserKey(), objectHM).addOnSuccessListener(suc -> {
 
-                                Map<String, Object> objectHM2 = new HashMap<>();
-                                Map<String, Boolean> booleanHM2;
-                                if (follower.getFollowers() != null) {
-                                    booleanHM2 = follower.getFollowers();
+                            Map<String, Object> objectHM2 = new HashMap<>();
+                            Map<String, Boolean> booleanHM2;
+                            if (followerUser.getFollowers() != null) {
+                                booleanHM2 = followerUser.getFollowers();
+                            } else {
+                                booleanHM2 = new HashMap<>();
+                            }
+                            booleanHM2.put(sessionUser.getUserKey(), true);
+                            objectHM2.put("followers", booleanHM2);
+                            daoUser.update(followerUser.getUserKey(), objectHM2).addOnSuccessListener(suc -> {
+
+                                Map<String, Object> objectHM = new HashMap<>();
+                                Map<String, Boolean> booleanHM;
+                                if (sessionUser.getFollowing() != null) {
+                                    booleanHM = sessionUser.getFollowing();
                                 } else {
-                                    booleanHM2 = new HashMap<>();
+                                    booleanHM = new HashMap<>();
                                 }
-                                booleanHM2.put(sessionUser.getUserKey(), true);
-                                objectHM2.put("followers", booleanHM2);
-                                daoUser.update(follower.getUserKey(), objectHM2).addOnSuccessListener(suc2 -> {
-                                    holder.BTNFollowerFollowing.setVisibility(View.VISIBLE);
-                                    holder.BTNFollowerFollow.setVisibility(View.INVISIBLE);
+                                booleanHM.put(followerUser.getUserKey(), true);
+                                objectHM.put("following", booleanHM);
+
+                                daoUser.update(sessionUser.getUserKey(), objectHM).addOnSuccessListener(suc2 -> {
+//                                    holder.BTNFollowerFollowing.setVisibility(View.VISIBLE);
+//                                    holder.BTNFollowerFollow.setVisibility(View.INVISIBLE);
 //                                    Toast.makeText(getContext(), "User followed", Toast.LENGTH_SHORT).show();
                                 });
                             }).addOnFailureListener(er ->
@@ -125,7 +135,7 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         User sessionUser = dataSnapshot.getValue(User.class);
-                        if (sessionUser != null && follower.getUserKey() != null) {
+                        if (sessionUser != null && followerUser.getUserKey() != null) {
                             sessionUser.setUserKey(dataSnapshot.getKey());
                             Map<String, Object> objectHM = new HashMap<>();
                             Map<String, Boolean> booleanHM;
@@ -134,22 +144,22 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
                             } else {
                                 booleanHM = new HashMap<>();
                             }
-                            booleanHM.remove(follower.getUserKey());
+                            booleanHM.remove(followerUser.getUserKey());
                             objectHM.put("following", booleanHM);
                             daoUser.update(sessionUser.getUserKey(), objectHM).addOnSuccessListener(suc -> {
 
                                 Map<String, Object> objectHM2 = new HashMap<>();
                                 Map<String, Boolean> booleanHM2;
-                                if (follower.getFollowers() != null) {
-                                    booleanHM2 = follower.getFollowers();
+                                if (followerUser.getFollowers() != null) {
+                                    booleanHM2 = followerUser.getFollowers();
                                 } else {
                                     booleanHM2 = new HashMap<>();
                                 }
                                 booleanHM2.remove(sessionUser.getUserKey());
                                 objectHM2.put("followers", booleanHM2);
-                                daoUser.update(follower.getUserKey(), objectHM2).addOnSuccessListener(suc2 -> {
-                                    holder.BTNFollowerFollowing.setVisibility(View.INVISIBLE);
-                                    holder.BTNFollowerFollow.setVisibility(View.VISIBLE);
+                                daoUser.update(followerUser.getUserKey(), objectHM2).addOnSuccessListener(suc2 -> {
+//                                    holder.BTNFollowerFollowing.setVisibility(View.INVISIBLE);
+//                                    holder.BTNFollowerFollow.setVisibility(View.VISIBLE);
 //                                    Toast.makeText(view.getContext(), "User unfollowed", Toast.LENGTH_SHORT).show();
                                 });
                             }).addOnFailureListener(er ->
@@ -193,8 +203,8 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
             TVFollowerName = binding.TVFollowerName;
             BTNFollowerFollow = binding.BTNFollowerFollow;
             BTNFollowerFollowing = binding.BTNFollowerFollowing;
-            TVFollowersNum = binding.TVFollowersNum;
-            TVReviewsNum = binding.TVReviewsNum;
+            TVFollowersNum = binding.TVFollowerFollowersNum;
+            TVReviewsNum = binding.TVFollowerReviewsNum;
 
             itemView.setOnClickListener(this);
         }

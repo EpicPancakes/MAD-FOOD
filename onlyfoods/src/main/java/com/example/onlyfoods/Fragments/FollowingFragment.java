@@ -5,25 +5,41 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfoods.Adapters.FollowingRecyclerViewAdapter;
+import com.example.onlyfoods.DAOs.DAOUser;
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
-import com.example.onlyfoods.placeholder.PlaceholderContent;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
  */
-public class FollowingFragment extends Fragment {
+public class FollowingFragment extends Fragment implements FollowingRecyclerViewAdapter.OnItemClickListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+
+    private User user;
+    private DAOUser daoUser;
+    ArrayList<User> following = new ArrayList<>();
+    private FollowingRecyclerViewAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -65,8 +81,53 @@ public class FollowingFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new FollowingRecyclerViewAdapter(PlaceholderContent.ITEMS));
+            adapter = new FollowingRecyclerViewAdapter(following);
+            recyclerView.setAdapter(adapter);
+            adapter.setOnItemClickListener(FollowingFragment.this);
         }
+
+        daoUser = new DAOUser();
+        loadData();
         return view;
+    }
+
+    private void loadData() {
+        // TODO: Replace userKey with the current user in session
+        daoUser.getFollowingByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                following.clear();
+                adapter.notifyDataSetChanged();
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    daoUser.getByUserKeyOnce(data.getKey()).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                        @Override
+                        public void onSuccess(DataSnapshot userSnapshot) {
+                            User followingUser = userSnapshot.getValue(User.class);
+                            followingUser.setUserKey(userSnapshot.getKey());
+                            following.add(followingUser);
+                            adapter.notifyItemInserted(following.size()-1);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString("userKey", following.get(position).getUserKey());
+        Navigation.findNavController(getView()).navigate(R.id.NextToUserProfile, bundle);
+        Toast.makeText(getContext(), "Navigating to user", Toast.LENGTH_SHORT).show();
     }
 }

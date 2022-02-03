@@ -1,6 +1,7 @@
 package com.example.onlyfoods.Fragments;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -21,8 +23,6 @@ import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -102,17 +102,27 @@ public class FollowersFragment extends Fragment implements FollowersRecyclerView
                 followers.clear();
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    daoUser.getByUserKeyOnce(data.getKey()).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                    daoUser.getByUserKey(data.getKey()).addValueEventListener(new ValueEventListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.N)
                         @Override
-                        public void onSuccess(DataSnapshot userSnapshot) {
+                        public void onDataChange(@NonNull DataSnapshot userSnapshot) {
                             User follower = userSnapshot.getValue(User.class);
                             follower.setUserKey(userSnapshot.getKey());
-                            followers.add(follower);
-                            adapter.notifyItemInserted(followers.size()-1);
+                            if(followers.stream().noneMatch(o -> o.getUserKey().equals(follower.getUserKey()))){
+                                followers.add(follower);
+                                adapter.notifyItemInserted(followers.size()-1);
+                            }else{
+                                followers.stream().filter(o -> o.getUserKey().equals(follower.getUserKey())).forEach(
+                                        o -> {
+                                            int position = followers.indexOf(o);
+                                            followers.set(position, follower);
+                                            adapter.notifyItemChanged(position);
+                                        }
+                                );
+                            }
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onFailure(@NonNull Exception e) {
+                        public void onCancelled(@NonNull DatabaseError error) {
 
                         }
                     });

@@ -46,8 +46,12 @@ public class DAOUser {
         return databaseReference.child(userKey).child("followers");
     }
 
-    public Task<DataSnapshot> checkIfFollows(String userKey, String followsUserKey){
-        return databaseReference.child(userKey).child("following").child(followsUserKey).get();
+    public Query getFollowingByUserKey(String userKey){
+        return databaseReference.child(userKey).child("following");
+    }
+
+    public Query checkIfFollows(String userKey, String followsUserKey){
+        return databaseReference.child(userKey).child("following").child(followsUserKey);
     }
 
 }
