@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="300dp"
+    android:padding="16dp">
+
+
+    <Button
+        android:id="@+id/BTNChooseProfileImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Choose" />
+
+    <TextView
+        android:id="@+id/TVProfilePhotoSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/BTNChooseProfileImage"
+        android:layout_alignBottom="@+id/BTNChooseProfileImage"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@id/BTNChooseProfileImage"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center_vertical"
+        android:text="Select a Profile Image"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/IVUploadedProfileImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/PBEditProfileImage"
+        android:layout_below="@id/TVProfilePhotoSelect"
+        android:layout_marginTop="16dp" />
+
+    <ProgressBar
+        android:id="@+id/PBEditProfileImage"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp" />
+
+</RelativeLayout>

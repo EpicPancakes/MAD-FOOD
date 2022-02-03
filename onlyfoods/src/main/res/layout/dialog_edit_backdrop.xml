@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="300dp"
+    android:padding="16dp">
+
+
+    <Button
+        android:id="@+id/BTNChooseBackdrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Choose" />
+
+    <EditText
+        android:id="@+id/ETBackdropFileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/BTNChooseBackdrop"
+        android:layout_alignBottom="@+id/BTNChooseBackdrop"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@id/BTNChooseBackdrop"
+        android:hint="Enter Image Name" />
+
+    <ImageView
+        android:id="@+id/IVUploadedBackdrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/PBEditBackdrop"
+        android:layout_below="@id/ETBackdropFileName"
+        android:layout_marginTop="16dp" />
+
+    <ProgressBar
+        android:id="@+id/PBEditBackdrop"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp" />
+
+</RelativeLayout>

@@ -3,7 +3,7 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="recommendations">Recommendations</string>
+    <string name="recommendation">Recommendations</string>
     <string name="logout">Logout</string>
     <string name="recent_places">Recent Places</string>
     <string name="reviews">Reviews</string>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CLRecommendations"
     android:layout_width="match_parent"
     android:layout_height="350dp">
@@ -111,7 +110,7 @@
         app:layout_constraintTop_toBottomOf="@id/FLRecommendation" />
 
     <TextView
-        android:id="@+id/TVRecommendedBy2"
+        android:id="@+id/TVRecommendedByUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
@@ -135,11 +134,11 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/TVRecommendationAddress"
+        app:layout_constraintBottom_toTopOf="@+id/TVRecommendationLocation"
         app:layout_constraintStart_toStartOf="@+id/VRecommendationBtm" />
 
     <TextView
-        android:id="@+id/TVRecommendationAddress"
+        android:id="@+id/TVRecommendationLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -153,7 +152,7 @@
         app:layout_constraintStart_toStartOf="@+id/FLRecommendation" />
 
     <TextView
-        android:id="@+id/TVRecommendationText"
+        android:id="@+id/TVRecommendationMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"

@@ -20,7 +20,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_animal_lover" />
+            app:navGraph="@navigation/nav_onlyfoods" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/BottomNavView"

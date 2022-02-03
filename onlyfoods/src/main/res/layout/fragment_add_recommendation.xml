@@ -5,7 +5,7 @@
     android:id="@+id/CLAddRecommendation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddRecommendation" >
+    tools:context=".Fragments.AddRecommendationFragment" >
 
     <TextView
         android:id="@+id/TVSelectRestaurant"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.042" />
 
     <AutoCompleteTextView
-        android:id="@+id/ACTVRestaurant"
+        android:id="@+id/ACTVRestaurantRec"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ACTVRestaurant"
+        app:layout_constraintTop_toBottomOf="@+id/ACTVRestaurantRec"
         app:layout_constraintVertical_bias="0.115" />
 
     <TextView
@@ -104,7 +104,7 @@
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/rounded_rectangle_r2_12dp"
+        android:background="@drawable/rounded_rectangle_r2_button_12dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/recommend_place"
         android:textAllCaps="false"
