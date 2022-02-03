@@ -21,6 +21,8 @@ import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -100,16 +102,17 @@ public class FollowersFragment extends Fragment implements FollowersRecyclerView
                 followers.clear();
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    daoUser.getByUserKey(data.getKey()).addValueEventListener(new ValueEventListener() {
+                    daoUser.getByUserKeyOnce(data.getKey()).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot userSnapshot) {
+                        public void onSuccess(DataSnapshot userSnapshot) {
                             User follower = userSnapshot.getValue(User.class);
                             follower.setUserKey(userSnapshot.getKey());
                             followers.add(follower);
                             adapter.notifyItemInserted(followers.size()-1);
                         }
+                    }).addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                        public void onFailure(@NonNull Exception e) {
 
                         }
                     });
