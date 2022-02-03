@@ -1,10 +1,7 @@
 package com.example.onlyfoods.Adapters;
 
 import android.content.Context;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -20,19 +17,18 @@ import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviewsRecyclerViewAdapter.ViewHolder> {
+public class UserReviewsRecyclerViewAdapter extends RecyclerView.Adapter<UserReviewsRecyclerViewAdapter.ViewHolder> {
 
     private ArrayList<Review> list = new ArrayList<>();
     Context context;
     private OnItemClickListener mListener;
 
-    public MyReviewsRecyclerViewAdapter(Context ctx, ArrayList<Review> reviewsList) {
+    public UserReviewsRecyclerViewAdapter(Context ctx, ArrayList<Review> reviewsList) {
         context = ctx;
         list = reviewsList;
     }
@@ -71,12 +67,12 @@ public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviews
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
-            View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public final TextView TVRestaurantName;
         public final TextView TVDaysAgo;
         public final TextView TVCategory;
         public final TextView TVReviewMessage;
+
 
         public ViewHolder(FragmentReviewsItemBinding binding) {
             super(binding.getRoot());
@@ -86,7 +82,6 @@ public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviews
             TVReviewMessage = binding.TVReviewMessage;
 
             itemView.setOnClickListener(this);
-            itemView.setOnCreateContextMenuListener(this);
         }
 
         @Override
@@ -100,28 +95,6 @@ public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviews
         }
 
         @Override
-        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.setHeaderTitle("Delete Entry?");
-            MenuItem delete = menu.add(Menu.NONE, 1, 1, "Delete");
-            delete.setOnMenuItemClickListener(this);
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-            if(mListener != null) {
-                int position = getAbsoluteAdapterPosition();
-                if(position != RecyclerView.NO_POSITION) {
-                    switch (item.getItemId()){
-                        case 1:
-                            mListener.onDeleteClick(position);
-                            return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        @Override
         public String toString() {
             return super.toString() + " '" + "'";
         }
@@ -129,7 +102,6 @@ public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviews
 
     public interface OnItemClickListener {
         void onItemClick(int position);
-        void onDeleteClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

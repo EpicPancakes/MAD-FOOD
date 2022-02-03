@@ -17,33 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.050000012" />
 
-    <TextView
-        android:id="@+id/item_number"
-        android:layout_width="26dp"
-        android:layout_height="18dp"
-        android:gravity="center"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/VRating"
-        app:layout_constraintEnd_toEndOf="@+id/VRating"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/VRating"
-        app:layout_constraintTop_toTopOf="@+id/VRating"
-        app:layout_constraintVertical_bias="0.5" />
-
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="48dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="8dp"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
     <ImageView
         android:id="@+id/IVRestaurant"
         android:layout_width="140dp"

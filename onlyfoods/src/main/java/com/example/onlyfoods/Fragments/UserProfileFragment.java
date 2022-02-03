@@ -77,6 +77,9 @@ public class UserProfileFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager2 viewPager;
 
+    RecentPlacesFragment rpFragment;
+    ReviewsFragment revFragment;
+
     public UserProfileFragment() {
         // Required empty public constructor
     }
@@ -130,8 +133,12 @@ public class UserProfileFragment extends Fragment {
         tabLayout = view.findViewById(R.id.TLUPFollows);
         viewPager = view.findViewById(R.id.VPUPFollows);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), getLifecycle());
-        adapter.addFragment(new RecentPlacesFragment(), "Recent Places");
-        adapter.addFragment(new ReviewsFragment(), "Reviews");
+
+        rpFragment = RecentPlacesFragment.newInstance(userKey);
+        revFragment = ReviewsFragment.newInstance(userKey);
+
+        adapter.addFragment(rpFragment, "Recent Places");
+        adapter.addFragment(revFragment, "Reviews");
         viewPager.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             if (position == 0)
