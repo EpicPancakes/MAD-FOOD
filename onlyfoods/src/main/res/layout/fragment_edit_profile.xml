@@ -27,7 +27,7 @@
         android:id="@+id/IVEditProfileImage"
         android:layout_width="125dp"
         android:layout_height="125dp"
-        android:background="#00FFFFFF"
+        android:background="#007AB3"
         android:padding="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046"
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-        app:srcCompat="@drawable/my_profile_square"
+        app:srcCompat="@drawable/empty_profile_image"
         app:strokeColor="@color/white"
         app:strokeWidth="3dp" />
 
@@ -127,7 +127,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.508"
         app:shapeAppearanceOverlay="@style/roundedImageViewRoundedSmall"
-        app:srcCompat="@drawable/food1"
+        app:srcCompat="@drawable/empty_backdrop"
         app:strokeColor="@color/white"
         app:strokeWidth="3dp" />
 
