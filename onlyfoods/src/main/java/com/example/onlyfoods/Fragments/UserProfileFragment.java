@@ -80,6 +80,8 @@ public class UserProfileFragment extends Fragment {
     RecentPlacesFragment rpFragment;
     ReviewsFragment revFragment;
 
+    private String sessionUserKey;
+
     public UserProfileFragment() {
         // Required empty public constructor
     }
@@ -117,6 +119,8 @@ public class UserProfileFragment extends Fragment {
         if (bundle != null) {
             userKey = bundle.getString("userKey");
         }
+
+        sessionUserKey = "-MutmLS6FPIkhneAJSGT";
     }
 
 
@@ -161,24 +165,31 @@ public class UserProfileFragment extends Fragment {
 
         if (userKey != null) {
 
-            // check if session user is currently following viewed user
-            daoUser.checkIfFollows("-MutmLS6FPIkhneAJSGT", userKey).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        BTNUPFollowing.setVisibility(View.VISIBLE);
-                        BTNUPFollow.setVisibility(View.INVISIBLE);
-                    } else {
-                        BTNUPFollow.setVisibility(View.VISIBLE);
-                        BTNUPFollowing.setVisibility(View.INVISIBLE);
+            if (sessionUserKey.equals(userKey)) {
+                BTNUPFollowing.setVisibility(View.VISIBLE);
+                BTNUPFollow.setVisibility(View.INVISIBLE);
+                BTNUPFollowing.setEnabled(false);
+                BTNUPFollowing.setText("Disabled");
+            } else {
+                // check if session user is currently following viewed user
+                daoUser.checkIfFollows(sessionUserKey, userKey).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            BTNUPFollowing.setVisibility(View.VISIBLE);
+                            BTNUPFollow.setVisibility(View.INVISIBLE);
+                        } else {
+                            BTNUPFollow.setVisibility(View.VISIBLE);
+                            BTNUPFollowing.setVisibility(View.INVISIBLE);
+                        }
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
+                    }
+                });
+            }
 
             daoUser.getByUserKey(userKey).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -238,7 +249,9 @@ public class UserProfileFragment extends Fragment {
         View.OnClickListener OCLFollowers = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.UPNextToFollows);
+                Bundle bundle = new Bundle();
+                bundle.putString("userKey", userKey);
+                Navigation.findNavController(view).navigate(R.id.UPNextToFollows, bundle);
             }
         };
         TVUPFollowers.setOnClickListener(OCLFollowers);
@@ -246,7 +259,9 @@ public class UserProfileFragment extends Fragment {
         View.OnClickListener OCLFollowing = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.UPNextToFollows);
+                Bundle bundle = new Bundle();
+                bundle.putString("userKey", userKey);
+                Navigation.findNavController(view).navigate(R.id.UPNextToFollows, bundle);
             }
         };
         TVUPFollowing.setOnClickListener(OCLFollowers);
@@ -256,7 +271,7 @@ public class UserProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 DAOUser daoUser = new DAOUser();
-                daoUser.getByUserKeyOnce("-MutmLS6FPIkhneAJSGT").addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                daoUser.getByUserKeyOnce(sessionUserKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         User sessionUser = dataSnapshot.getValue(User.class);
@@ -308,7 +323,7 @@ public class UserProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 DAOUser daoUser = new DAOUser();
-                daoUser.getByUserKeyOnce("-MutmLS6FPIkhneAJSGT").addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                daoUser.getByUserKeyOnce(sessionUserKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         User sessionUser = dataSnapshot.getValue(User.class);

@@ -35,6 +35,7 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
     private OnItemClickListener mListener;
     private final List<User> followers;
     private DAOUser daoUser;
+    private String sessionUserKey;
 
     public FollowersRecyclerViewAdapter(List<User> followers) {
         this.followers = followers;
@@ -44,6 +45,7 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         daoUser = new DAOUser();
+        sessionUserKey = "-MutmLS6FPIkhneAJSGT";
         return new ViewHolder(FragmentFollowersItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
@@ -55,30 +57,38 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
         holder.TVFollowersNum.setText(String.valueOf(followerUser.getFollowersCount()));
         holder.TVReviewsNum.setText(String.valueOf(followerUser.getReviewsCount()));
 
-        // check if session user is currently following viewed user
-        daoUser.checkIfFollows("-MutmLS6FPIkhneAJSGT", followerUser.getUserKey()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    holder.BTNFollowerFollowing.setVisibility(View.VISIBLE);
-                    holder.BTNFollowerFollow.setVisibility(View.INVISIBLE);
-                } else {
-                    holder.BTNFollowerFollow.setVisibility(View.VISIBLE);
-                    holder.BTNFollowerFollowing.setVisibility(View.INVISIBLE);
+        // check if the follower is the session user itself
+        if(sessionUserKey.equals(followerUser.getUserKey())){
+            holder.BTNFollowerFollowing.setVisibility(View.VISIBLE);
+            holder.BTNFollowerFollow.setVisibility(View.INVISIBLE);
+            holder.BTNFollowerFollowing.setEnabled(false);
+            holder.BTNFollowerFollowing.setText("Disabled");
+        }else {
+            // check if session user is currently following viewed user
+            daoUser.checkIfFollows(sessionUserKey, followerUser.getUserKey()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        holder.BTNFollowerFollowing.setVisibility(View.VISIBLE);
+                        holder.BTNFollowerFollow.setVisibility(View.INVISIBLE);
+                    } else {
+                        holder.BTNFollowerFollow.setVisibility(View.VISIBLE);
+                        holder.BTNFollowerFollowing.setVisibility(View.INVISIBLE);
+                    }
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        }
 
         // Follows the user upon clicking the button "Follow"
         holder.BTNFollowerFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DAOUser daoUser = new DAOUser();
-                daoUser.getByUserKeyOnce("-MutmLS6FPIkhneAJSGT").addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                daoUser.getByUserKeyOnce(sessionUserKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         User sessionUser = dataSnapshot.getValue(User.class);
@@ -131,7 +141,7 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
             @Override
             public void onClick(View v) {
                 DAOUser daoUser = new DAOUser();
-                daoUser.getByUserKeyOnce("-MutmLS6FPIkhneAJSGT").addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                daoUser.getByUserKeyOnce(sessionUserKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         User sessionUser = dataSnapshot.getValue(User.class);
