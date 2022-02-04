@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CLRecommendations"
     android:layout_width="match_parent"
     android:layout_height="350dp">
@@ -21,7 +20,7 @@
             android:id="@+id/IVRecommendationImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00FFFFFF"
+            android:background="#FF20AAF6"
             android:padding="3dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.153"
             app:shapeAppearanceOverlay="@style/roundedImageViewRoundedTop20"
-            app:srcCompat="@drawable/food3" />
+            app:srcCompat="@drawable/empty_restaurant" />
 
         <View
             android:layout_width="match_parent"
@@ -111,7 +110,7 @@
         app:layout_constraintTop_toBottomOf="@id/FLRecommendation" />
 
     <TextView
-        android:id="@+id/TVRecommendedBy2"
+        android:id="@+id/TVRecommendedByUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
@@ -135,11 +134,11 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/TVRecommendationAddress"
+        app:layout_constraintBottom_toTopOf="@+id/TVRecommendationLocation"
         app:layout_constraintStart_toStartOf="@+id/VRecommendationBtm" />
 
     <TextView
-        android:id="@+id/TVRecommendationAddress"
+        android:id="@+id/TVRecommendationLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -153,7 +152,7 @@
         app:layout_constraintStart_toStartOf="@+id/FLRecommendation" />
 
     <TextView
-        android:id="@+id/TVRecommendationText"
+        android:id="@+id/TVRecommendationMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"

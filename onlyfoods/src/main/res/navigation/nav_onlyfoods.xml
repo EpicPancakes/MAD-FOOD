@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_onlyfoods"
+    app:startDestination="@id/DestMyProfile">
+    <fragment
+        android:id="@+id/DestAboutApp"
+        android:name="com.example.onlyfoods.Fragments.AboutAppFragment"
+        android:label="@string/about_app_tb_string"
+        tools:layout="@layout/fragment_about_app" />
+    <fragment
+        android:id="@+id/DestMyProfile"
+        android:name="com.example.onlyfoods.Fragments.MyProfileFragment"
+        android:label="My Profile"
+        tools:layout="@layout/fragment_user_profile">
+        <action
+            android:id="@+id/NextToEditProfile"
+            app:destination="@id/DestEditProfile" />
+        <action
+            android:id="@+id/NextToFollows"
+            app:destination="@id/DestFollows" />
+        <action
+            android:id="@+id/NextToRecommendations"
+            app:destination="@id/DestRecommendations" />
+    </fragment>
+    <fragment
+        android:id="@+id/DestEditProfile"
+        android:name="com.example.onlyfoods.Fragments.EditProfileFragment"
+        android:label="@string/edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/NextToAddRecentPlace"
+            app:destination="@id/DestAddRecentPlace" />
+    </fragment>
+    <fragment
+        android:id="@+id/DestFollows"
+        android:name="com.example.onlyfoods.Fragments.FollowsFragment"
+        android:label="Follows"
+        tools:layout="@layout/fragment_follows" >
+        <action
+            android:id="@+id/NextToUserProfile"
+            app:destination="@id/DestUserProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/DestRecommendations"
+        android:name="com.example.onlyfoods.Fragments.RecommendationsFragment"
+        android:label="@string/recommendation">
+        <action
+            android:id="@+id/NextToAddRecommendation"
+            app:destination="@id/DestAddRecommendation" />
+    </fragment>
+    <fragment
+        android:id="@+id/DestAddRecommendation"
+        android:name="com.example.onlyfoods.Fragments.AddRecommendationFragment"
+        android:label="Recommend a Place"
+        tools:layout="@layout/fragment_add_recommendation" />
+    <fragment
+        android:id="@+id/DestAddRecentPlace"
+        android:name="com.example.onlyfoods.Fragments.AddRecentPlaceFragment"
+        android:label="Add Recent Place"
+        tools:layout="@layout/fragment_add_recent_place" />
+    <fragment
+        android:id="@+id/DestUserProfile"
+        android:name="com.example.onlyfoods.Fragments.UserProfileFragment"
+        android:label="User Profile" >
+        <action
+            android:id="@+id/UPNextToFollows"
+            app:destination="@id/DestFollows" />
+    </fragment>
+</navigation>
