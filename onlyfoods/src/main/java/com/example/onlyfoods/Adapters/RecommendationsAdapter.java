@@ -11,9 +11,13 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfoods.DAOs.DAORestaurant;
+import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Recommendation;
 import com.example.onlyfoods.Models.Restaurant;
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -25,6 +29,7 @@ public class RecommendationsAdapter extends
 
     private OnItemClickListener mListener;
     private List<Recommendation> recs;
+    private DAOUser daoUser;
 
     public RecommendationsAdapter(List<Recommendation> recs) {
         this.recs = recs;
@@ -53,8 +58,15 @@ public class RecommendationsAdapter extends
         TextView TVRecommendationDate = holder.TVRecommendationDate;
         TextView TVRecommendationMessage = holder.TVRecommendationMessage;
 
-        // TODO: Replace user key with actual user name
-        TVRecommendedByUser.setText(rec.getRecommendedUserKey());
+        daoUser = new DAOUser();
+        daoUser.getByUserKeyOnce(rec.getRecommendedUserKey()).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                User recommendedByUser = dataSnapshot.getValue(User.class);
+                TVRecommendedByUser.setText(recommendedByUser.getUsername());
+            }
+        });
+
         TVRecommendationDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(rec.getDate()));
         TVRecommendationMessage.setText(rec.getRecommendationMsg());
 
@@ -70,10 +82,6 @@ public class RecommendationsAdapter extends
         }).addOnFailureListener(er ->{
             Toast.makeText(TVRecommendedRestaurantName.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
         });
-
-
-//        button.setText(rec.isOnline() ? "Message" : "Offline");
-//        button.setEnabled(rec.isOnline());
     }
 
     @Override
