@@ -30,7 +30,7 @@ public class gpRestaurantFragment extends Fragment {
     private String mParam2;
 
 //    RecyclerView recyclerView;
-    ArrayList<Review> list;
+    ArrayList<ReviewGP> list;
 //    ReviewAdapter reviewAdapter;
 
     public gpRestaurantFragment() {
@@ -119,9 +119,9 @@ public class gpRestaurantFragment extends Fragment {
 
     private void populateList() {
         list = new ArrayList<>();
-        list.add(new Review("Fitri Koh", "Delicious Afffffffffff", R.drawable.my_profile_image));
-        list.add(new Review("LeyHang Koh", "Trash", R.drawable.cat_img));
-        list.add(new Review("Jason Koh", "STRESS LA BABI", R.drawable.dog_img));
+        list.add(new ReviewGP("Fitri Koh", "Delicious Afffffffffff", R.drawable.my_profile_image));
+        list.add(new ReviewGP("LeyHang Koh", "Trash", R.drawable.cat_img));
+        list.add(new ReviewGP("Jason Koh", "STRESS LA BABI", R.drawable.dog_img));
 
     }
 

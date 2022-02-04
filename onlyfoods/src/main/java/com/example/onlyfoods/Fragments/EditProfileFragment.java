@@ -189,6 +189,15 @@ public class EditProfileFragment extends Fragment {
         };
         BtnAddRecentPlace.setOnClickListener(OCLAddRecentPlace);
 
+        Button BtnAddReview = view.findViewById(R.id.BTNAddReview);
+        View.OnClickListener OCLAddReview = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.NextToSelectRestaurant);
+            }
+        };
+        BtnAddReview.setOnClickListener(OCLAddReview);
+
         IVEditBackdrop.setClipToOutline(true);
     }
 
