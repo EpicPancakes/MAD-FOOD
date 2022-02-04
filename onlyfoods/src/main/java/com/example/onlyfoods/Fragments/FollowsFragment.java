@@ -34,6 +34,7 @@ public class FollowsFragment extends Fragment {
     // ViewPager implementation to slide between recent places and reviews
     TabLayout tabLayout;
     ViewPager2 viewPager;
+    private String userKey;
 
     public FollowsFragment() {
         // Required empty public constructor
@@ -64,6 +65,11 @@ public class FollowsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            userKey = bundle.getString("userKey");
+        }
     }
 
 
@@ -80,8 +86,13 @@ public class FollowsFragment extends Fragment {
         tabLayout = view.findViewById(R.id.TLUPFollows);
         viewPager = view.findViewById(R.id.VPUPFollows);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), getLifecycle());
-        adapter.addFragment(new FollowersFragment(), "Followers");
-        adapter.addFragment(new FollowingFragment(), "Following");
+        if(userKey!=null){
+            adapter.addFragment(FollowersFragment.newInstance(userKey), "Followers");
+            adapter.addFragment(FollowingFragment.newInstance(userKey), "Following");
+        }else{
+            adapter.addFragment(new FollowersFragment(), "Followers");
+            adapter.addFragment(new FollowingFragment(), "Following");
+        }
         viewPager.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             if(position == 0)

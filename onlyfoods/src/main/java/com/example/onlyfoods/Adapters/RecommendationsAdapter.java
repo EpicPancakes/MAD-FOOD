@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.example.onlyfoods.DAOs.DAORestaurant;
 import com.example.onlyfoods.Models.Recommendation;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.R;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -62,6 +64,9 @@ public class RecommendationsAdapter extends
             assert restaurant != null;
             TVRecommendedRestaurantName.setText(restaurant.getRestaurantName());
             TVRecommendationLocation.setText(restaurant.getLocation());
+            if (restaurant.getRestaurantImageUrl() != null) {
+                Picasso.get().load(restaurant.getRestaurantImageUrl()).fit().centerCrop().into(holder.IVRecommendationImage);
+            }
         }).addOnFailureListener(er ->{
             Toast.makeText(TVRecommendedRestaurantName.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
         });
@@ -94,6 +99,7 @@ public class RecommendationsAdapter extends
         public TextView TVRecommendedByUser;
         public TextView TVRecommendationDate;
         public TextView TVRecommendationMessage;
+        public final ImageView IVRecommendationImage;
 
 
         public ViewHolder(View itemView) {
@@ -108,6 +114,8 @@ public class RecommendationsAdapter extends
             TVRecommendedByUser = (TextView) itemView.findViewById(R.id.TVRecommendedByUser);
             TVRecommendationDate = (TextView) itemView.findViewById(R.id.TVRecommendationDate);
             TVRecommendationMessage = (TextView) itemView.findViewById(R.id.TVRecommendationMessage);
+            IVRecommendationImage = (ImageView) itemView.findViewById(R.id.IVRecommendationImage);
+
 
             itemView.setOnClickListener(this);
         }
