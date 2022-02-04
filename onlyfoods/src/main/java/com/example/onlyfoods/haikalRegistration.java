@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -89,20 +90,14 @@ public class haikalRegistration extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         User user = new User(username);
+                        String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                        FirebaseDatabase.getInstance().getReference("User")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                            Toast.makeText(haikalRegistration.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                                        }
-                                        else {
-                                            Toast.makeText(haikalRegistration.this, "Failed to register. Try again", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
+                        DAOUser daoUser = new DAOUser();
+                        daoUser.addWithSpecificId(userUid, user).addOnSuccessListener(suc->{
+                            Toast.makeText(haikalRegistration.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                        }).addOnFailureListener(er->{
+                            Toast.makeText(haikalRegistration.this, "Failed to register. Try again", Toast.LENGTH_SHORT).show();
+                        });
 
                         mLoadingBar.dismiss();
                         Intent intent = new Intent(haikalRegistration.this, haikalLogin.class);
