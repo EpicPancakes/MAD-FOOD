@@ -29,6 +29,7 @@ import com.example.onlyfoods.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -52,6 +53,7 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
 
     private Backdrop backdrop;
     private View view;
+    private String sessionUserKey;
 
     public static EditBackdropDialog newInstance(int arg, Backdrop backdrop) {
         EditBackdropDialog frag = new EditBackdropDialog();
@@ -73,6 +75,8 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.dialog_edit_backdrop, null);
+        
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         BTNChooseBackdrop = view.findViewById(R.id.BTNChooseBackdrop);
         ETBackdropFileName = view.findViewById(R.id.ETBackdropFileName);
@@ -158,7 +162,7 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
                             while(!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
 
-                            Backdrop backdrop = new Backdrop("-MutmLS6FPIkhneAJSGT", ETBackdropFileName.getText().toString().trim(), downloadUrl.toString());
+                            Backdrop backdrop = new Backdrop(sessionUserKey, ETBackdropFileName.getText().toString().trim(), downloadUrl.toString());
 
                             daoBD.add(backdrop);
                         }

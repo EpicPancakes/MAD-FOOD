@@ -28,6 +28,7 @@ import com.example.onlyfoods.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -44,6 +45,7 @@ public class EditNameDialog extends AppCompatDialogFragment {
     private DAOUser daoUser;
     private String username;
     private View view;
+    private String sessionUserKey;
 
     public static EditNameDialog newInstance(int arg, String username) {
         EditNameDialog frag = new EditNameDialog();
@@ -66,6 +68,8 @@ public class EditNameDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.dialog_edit_name, null);
         daoUser = new DAOUser();
+
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         ETEditName = view.findViewById(R.id.ETEditName);
 
@@ -91,7 +95,7 @@ public class EditNameDialog extends AppCompatDialogFragment {
     private void editName() {
         HashMap<String, Object> usernameHM = new HashMap<>();
         usernameHM.put("username", ETEditName.getText().toString());
-        daoUser.update("-MutmLS6FPIkhneAJSGT", usernameHM).addOnSuccessListener(suc -> {
+        daoUser.update(sessionUserKey, usernameHM).addOnSuccessListener(suc -> {
             Toast.makeText(view.getContext(), "Username successfully updated", Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(er -> {
             Toast.makeText(view.getContext(), "" + er, Toast.LENGTH_SHORT).show();

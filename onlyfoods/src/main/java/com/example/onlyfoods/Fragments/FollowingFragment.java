@@ -20,6 +20,7 @@ import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -42,6 +43,7 @@ public class FollowingFragment extends Fragment implements FollowingRecyclerView
     ArrayList<User> following = new ArrayList<>();
     private FollowingRecyclerViewAdapter adapter;
     private String viewedUserKey;
+    private String sessionUserKey;
 
 
     /**
@@ -68,6 +70,8 @@ public class FollowingFragment extends Fragment implements FollowingRecyclerView
         if (getArguments() != null) {
             viewedUserKey = getArguments().getString(USER_KEY);
         }
+
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override
@@ -100,7 +104,7 @@ public class FollowingFragment extends Fragment implements FollowingRecyclerView
         if(viewedUserKey != null){
             userKey = viewedUserKey;
         }else{
-            userKey = "-MutmLS6FPIkhneAJSGT";
+            userKey = sessionUserKey;
         }
         daoUser.getFollowingByUserKey(userKey).addValueEventListener(new ValueEventListener() {
             @Override
