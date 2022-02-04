@@ -68,4 +68,9 @@
             android:id="@+id/UPNextToFollows"
             app:destination="@id/DestFollows" />
     </fragment>
+    <fragment
+        android:id="@+id/DestRestaurantDetail"
+        android:name="com.example.onlyfoods.gpRestaurantFragment"
+        android:label="fragment_gp_restaurant"
+        tools:layout="@layout/fragment_gp_restaurant" />
 </navigation>

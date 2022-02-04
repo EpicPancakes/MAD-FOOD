@@ -69,7 +69,10 @@ public class gpRestaurantFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_gp_restaurant, container, false);
+//        return inflater.inflate(R.layout.fragment_gp_restaurant, container, false);
+        View view = inflater.inflate(R.layout.fragment_gp_restaurant, container, false);
+        addFragment(view);
+        return view;
     }
 
 //      Fitri's code
@@ -102,7 +105,7 @@ public class gpRestaurantFragment extends Fragment {
     private void addFragment(View view){
 
         // Lookup the recyclerview in activity layout
-        RecyclerView rvReview = (RecyclerView) view.findViewById(R.id.RVRecommendations);
+        RecyclerView rvReview = (RecyclerView) view.findViewById(R.id.reviewRecycler);
         populateList();
 
 //        // Initialize recommendations

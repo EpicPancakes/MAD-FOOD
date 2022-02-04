@@ -93,10 +93,20 @@
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/layout/header_layout.xml" value="0.264" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/menu/menu_bottom.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/menu/menu_side.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Koh Guan Po/Desktop/Git/MAD-FOOD/onlyfoods/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/Koh Guan Po/Desktop/Git/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_gp_edit_review.xml" value="0.22554347826086957" />
+        <entry key="..\:/Users/Koh Guan Po/Desktop/Git/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_gp_restaurant.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/Koh Guan Po/Desktop/Git/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_gp_review.xml" value="0.22554347826086957" />
+        <entry key="..\:/Users/Koh Guan Po/Desktop/Git/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_my_profile.xml" value="0.22554347826086957" />
+        <entry key="..\:/Users/Koh Guan Po/Desktop/Git/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recommendations.xml" value="0.22554347826086957" />
+        <entry key="..\:/Users/Koh Guan Po/Desktop/Git/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_reviews_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Koh Guan Po/Desktop/Git/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_reviews_list.xml" value="0.22554347826086957" />
+        <entry key="..\:/Users/Koh Guan Po/Desktop/Git/MAD-FOOD/onlyfoods/src/main/res/layout/reviews_item.xml" value="0.136" />
+        <entry key="..\:/Users/Koh Guan Po/Desktop/Git/MAD-FOOD/onlyfoods/src/main/res/menu/menu_bottom.xml" value="0.21927083333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

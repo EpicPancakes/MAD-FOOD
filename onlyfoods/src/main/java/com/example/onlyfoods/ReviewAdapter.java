@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +28,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.userName.setText(list.get(position).getName());
+        holder.IVProfilePicture.setImageResource(list.get(position).getImage());
+        holder.reviewMsg.setText(list.get(position).getReviewMsg());
 
     }
 
@@ -41,9 +46,14 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-
+        ImageView IVProfilePicture, menuPopUp;
+        TextView userName, reviewMsg;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            IVProfilePicture = (ImageView) itemView.findViewById(R.id.IVProfilePicture);
+            menuPopUp = (ImageView) itemView.findViewById(R.id.menuMore);
+            userName = (TextView) itemView.findViewById(R.id.userName);
+            reviewMsg = (TextView) itemView.findViewById(R.id.TVReview);
         }
     }
 }
