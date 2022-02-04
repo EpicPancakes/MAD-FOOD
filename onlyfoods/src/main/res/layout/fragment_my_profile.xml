@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyProfileFragment">
+    tools:context=".Fragments.MyProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -19,13 +19,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/roundedImageViewRoundedBottom"
-        app:srcCompat="@drawable/food1" />
+        app:srcCompat="@drawable/empty_backdrop" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/IVProfilePicture"
+        android:id="@+id/IVProfileImage"
         android:layout_width="125dp"
         android:layout_height="125dp"
-        android:background="#00FFFFFF"
+        android:background="#007AB3"
         android:padding="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.094"
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-        app:srcCompat="@drawable/my_profile_square"
+        app:srcCompat="@drawable/empty_profile_image"
         app:strokeColor="@color/white"
         app:strokeWidth="3dp" />
 
@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IVProfilePicture"
+        app:layout_constraintTop_toBottomOf="@+id/IVProfileImage"
         app:layout_constraintVertical_bias="0.043" />
 
     <TextView
@@ -59,7 +59,7 @@
         android:layout_height="24dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:text="72 Following"
+        android:text="0 Following"
         android:textColor="@color/gray"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +67,7 @@
         app:layout_constraintHorizontal_bias="0.68"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVName"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.015" />
 
     <TextView
         android:id="@+id/TVFollowers"
@@ -75,7 +75,7 @@
         android:layout_height="26dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:text="37 Followers"
+        android:text="0 Followers"
         android:textColor="@color/gray"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,7 +83,7 @@
         app:layout_constraintHorizontal_bias="0.331"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVName"
-        app:layout_constraintVertical_bias="0.016" />
+        app:layout_constraintVertical_bias="0.015" />
 
     <TextView
         android:id="@+id/TVSeparator"
@@ -107,7 +107,7 @@
         android:layout_height="32dp"
         android:background="@drawable/yellow_button"
         android:fontFamily="@font/montserrat"
-        android:text="@string/recommendations"
+        android:text="@string/recommendation"
         android:textAllCaps="false"
         android:textSize="10sp"
         android:textStyle="bold"
