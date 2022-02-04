@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.example.onlyfoods.Models.Review;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.databinding.FragmentReviewsItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,6 +57,11 @@ public class UserReviewsRecyclerViewAdapter extends RecyclerView.Adapter<UserRev
             holder.TVCategory.setText(restaurant.getCategory());
             holder.TVDaysAgo.setText(new SimpleDateFormat("dd/MM/yyyy").format(review.getDate()));
             holder.TVReviewMessage.setText(review.getReviewMsg());
+
+            if (restaurant.getRestaurantImageUrl() != null) {
+                Picasso.get().load(restaurant.getRestaurantImageUrl()).fit().centerCrop().into(holder.IVReviewRestaurant);
+            }
+
         }).addOnFailureListener(er ->{
             Toast.makeText(context, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
         });
@@ -72,6 +79,7 @@ public class UserReviewsRecyclerViewAdapter extends RecyclerView.Adapter<UserRev
         public final TextView TVDaysAgo;
         public final TextView TVCategory;
         public final TextView TVReviewMessage;
+        public final ImageView IVReviewRestaurant;
 
 
         public ViewHolder(FragmentReviewsItemBinding binding) {
@@ -80,6 +88,7 @@ public class UserReviewsRecyclerViewAdapter extends RecyclerView.Adapter<UserRev
             TVDaysAgo = binding.TVReviewDaysAgo;
             TVCategory = binding.TVReviewCategory;
             TVReviewMessage = binding.TVReviewMessage;
+            IVReviewRestaurant = binding.IVReviewRestaurant;
 
             itemView.setOnClickListener(this);
         }

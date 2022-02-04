@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.databinding.FragmentRecentPlacesItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,6 +57,11 @@ public class UserRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<Us
             holder.TVCategory.setText(restaurant.getCategory());
             holder.TVDaysAgo.setText(new SimpleDateFormat("dd/MM/yyyy").format(rp.getDate()));
             holder.TVLocation.setText(restaurant.getLocation());
+
+            if (restaurant.getRestaurantImageUrl() != null) {
+                Picasso.get().load(restaurant.getRestaurantImageUrl()).fit().centerCrop().into(holder.IVRPRestaurant);
+            }
+
         }).addOnFailureListener(er ->{
             Toast.makeText(context, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
         });
@@ -72,6 +79,7 @@ public class UserRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<Us
         public final TextView TVDaysAgo;
         public final TextView TVCategory;
         public final TextView TVLocation;
+        public final ImageView IVRPRestaurant;
 
         public ViewHolder(FragmentRecentPlacesItemBinding binding) {
             super(binding.getRoot());
@@ -79,6 +87,7 @@ public class UserRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<Us
             TVDaysAgo = binding.TVRPDaysAgo;
             TVCategory = binding.TVRPCategory;
             TVLocation = binding.TVRPCity;
+            IVRPRestaurant = binding.IVRPRestaurant;
 
             itemView.setOnClickListener(this);
         }

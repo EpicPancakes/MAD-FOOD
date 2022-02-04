@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.databinding.FragmentRecentPlacesItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
         list = recentPlacesList;
     }
 
-    public void setItems(ArrayList<RecentPlace> rp){
+    public void setItems(ArrayList<RecentPlace> rp) {
         list.addAll(rp);
     }
 
@@ -52,14 +54,19 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
         RecentPlace rp = list.get(position);
 
         DAORestaurant daoRest = new DAORestaurant();
-        daoRest.get(rp.getRestaurantKey()).addOnSuccessListener(suc ->{
+        daoRest.get(rp.getRestaurantKey()).addOnSuccessListener(suc -> {
             Restaurant restaurant = suc.getValue(Restaurant.class);
             assert restaurant != null;
             holder.TVRestaurantName.setText(restaurant.getRestaurantName());
             holder.TVCategory.setText(restaurant.getCategory());
             holder.TVDaysAgo.setText(new SimpleDateFormat("dd/MM/yyyy").format(rp.getDate()));
             holder.TVLocation.setText(restaurant.getLocation());
-        }).addOnFailureListener(er ->{
+
+            if (restaurant.getRestaurantImageUrl() != null) {
+                Picasso.get().load(restaurant.getRestaurantImageUrl()).fit().centerCrop().into(holder.IVRPRestaurant);
+            }
+
+        }).addOnFailureListener(er -> {
             Toast.makeText(context, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
         });
 
@@ -72,11 +79,12 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
-    View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
+            View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
         public final TextView TVRestaurantName;
         public final TextView TVDaysAgo;
         public final TextView TVCategory;
         public final TextView TVLocation;
+        public final ImageView IVRPRestaurant;
 
         public ViewHolder(FragmentRecentPlacesItemBinding binding) {
             super(binding.getRoot());
@@ -84,6 +92,7 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
             TVDaysAgo = binding.TVRPDaysAgo;
             TVCategory = binding.TVRPCategory;
             TVLocation = binding.TVRPCity;
+            IVRPRestaurant = binding.IVRPRestaurant;
 
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
@@ -91,9 +100,9 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
 
         @Override
         public void onClick(View v) {
-            if(mListener != null) {
+            if (mListener != null) {
                 int position = getAbsoluteAdapterPosition();
-                if(position != RecyclerView.NO_POSITION) {
+                if (position != RecyclerView.NO_POSITION) {
                     mListener.onItemClick(position);
                 }
             }
@@ -110,10 +119,10 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
 
         @Override
         public boolean onMenuItemClick(MenuItem item) {
-            if(mListener != null) {
+            if (mListener != null) {
                 int position = getAbsoluteAdapterPosition();
-                if(position != RecyclerView.NO_POSITION) {
-                    switch (item.getItemId()){
+                if (position != RecyclerView.NO_POSITION) {
+                    switch (item.getItemId()) {
                         case 1:
                             mListener.onDeleteClick(position);
                             return true;
@@ -134,7 +143,7 @@ public class MyRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<MyRe
 
     public interface OnItemClickListener {
         void onItemClick(int position);
-//        void onEditClick(int position);
+        //        void onEditClick(int position);
         void onDeleteClick(int position);
     }
 

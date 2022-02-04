@@ -9,16 +9,17 @@
     <View
         android:id="@+id/VRating"
         android:layout_width="30dp"
-        android:layout_height="24dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="6dp"
-        android:background="@drawable/red_yellow_button"
+        android:background="@drawable/ic_restaurant_30dp"
+        android:backgroundTint="@color/Y5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.050000012" />
 
     <ImageView
-        android:id="@+id/IVRestaurant"
+        android:id="@+id/IVRPRestaurant"
         android:layout_width="140dp"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
@@ -37,7 +38,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IVRestaurant"
+        app:layout_constraintStart_toEndOf="@+id/IVRPRestaurant"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.053" />
 
@@ -51,7 +52,7 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IVRestaurant"
+        app:layout_constraintStart_toEndOf="@+id/IVRPRestaurant"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.26" />
 
@@ -62,7 +63,7 @@
         android:layout_marginStart="16dp"
         android:tint="@color/R4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IVRestaurant"
+        app:layout_constraintStart_toEndOf="@+id/IVRPRestaurant"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.6"
         app:srcCompat="@drawable/ic_clock_30dp" />
@@ -141,7 +142,7 @@
         android:layout_marginStart="16dp"
         android:tint="@color/R4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IVRestaurant"
+        app:layout_constraintStart_toEndOf="@+id/IVRPRestaurant"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.85"
         app:srcCompat="@drawable/ic_restaurant_location_30dp" />
