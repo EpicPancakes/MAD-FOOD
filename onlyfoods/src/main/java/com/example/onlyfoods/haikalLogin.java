@@ -140,5 +140,10 @@ public class haikalLogin extends AppCompatActivity {
         ET.requestFocus();
     }
 
-
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+        System.exit(0);
+    }
 }
