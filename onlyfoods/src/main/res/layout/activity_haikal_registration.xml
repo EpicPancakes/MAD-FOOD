@@ -116,7 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat"
-        android:text="Account exists!"
+        android:text="Or"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/BtnRegister"
         app:layout_constraintStart_toStartOf="@+id/BtnRegister"

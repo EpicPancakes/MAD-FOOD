@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class User {
 
-    private String username;
+    public String username;
     private Map<String, Boolean> recentPlaces; // <recentPlaceKey, true>
     private Map<String, Boolean> reviews; // <recentPlaceKey, true>
     private Map<String, Boolean> recommendations; // <recentPlaceKey, true>
