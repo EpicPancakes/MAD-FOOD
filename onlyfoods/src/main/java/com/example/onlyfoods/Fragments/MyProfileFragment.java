@@ -25,6 +25,7 @@ import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -107,7 +108,7 @@ public class MyProfileFragment extends Fragment {
         daoPI = new DAOProfileImage();
         daoUser = new DAOUser();
 
-        sessionUserKey = "-MutmLS6FPIkhneAJSGT";
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
 

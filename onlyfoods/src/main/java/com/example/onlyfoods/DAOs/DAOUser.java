@@ -25,6 +25,11 @@ public class DAOUser {
         return databaseReference.push().setValue(user);
     }
 
+    public Task<Void> addWithSpecificId(String specificId, User user)
+    {
+        return databaseReference.child(specificId).setValue(user);
+    }
+
     public Task<Void> update(String key, Map<String, Object> hashMap)
     {
         return databaseReference.child(key).updateChildren(hashMap);
