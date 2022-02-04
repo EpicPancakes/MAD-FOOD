@@ -92,8 +92,9 @@ public class haikalLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
+
+    }
 
     private void checkCredentials() {
         String email = LoginEmail.getText().toString().trim();
@@ -138,4 +139,6 @@ public class haikalLogin extends AppCompatActivity {
         ET.setError(s);
         ET.requestFocus();
     }
+
+
 }
