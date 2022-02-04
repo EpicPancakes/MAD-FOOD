@@ -111,29 +111,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
-        android:id="@+id/alreadyHaveAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Or"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/BtnRegister"
-        app:layout_constraintStart_toStartOf="@+id/BtnRegister"
-        app:layout_constraintTop_toBottomOf="@+id/BtnRegister" />
-
-    <Button
-        android:id="@+id/LoginGoogle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat"
-        android:text="connect with google"
-        app:layout_constraintEnd_toEndOf="@+id/BtnRegister"
-        app:layout_constraintStart_toStartOf="@+id/BtnRegister"
-        app:layout_constraintTop_toBottomOf="@+id/alreadyHaveAccount" />
-
-    <TextView
         android:id="@+id/textView4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

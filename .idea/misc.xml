@@ -119,12 +119,22 @@
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/drawable/input_bg.xml" value="0.2703125" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/drawable/main_menu_text_bg.xml" value="0.2465" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/drawable/rounded_rectangle_y1_50dp.xml" value="0.2465" />
-        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/activity_forgot_password.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/activity_google_sign_in.xml" value="0.21981981981981982" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/activity_haikal_login.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/activity_haikal_registration.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/activity_leyhang_discover.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/activity_main_menu.xml" value="0.22592592592592592" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/dialog_edit_backdrop.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/dialog_edit_name.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_followers_item.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_followers_list.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_following_item.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_following_list.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_my_profile.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_user_profile.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/header_layout.xml" value="0.21981981981981982" />
       </map>
     </option>
   </component>
