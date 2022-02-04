@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
 
 //    private Context mContext;
-    private ArrayList<Review> list;
+    private ArrayList<ReviewGP> list;
     View view;
 
     @NonNull
@@ -39,7 +39,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         return list.size();
     }
 
-    public ReviewAdapter(ArrayList<Review> list){
+    public ReviewAdapter(ArrayList<ReviewGP> list){
         //REMOVED CONTEXT FROM THE PARAMETER OF THE CONSTRCUTOR ABV ^
 //        this.mContext =mContext;
         this.list = list;

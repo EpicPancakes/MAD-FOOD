@@ -50,10 +50,19 @@ public class AddRecommendationFragment extends Fragment {
     private String mParam2;
 
     private AutoCompleteTextView ACTVRestaurantRec;
+    private AutoCompleteTextView ACTVRecommendTo;
     private EditText ETRecommendMessage;
     ArrayList<Restaurant> restaurants = new ArrayList<>();
-    ArrayList<String> results = new ArrayList<>();
+    ArrayList<String> restaurantResults = new ArrayList<>();
+    ArrayList<User> followers = new ArrayList<>();
+    ArrayList<String> followerResults = new ArrayList<>();
     private User user;
+
+    private DAOUser daoUser;
+    private DAORestaurant daoRest;
+    private DAORecommendation daoRec;
+
+    private String sessionUserKey;
 
     public AddRecommendationFragment() {
         // Required empty public constructor
@@ -84,6 +93,8 @@ public class AddRecommendationFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        sessionUserKey = "-MutmLS6FPIkhneAJSGT";
     }
 
     @Override
@@ -98,13 +109,15 @@ public class AddRecommendationFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         ACTVRestaurantRec = (AutoCompleteTextView) view.findViewById(R.id.ACTVRestaurantRec);
+        ACTVRecommendTo = (AutoCompleteTextView) view.findViewById(R.id.ACTVRecommendTo);
         ETRecommendMessage = (EditText) view.findViewById(R.id.ETRecommendMessage);
-        DAORestaurant daoRest = new DAORestaurant();
-        DAORecommendation daoRec = new DAORecommendation();
+        daoRest = new DAORestaurant();
+        daoUser = new DAOUser();
+        daoRec = new DAORecommendation();
         Button BTNRecommendPlace = view.findViewById(R.id.BTNRecommendPlace);
 
 
-        final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
+        final ArrayAdapter<String> autoCompleteRestaurant = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
         daoRest.getReference().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -114,8 +127,8 @@ public class AddRecommendationFragment extends Fragment {
                     rest.setRestaurantKey(suggestionSnapshot.getKey());
                     restaurants.add(rest);
                     String suggestion = suggestionSnapshot.child("restaurantName").getValue(String.class);
-                    autoComplete.add(suggestion);
-                    results.add(suggestion);
+                    autoCompleteRestaurant.add(suggestion);
+                    restaurantResults.add(suggestion);
                 }
             }
 
@@ -125,31 +138,76 @@ public class AddRecommendationFragment extends Fragment {
             }
         });
 
-        ACTVRestaurantRec.setAdapter(autoComplete);
+        final ArrayAdapter<String> autoCompleteFollower = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
+        daoUser.getFollowersByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                followers.clear();
+                for (DataSnapshot suggestionSnapshot : snapshot.getChildren()) {
+
+                    daoUser.getByUserKey(suggestionSnapshot.getKey()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot userSnapshot) {
+                            User follower = userSnapshot.getValue(User.class);
+                            follower.setUserKey(userSnapshot.getKey());
+                            followers.add(follower);
+                            String suggestion = userSnapshot.child("username").getValue(String.class);
+                            autoCompleteFollower.add(suggestion);
+                            followerResults.add(suggestion);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        ACTVRecommendTo.setAdapter(autoCompleteFollower);
+        ACTVRecommendTo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (followerResults.size() == 0 ||
+                            !followerResults.contains(ACTVRecommendTo.getText().toString())) {
+                        ACTVRecommendTo.setError("Invalid follower.");
+                    }
+                }
+            }
+        });
+
+        ACTVRestaurantRec.setAdapter(autoCompleteRestaurant);
         ACTVRestaurantRec.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if (results.size() == 0 ||
-                            !results.contains(ACTVRestaurantRec.getText().toString())) {
+                    if (restaurantResults.size() == 0 ||
+                            !restaurantResults.contains(ACTVRestaurantRec.getText().toString())) {
                         ACTVRestaurantRec.setError("Invalid restaurant.");
                     }
-                    ;
                 }
             }
         });
 
         BTNRecommendPlace.setOnClickListener(v -> {
-            if (!hasErrors()) {
-                ACTVRestaurantRec.getText().toString();
+            if (!(hasRestaurantErrors() || hasFollowerErrors())) {
+
                 Restaurant selectedRestaurant = restaurants.stream().filter(restaurant -> (ACTVRestaurantRec.getText().toString()).equals(restaurant.getRestaurantName())).findFirst().orElse(null);
+                User selectedUser = followers.stream().filter(follower -> (ACTVRecommendTo.getText().toString()).equals(follower.getUsername())).findFirst().orElse(null);
+
                 Calendar calendar = Calendar.getInstance();
-                Recommendation rec = new Recommendation("-MutmLS6FPIkhneAJSGT", selectedRestaurant.getRestaurantKey(),"robert", new Date(), ETRecommendMessage.getText().toString());
+                Recommendation rec = new Recommendation(selectedUser.getUserKey(), selectedRestaurant.getRestaurantKey(),sessionUserKey, new Date(), ETRecommendMessage.getText().toString());
                 daoRec.add(rec).addOnSuccessListener(suc2 ->
                 {
 
                     // Include recent place key in user's recent places list by updating user
                     DAOUser daoUser = new DAOUser();
-                    daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+                    daoUser.getByUserKey(selectedUser.getUserKey()).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             user = snapshot.getValue(User.class);
@@ -166,7 +224,7 @@ public class AddRecommendationFragment extends Fragment {
                                 objectHM.put("recommendations", booleanHM);
 
                                 daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
-//                                    Toast.makeText(view.getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(view.getContext(), "Recommendation successfully sent!", Toast.LENGTH_SHORT).show();
                                 }).addOnFailureListener(er ->
                                 {
                                     Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
@@ -191,13 +249,26 @@ public class AddRecommendationFragment extends Fragment {
 
     }
 
-    private boolean hasErrors() {
+    private boolean hasRestaurantErrors() {
 
         if (ACTVRestaurantRec.getText().toString().isEmpty()) {
             ACTVRestaurantRec.setError("Please enter a restaurant name.");
             return true;
-        } else if (results.size() == 0 || !results.contains(ACTVRestaurantRec.getText().toString())) {
+        } else if (restaurantResults.size() == 0 || !restaurantResults.contains(ACTVRestaurantRec.getText().toString())) {
             ACTVRestaurantRec.setError("Invalid restaurant.");
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean hasFollowerErrors() {
+
+        if (ACTVRecommendTo.getText().toString().isEmpty()) {
+            ACTVRecommendTo.setError("Please enter a follower name.");
+            return true;
+        } else if (followerResults.size() == 0 || !followerResults.contains(ACTVRecommendTo.getText().toString())) {
+            ACTVRecommendTo.setError("Invalid follower.");
             return true;
         }
 

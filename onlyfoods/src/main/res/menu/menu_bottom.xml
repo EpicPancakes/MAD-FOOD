@@ -10,7 +10,7 @@
         android:icon="@drawable/deals"
         android:title="Deals" />
     <item
-        android:id="@+id/DestSocialHub"
+        android:id="@+id/DestMyProfile"
         android:icon="@drawable/social"
         android:title="Social Hub" />
     <item

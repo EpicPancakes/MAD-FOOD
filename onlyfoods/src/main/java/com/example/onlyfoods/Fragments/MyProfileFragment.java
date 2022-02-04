@@ -72,6 +72,8 @@ public class MyProfileFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager2 viewPager;
 
+    private String sessionUserKey;
+
     public MyProfileFragment() {
         // Required empty public constructor
     }
@@ -104,6 +106,8 @@ public class MyProfileFragment extends Fragment {
         daoBD = new DAOBackdrop();
         daoPI = new DAOProfileImage();
         daoUser = new DAOUser();
+
+        sessionUserKey = "-MutmLS6FPIkhneAJSGT";
     }
 
 
@@ -138,7 +142,7 @@ public class MyProfileFragment extends Fragment {
         TVName = view.findViewById(R.id.TVName);
         TVFollowers = view.findViewById(R.id.TVFollowers);
         TVFollowing = view.findViewById(R.id.TVFollowing);
-        daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user = snapshot.getValue(User.class);
@@ -154,7 +158,7 @@ public class MyProfileFragment extends Fragment {
             }
         });
 
-        mDBListenerBD = daoBD.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        mDBListenerBD = daoBD.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
@@ -173,7 +177,7 @@ public class MyProfileFragment extends Fragment {
         });
 
         IVProfileImage = view.findViewById(R.id.IVProfileImage);
-        mDBListenerPI = daoPI.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        mDBListenerPI = daoPI.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
@@ -244,7 +248,7 @@ public class MyProfileFragment extends Fragment {
 
 // Include recent place key in user's recent places list by updating user
 //                DAOUser daoUser = new DAOUser();
-//                daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+//                daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
 //                    @Override
 //                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 //                        user = snapshot.getValue(User.class);
