@@ -62,6 +62,7 @@ public class AddRecentPlaceFragment extends Fragment {
     ArrayList<Restaurant> restaurants = new ArrayList<>();
     ArrayList<String> results = new ArrayList<>();
     private User user;
+    private String sessionUserKey;
 
 
     public AddRecentPlaceFragment() {
@@ -93,6 +94,7 @@ public class AddRecentPlaceFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        sessionUserKey = "-MutmLS6FPIkhneAJSGT";
     }
 
     @Override
@@ -188,7 +190,6 @@ public class AddRecentPlaceFragment extends Fragment {
 //            date = new SimpleDateFormat("dd/MM/yyyy").format(dateObject);
 //            time = new SimpleDateFormat("h:mmaa").format(dateObject);
                 } catch (java.text.ParseException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                     Log.i("Date Parsing Error: ", e.toString());
                 }
@@ -198,7 +199,7 @@ public class AddRecentPlaceFragment extends Fragment {
                 ACTVRestaurantRP.getText().toString();
                 Restaurant selectedRestaurant = restaurants.stream().filter(restaurant -> (ACTVRestaurantRP.getText().toString()).equals(restaurant.getRestaurantName())).findFirst().orElse(null);
                 Date finalDateObject = dateObject;
-                RecentPlace rp = new RecentPlace(selectedRestaurant.getRestaurantKey(), "-MutmLS6FPIkhneAJSGT", finalDateObject);
+                RecentPlace rp = new RecentPlace(selectedRestaurant.getRestaurantKey(), sessionUserKey, finalDateObject);
                 daoRP.add(rp).addOnSuccessListener(suc2 ->
                 {
                     Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
@@ -210,7 +211,7 @@ public class AddRecentPlaceFragment extends Fragment {
 
                 // Include recent place key in user's recent places list by updating user
                 DAOUser daoUser = new DAOUser();
-                daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+                daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         user = snapshot.getValue(User.class);
@@ -218,9 +219,9 @@ public class AddRecentPlaceFragment extends Fragment {
                         if (user != null) {
                             Map<String, Object> objectHM = new HashMap<>();
                             Map<String, Boolean> booleanHM;
-                            if(user.getRecentPlaces()!=null){
+                            if (user.getRecentPlaces() != null) {
                                 booleanHM = user.getRecentPlaces();
-                            }else{
+                            } else {
                                 booleanHM = new HashMap<>();
                             }
                             booleanHM.put(daoRP.getRecentPlaceKey(), true);
@@ -233,6 +234,7 @@ public class AddRecentPlaceFragment extends Fragment {
                             });
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 

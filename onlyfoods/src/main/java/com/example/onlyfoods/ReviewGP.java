@@ -1,12 +1,12 @@
 package com.example.onlyfoods;
 
-public class Review {
+public class ReviewGP {
 
     private String name;
     private String reviewMsg;
     private int image;
 
-    public Review(String name, String reviewMsg, int image) {
+    public ReviewGP(String name, String reviewMsg, int image) {
         this.name = name;
         this.reviewMsg = reviewMsg;
         this.image = image;

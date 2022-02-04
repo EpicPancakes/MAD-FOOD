@@ -32,6 +32,9 @@
         <action
             android:id="@+id/NextToAddRecentPlace"
             app:destination="@id/DestAddRecentPlace" />
+        <action
+            android:id="@+id/NextToSelectRestaurant"
+            app:destination="@id/DestSelectRestaurant" />
     </fragment>
     <fragment
         android:id="@+id/DestFollows"
@@ -67,5 +70,18 @@
         <action
             android:id="@+id/UPNextToFollows"
             app:destination="@id/DestFollows" />
+    </fragment>
+    <fragment
+        android:id="@+id/DestAddReview"
+        android:name="com.example.onlyfoods.gpReviewFragment"
+        android:label="Add Review"
+        tools:layout="@layout/fragment_gp_review" />
+    <fragment
+        android:id="@+id/DestSelectRestaurant"
+        android:name="com.example.onlyfoods.Fragments.SelectRestaurantFragment"
+        android:label="Select A Restaurant" >
+        <action
+            android:id="@+id/NextToAddReview"
+            app:destination="@id/DestAddReview" />
     </fragment>
 </navigation>
