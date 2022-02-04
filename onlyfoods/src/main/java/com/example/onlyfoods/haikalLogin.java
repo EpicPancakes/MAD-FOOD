@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class haikalLogin extends AppCompatActivity {
 
-    TextView TVRegister;
+    TextView TVRegister, TVForgotPass;
     EditText LoginEmail, LoginPassword;
     Button btnLogin;
     private FirebaseAuth mAuth;
@@ -56,6 +56,18 @@ public class haikalLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkCredentials();
+            }
+        });
+
+        TVForgotPass = (TextView)findViewById(R.id.TVForgotPass);
+
+        //Takes user to Password reset activity
+        TVForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(haikalLogin.this, ForgotPassword.class);
+                startActivity(intent);
+
             }
         });
     }
