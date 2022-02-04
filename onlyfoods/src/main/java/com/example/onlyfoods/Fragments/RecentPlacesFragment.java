@@ -23,6 +23,7 @@ import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -45,6 +46,7 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
     ArrayList<RecentPlace> rps = new ArrayList<>();
     private User user;
     private String viewedUserKey;
+    private String sessionUserKey;
 
 
     /**
@@ -68,6 +70,7 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
         if (getArguments() != null) {
             viewedUserKey = getArguments().getString(VIEWED_USER_KEY);
         }
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override
@@ -107,7 +110,7 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
         if(viewedUserKey != null){
             rpUserKey = viewedUserKey;
         }else{
-            rpUserKey = "-MutmLS6FPIkhneAJSGT";
+            rpUserKey = sessionUserKey;
         }
 
         daoRP.getByUserKey(rpUserKey).addValueEventListener(new ValueEventListener() {
@@ -170,7 +173,7 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
     private void deleteRPinUser(String rpKey){
         // Include recent place key in user's recent places list by updating user
         DAOUser daoUser = new DAOUser();
-        daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user = snapshot.getValue(User.class);

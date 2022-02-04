@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.Models.Review;
 import com.example.onlyfoods.Models.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -38,9 +40,11 @@ public class gpReviewFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_RESTAURANT_KEY = "restaurantKey";
+    private static final String ARG_FROM_MY_PROFILE = "fromMyProfile";
 
     // TODO: Rename and change types of parameters
     private String restaurantKey;
+    private boolean fromMyProfile = false;
     private String sessionUserKey;
     private EditText ETReviewMessage;
     private Button BTNSubmitReview;
@@ -73,8 +77,9 @@ public class gpReviewFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             restaurantKey = getArguments().getString(ARG_RESTAURANT_KEY);
+            fromMyProfile = getArguments().getBoolean(ARG_FROM_MY_PROFILE);
         }
-        sessionUserKey = "-MutmLS6FPIkhneAJSGT";
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override
@@ -98,8 +103,12 @@ public class gpReviewFragment extends Fragment {
                 daoRev.add(review).addOnSuccessListener(suc2 ->
                 {
                     Toast.makeText(getContext(), "Review added", Toast.LENGTH_SHORT).show();
-                    // TODO: Navigate to restaurant page here (can use the restaurantKey to know which restaurant)
+                    if(fromMyProfile){
+                        Navigation.findNavController(view).navigate(R.id.DestMyProfile);
+                    }else{
+                        // TODO: Navigate to restaurant page here (can use the restaurantKey to know which restaurant)
 //                    getActivity().onBackPressed();
+                    }
                 }).addOnFailureListener(er ->
                 {
                     Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
