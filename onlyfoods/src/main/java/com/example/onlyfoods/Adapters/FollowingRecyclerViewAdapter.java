@@ -4,12 +4,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.onlyfoods.DAOs.DAOProfileImage;
 import com.example.onlyfoods.DAOs.DAOUser;
+import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.databinding.FragmentFollowingItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
@@ -18,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +37,7 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
     private final List<User> following;
     private DAOUser daoUser;
     private String sessionUserKey;
+    private DAOProfileImage daoPI;
 
 
     public FollowingRecyclerViewAdapter(List<User> following) {
@@ -43,6 +48,7 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         daoUser = new DAOUser();
+        daoPI = new DAOProfileImage();
         sessionUserKey = "-MutmLS6FPIkhneAJSGT";
         return new ViewHolder(FragmentFollowingItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
@@ -54,6 +60,25 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
         holder.TVFollowingName.setText(followingUser.getUsername());
         holder.TVFollowersNum.setText(String.valueOf(followingUser.getFollowersCount()));
         holder.TVReviewsNum.setText(String.valueOf(followingUser.getReviewsCount()));
+
+        daoPI.getByUserKey(followingUser.getUserKey()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data: snapshot.getChildren()) {
+                    if(data.exists()){
+                        ProfileImage profileImage = data.getValue(ProfileImage.class);
+                        if (profileImage.getProfileImageUrl() != null) {
+                            Picasso.get().load(profileImage.getProfileImageUrl()).fit().centerCrop().into(holder.IVFollowingImage);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // check if the following is the session user itself
         if (sessionUserKey.equals(followingUser.getUserKey())) {
@@ -204,6 +229,7 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
         public final Button BTNFollowingFollowing;
         public final TextView TVFollowersNum;
         public final TextView TVReviewsNum;
+        public final ImageView IVFollowingImage;
 
         public ViewHolder(FragmentFollowingItemBinding binding) {
             super(binding.getRoot());
@@ -212,6 +238,7 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
             BTNFollowingFollowing = binding.BTNFollowingFollowing;
             TVFollowersNum = binding.TVFollowingFollowersNum;
             TVReviewsNum = binding.TVFollowingReviewsNum;
+            IVFollowingImage = binding.IVFollowingImage;
 
             itemView.setOnClickListener(this);
         }
