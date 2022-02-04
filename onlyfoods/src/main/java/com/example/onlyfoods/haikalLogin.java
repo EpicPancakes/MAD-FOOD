@@ -23,7 +23,7 @@ public class haikalLogin extends AppCompatActivity {
 
     TextView TVRegister, TVForgotPass;
     EditText LoginEmail, LoginPassword;
-    Button btnLogin;
+    Button btnLogin, LoginGoogle;
     private FirebaseAuth mAuth;
     private ProgressDialog mLoadingBar;
 
@@ -68,6 +68,15 @@ public class haikalLogin extends AppCompatActivity {
                 Intent intent = new Intent(haikalLogin.this, ForgotPassword.class);
                 startActivity(intent);
 
+            }
+        });
+
+        LoginGoogle = findViewById(R.id.LoginGoogle);
+        LoginGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(haikalLogin.this, GoogleSignInActivity.class);
+                startActivity(intent);
             }
         });
     }
