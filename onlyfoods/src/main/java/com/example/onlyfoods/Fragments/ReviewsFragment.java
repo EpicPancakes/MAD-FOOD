@@ -22,6 +22,7 @@ import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -44,6 +45,7 @@ public class ReviewsFragment extends Fragment implements MyReviewsRecyclerViewAd
     ArrayList<Review> reviews = new ArrayList<>();
     private User user;
     private String viewedUserKey;
+    private String sessionUserKey;
 
 
     /**
@@ -67,6 +69,7 @@ public class ReviewsFragment extends Fragment implements MyReviewsRecyclerViewAd
         if (getArguments() != null) {
             viewedUserKey = getArguments().getString(VIEWED_USER_KEY);
         }
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override
@@ -106,7 +109,7 @@ public class ReviewsFragment extends Fragment implements MyReviewsRecyclerViewAd
         if(viewedUserKey != null){
             revUserKey = viewedUserKey;
         }else{
-            revUserKey = "-MutmLS6FPIkhneAJSGT";
+            revUserKey = sessionUserKey;
         }
 
         daoRev.getByUserKey(revUserKey).addValueEventListener(new ValueEventListener() {
@@ -169,7 +172,7 @@ public class ReviewsFragment extends Fragment implements MyReviewsRecyclerViewAd
     private void deleteReviewinUser(String revKey){
         // Include review key in user's reviews list by updating user
         DAOUser daoUser = new DAOUser();
-        daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user = snapshot.getValue(User.class);

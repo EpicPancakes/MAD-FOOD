@@ -22,6 +22,7 @@ import com.example.onlyfoods.Models.Backdrop;
 import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -59,6 +60,7 @@ public class EditProfileFragment extends Fragment {
     private ImageView IVEditBackdrop;
     private ImageView IVEditProfileImage;
     private TextView TVEditName;
+    private String sessionUserKey;
 
     public EditProfileFragment() {
         // Required empty public constructor
@@ -89,7 +91,7 @@ public class EditProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         daoUser = new DAOUser();
         daoBD = new DAOBackdrop();
         daoPI = new DAOProfileImage();
@@ -113,7 +115,7 @@ public class EditProfileFragment extends Fragment {
         TVEditName = view.findViewById(R.id.TVEditName);
         IBEditName = view.findViewById(R.id.IBEditName);
 
-        daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user = snapshot.getValue(User.class);
@@ -124,7 +126,7 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
-        mDBListenerBD = daoBD.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        mDBListenerBD = daoBD.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
@@ -141,7 +143,7 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
-        mDBListenerPI = daoPI.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        mDBListenerPI = daoPI.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
