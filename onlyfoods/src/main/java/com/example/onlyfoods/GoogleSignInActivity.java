@@ -43,7 +43,7 @@ public class GoogleSignInActivity extends haikalLogin {
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("789450388183-1hc9k7bclfr4fk01r8l2qmu5da99dp2a.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
