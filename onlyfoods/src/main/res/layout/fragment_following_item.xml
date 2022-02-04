@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/IVFollowingPicture"
+        android:id="@+id/IVFollowingImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
@@ -92,7 +92,7 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IVFollowingPicture"
+        app:layout_constraintStart_toEndOf="@+id/IVFollowingImage"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.35000002" />
 
@@ -143,7 +143,7 @@
         android:textColor="@color/gray"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IVFollowingPicture"
+        app:layout_constraintStart_toEndOf="@+id/IVFollowingImage"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.70" />
 

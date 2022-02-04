@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,8 +17,10 @@ import androidx.navigation.Navigation;
 
 import com.example.onlyfoods.DAOs.DAOBackdrop;
 import com.example.onlyfoods.DAOs.DAOProfileImage;
+import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Backdrop;
 import com.example.onlyfoods.Models.ProfileImage;
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +45,10 @@ public class EditProfileFragment extends Fragment {
 
     private Button BTNEditBackdrop;
     private ImageButton IBEditProfileImage;
+    private ImageButton IBEditName;
+    private User user;
 
+    private DAOUser daoUser;
     private DAOBackdrop daoBD;
     private DAOProfileImage daoPI;
     private ValueEventListener mDBListenerBD;
@@ -52,6 +58,7 @@ public class EditProfileFragment extends Fragment {
     private ProfileImage profileImage;
     private ImageView IVEditBackdrop;
     private ImageView IVEditProfileImage;
+    private TextView TVEditName;
 
     public EditProfileFragment() {
         // Required empty public constructor
@@ -83,6 +90,7 @@ public class EditProfileFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        daoUser = new DAOUser();
         daoBD = new DAOBackdrop();
         daoPI = new DAOProfileImage();
     }
@@ -102,6 +110,19 @@ public class EditProfileFragment extends Fragment {
         IVEditBackdrop = view.findViewById(R.id.IVEditBackdrop);
         IBEditProfileImage = view.findViewById(R.id.IBEditProfileImage);
         IVEditProfileImage = view.findViewById(R.id.IVEditProfileImage);
+        TVEditName = view.findViewById(R.id.TVEditName);
+        IBEditName = view.findViewById(R.id.IBEditName);
+
+        daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user = snapshot.getValue(User.class);
+                TVEditName.setText(user.getUsername());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         mDBListenerBD = daoBD.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
             @Override
@@ -151,6 +172,13 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
+        IBEditName.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                openENDialog();
+            }
+        });
+
 
         Button BtnAddRecentPlace = view.findViewById(R.id.BTNAddRecentPlace);
         View.OnClickListener OCLAddRecentPlace = new View.OnClickListener() {
@@ -172,6 +200,11 @@ public class EditProfileFragment extends Fragment {
     public void openPIDialog() {
         EditProfileImageDialog editProfileImageDialog = EditProfileImageDialog.newInstance(1, profileImage);
         editProfileImageDialog.show(getParentFragmentManager(), "Edit Profile Image");
+    }
+
+    public void openENDialog() {
+        EditNameDialog editNameDialog = EditNameDialog.newInstance(1, TVEditName.getText().toString());
+        editNameDialog.show(getParentFragmentManager(), "Edit Username");
     }
 
     @Override
