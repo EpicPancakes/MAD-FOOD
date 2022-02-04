@@ -118,6 +118,7 @@
         android:id="@+id/IVEditBackdrop"
         android:layout_width="380dp"
         android:layout_height="200dp"
+        android:background="#FF20AAF6"
         android:padding="3dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"

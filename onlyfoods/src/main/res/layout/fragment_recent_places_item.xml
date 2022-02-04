@@ -22,11 +22,12 @@
         android:id="@+id/IVRPRestaurant"
         android:layout_width="140dp"
         android:layout_height="match_parent"
+        android:background="#20AAF6"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rest2" />
+        app:srcCompat="@drawable/empty_restaurant" />
 
     <TextView
         android:id="@+id/TVRPRestaurant"
