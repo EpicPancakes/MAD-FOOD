@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         NavHostFragment host =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.NHFMain);
         NavController navController = host.getNavController();

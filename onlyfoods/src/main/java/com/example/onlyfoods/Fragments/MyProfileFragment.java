@@ -234,6 +234,16 @@ public class MyProfileFragment extends Fragment {
             }
         };
         BtnRecommendations.setOnClickListener(OCLRecommendations);
+
+        Button BtnLogout = view.findViewById(R.id.BTNLogout);
+        BtnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(view.getContext(), haikalLogin.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
