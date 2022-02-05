@@ -16,13 +16,8 @@
         android:label="fragment_leyhang_filter"
         tools:layout="@layout/fragment_leyhang_filter" />
     <fragment
-        android:id="@+id/leyhangRecommendFragment"
-        android:name="com.example.onlyfoods.leyhangRecommendFragment"
-        android:label="fragment_leyhang_recommend"
-        tools:layout="@layout/fragment_leyhang_recommend" />
-    <fragment
         android:id="@+id/leyhangActualDiscover2"
-        android:name="com.example.onlyfoods.leyhangActualDiscover"
+        android:name="com.example.onlyfoods.leyhangActualDiscoverFragment"
         android:label="fragment_leyhang_actual_discover"
         tools:layout="@layout/fragment_leyhang_actual_discover" />
 </navigation>
