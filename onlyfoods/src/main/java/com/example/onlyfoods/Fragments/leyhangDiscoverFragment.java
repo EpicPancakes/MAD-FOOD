@@ -124,7 +124,7 @@ public class leyhangDiscoverFragment extends Fragment implements DiscoverRecycle
         View.OnClickListener OCLSavedDiscover = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.DestDiscovery);
+                Navigation.findNavController(view).navigate(R.id.DestSaved);
             }
         };
         BtnDiscoverDiscover.setOnClickListener(OCLSavedDiscover);

@@ -107,31 +107,31 @@ public class leyhangCategoriesFragment extends Fragment implements FiltersRecycl
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
 
-        Button BtnFilterDiscover = view.findViewById(R.id.BtnFilterFilter);
-        View.OnClickListener OCLFilterDiscover = new View.OnClickListener() {
+        Button BtnFilterFilter = view.findViewById(R.id.BtnFilterFilter);
+        View.OnClickListener OCLFilterFilter = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.DestCategories);
             }
         };
-        BtnFilterDiscover.setOnClickListener(OCLFilterDiscover);
+        BtnFilterFilter.setOnClickListener(OCLFilterFilter);
 
-        Button BtnRecommendDiscover = view.findViewById(R.id.BtnRecommendFilter);
-        View.OnClickListener OCLRecommendDiscover = new View.OnClickListener() {
+        Button BtnRecommendFilter = view.findViewById(R.id.BtnRecommendFilter);
+        View.OnClickListener OCLRecommendFilter = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.DestDiscovery);
             }
         };
-        BtnRecommendDiscover.setOnClickListener(OCLRecommendDiscover);
+        BtnRecommendFilter.setOnClickListener(OCLRecommendFilter);
 
-        Button BtnSavedDiscover = view.findViewById(R.id.BtnSavedFilter);
-        View.OnClickListener OCLSavedDiscover = new View.OnClickListener() {
+        Button BtnSavedFilter = view.findViewById(R.id.BtnSavedFilter);
+        View.OnClickListener OCLSavedFilter = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.DestSaved);
+                Navigation.findNavController(view).navigate(R.id.DestCategories);
             }
         };
-        BtnSavedDiscover.setOnClickListener(OCLSavedDiscover);
+        BtnSavedFilter.setOnClickListener(OCLSavedFilter);
     }
 }
