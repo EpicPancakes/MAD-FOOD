@@ -14,7 +14,7 @@
         android:icon="@drawable/social"
         android:title="Social Hub" />
     <item
-        android:id="@+id/DestSpinDWheel"
+        android:id="@+id/DestSpinTheWheel"
         android:icon="@drawable/wheel"
         android:title="Spin D'Wheel" />
 </menu>

@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "OnlyFoods"
 include ':onlyfoods'
+include ':library'

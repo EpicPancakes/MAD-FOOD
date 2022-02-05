@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +38,8 @@ public class SavedRestaurantsRecyclerViewAdapter extends RecyclerView.Adapter<Sa
 
     private OnItemClickListener mListener;
     private final List<Restaurant> restaurants;
+    private String sessionUserKey;
+
 
     public SavedRestaurantsRecyclerViewAdapter(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
@@ -44,6 +47,7 @@ public class SavedRestaurantsRecyclerViewAdapter extends RecyclerView.Adapter<Sa
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         return new ViewHolder(LeyhangSavedItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
@@ -57,6 +61,43 @@ public class SavedRestaurantsRecyclerViewAdapter extends RecyclerView.Adapter<Sa
         if (savedRestaurant.getRestaurantImageUrl() != null) {
             Picasso.get().load(savedRestaurant.getRestaurantImageUrl()).fit().centerCrop().into(holder.IVSavedImage);
         }
+
+        // Unsaves the restaurant upon clicking the button "Unsave"
+        holder.IBUnheartS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DAOUser daoUser = new DAOUser();
+                daoUser.getByUserKeyOnce(sessionUserKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                    @Override
+                    public void onSuccess(DataSnapshot dataSnapshot) {
+                        User sessionUser = dataSnapshot.getValue(User.class);
+                        if (sessionUser != null && savedRestaurant.getRestaurantKey() != null) {
+                            sessionUser.setUserKey(dataSnapshot.getKey());
+                            Map<String, Object> objectHM = new HashMap<>();
+                            Map<String, Boolean> booleanHM;
+                            if (sessionUser.getSavedRestaurants() != null) {
+                                booleanHM = sessionUser.getSavedRestaurants();
+                            } else {
+                                booleanHM = new HashMap<>();
+                            }
+                            booleanHM.remove(savedRestaurant.getRestaurantKey());
+                            objectHM.put("savedRestaurants", booleanHM);
+                            daoUser.update(sessionUserKey, objectHM).addOnSuccessListener(suc2 -> {
+//                                    Toast.makeText(getContext(), "User followed", Toast.LENGTH_SHORT).show();
+                            }).addOnFailureListener(er ->
+                            {
+//                                Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -77,6 +118,7 @@ public class SavedRestaurantsRecyclerViewAdapter extends RecyclerView.Adapter<Sa
         public final TextView TVSavedCategory;
         public final TextView TVSavedLocation;
         public final ImageView IVSavedImage;
+        public final ImageButton IBUnheartS;
 
         public ViewHolder(LeyhangSavedItemBinding binding) {
             super(binding.getRoot());
@@ -84,7 +126,7 @@ public class SavedRestaurantsRecyclerViewAdapter extends RecyclerView.Adapter<Sa
             TVSavedCategory = binding.TVSavedCatagory;
             TVSavedLocation = binding.TVSavedLocation;
             IVSavedImage = binding.IVSavedImage;
-
+            IBUnheartS = binding.IBUnheartS;
             itemView.setOnClickListener(this);
         }
 

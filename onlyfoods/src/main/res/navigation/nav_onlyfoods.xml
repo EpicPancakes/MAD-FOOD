@@ -96,6 +96,9 @@
         <action
             android:id="@+id/action_DestCategories_to_leyhangActualDiscoverFragment"
             app:destination="@id/DestDiscovery" />
+        <action
+            android:id="@+id/action_DestCategories_to_DestResults"
+            app:destination="@id/DestResults" />
     </fragment>
     <fragment
         android:id="@+id/DestSaved"
@@ -115,4 +118,12 @@
             android:id="@+id/action_leyhangActualDiscoverFragment_to_leyhangSavedFragment2"
             app:destination="@id/DestSaved" />
     </fragment>
+    <fragment
+        android:id="@+id/DestResults"
+        android:name="com.example.onlyfoods.Fragments.leyhangResultsFragment"
+        android:label="Filtered Restaurants" />
+    <fragment
+        android:id="@+id/DestSpinTheWheel"
+        android:name="com.example.onlyfoods.Fragments.SpinTheWheelFragment"
+        android:label="Spin The Wheel!" />
 </navigation>
