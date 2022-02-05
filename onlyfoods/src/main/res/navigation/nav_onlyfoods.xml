@@ -90,7 +90,29 @@
     </fragment>
     <fragment
         android:id="@+id/DestCategories"
-        android:name="com.example.onlyfoods.leyhangCategories"
-        android:label="fragment_leyhang_filter"
-        tools:layout="@layout/fragment_leyhang_filter" />
+        android:name="com.example.onlyfoods.Fragments.leyhangCategoriesFragment"
+        android:label="Select a Category"
+        tools:layout="@layout/fragment_leyhang_filter">
+        <action
+            android:id="@+id/action_DestCategories_to_leyhangActualDiscoverFragment"
+            app:destination="@id/DestDiscovery" />
+    </fragment>
+    <fragment
+        android:id="@+id/DestSaved"
+        android:name="com.example.onlyfoods.Fragments.leyhangSavedFragment"
+        android:label="Saved Restaurants"
+        tools:layout="@layout/fragment_leyhang_saved">
+        <action
+            android:id="@+id/action_leyhangSavedFragment2_to_DestCategories"
+            app:destination="@id/DestCategories" />
+    </fragment>
+    <fragment
+        android:id="@+id/DestDiscovery"
+        android:name="com.example.onlyfoods.Fragments.leyhangDiscoverFragment"
+        android:label="Discovery"
+        tools:layout="@layout/fragment_leyhang_discover">
+        <action
+            android:id="@+id/action_leyhangActualDiscoverFragment_to_leyhangSavedFragment2"
+            app:destination="@id/DestSaved" />
+    </fragment>
 </navigation>

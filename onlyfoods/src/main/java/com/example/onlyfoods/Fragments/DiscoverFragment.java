@@ -21,7 +21,7 @@ public class DiscoverFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_leyhang_actual_discover, container, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_leyhang_discover, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.CLDiscover);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(new DiscoverRecyclerViewAdapter(names));

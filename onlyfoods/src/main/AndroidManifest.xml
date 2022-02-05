@@ -32,9 +32,6 @@
             android:name=".haikalRegistration"
             android:exported="false" />
         <activity
-            android:name=".leyhangDiscover"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true" />
     </application>
