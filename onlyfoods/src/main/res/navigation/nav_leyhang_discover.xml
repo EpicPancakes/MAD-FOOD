@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_leyhang_discover">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_leyhang_discover"
+    app:startDestination="@id/leyhangSavedFragment">
 
+    <fragment
+        android:id="@+id/leyhangSavedFragment"
+        android:name="com.example.onlyfoods.leyhangSavedFragment"
+        android:label="fragment_leyhang_saved"
+        tools:layout="@layout/fragment_leyhang_saved" />
+    <fragment
+        android:id="@+id/leyhangFilter"
+        android:name="com.example.onlyfoods.leyhangFilter"
+        android:label="fragment_leyhang_filter"
+        tools:layout="@layout/fragment_leyhang_filter" />
+    <fragment
+        android:id="@+id/leyhangActualDiscover2"
+        android:name="com.example.onlyfoods.leyhangActualDiscoverFragment"
+        android:label="fragment_leyhang_actual_discover"
+        tools:layout="@layout/fragment_leyhang_actual_discover" />
 </navigation>
