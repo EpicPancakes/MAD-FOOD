@@ -22,7 +22,6 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
@@ -54,7 +53,7 @@ public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviews
         Review review = list.get(position);
 
         DAORestaurant daoRest = new DAORestaurant();
-        daoRest.get(review.getRestaurantKey()).addOnSuccessListener(suc ->{
+        daoRest.getRestaurantsByKey(review.getRestaurantKey()).addOnSuccessListener(suc ->{
             Restaurant restaurant = suc.getValue(Restaurant.class);
             assert restaurant != null;
             holder.TVRestaurantName.setText(restaurant.getRestaurantName());

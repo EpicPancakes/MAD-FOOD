@@ -50,7 +50,7 @@ public class UserReviewsRecyclerViewAdapter extends RecyclerView.Adapter<UserRev
         Review review = list.get(position);
 
         DAORestaurant daoRest = new DAORestaurant();
-        daoRest.get(review.getRestaurantKey()).addOnSuccessListener(suc ->{
+        daoRest.getRestaurantsByKey(review.getRestaurantKey()).addOnSuccessListener(suc ->{
             Restaurant restaurant = suc.getValue(Restaurant.class);
             assert restaurant != null;
             holder.TVRestaurantName.setText(restaurant.getRestaurantName());

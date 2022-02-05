@@ -71,7 +71,7 @@ public class RecommendationsAdapter extends
         TVRecommendationMessage.setText(rec.getRecommendationMsg());
 
         DAORestaurant daoRest = new DAORestaurant();
-        daoRest.get(rec.getRestaurantKey()).addOnSuccessListener(suc ->{
+        daoRest.getRestaurantsByKey(rec.getRestaurantKey()).addOnSuccessListener(suc ->{
             Restaurant restaurant = suc.getValue(Restaurant.class);
             assert restaurant != null;
             TVRecommendedRestaurantName.setText(restaurant.getRestaurantName());

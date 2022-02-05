@@ -37,8 +37,6 @@ public class SavedRestaurantsRecyclerViewAdapter extends RecyclerView.Adapter<Sa
 
     private OnItemClickListener mListener;
     private final List<Restaurant> restaurants;
-    private String sessionUserKey;
-    private DAORestaurant daoRest;
 
     public SavedRestaurantsRecyclerViewAdapter(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
@@ -46,8 +44,6 @@ public class SavedRestaurantsRecyclerViewAdapter extends RecyclerView.Adapter<Sa
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        daoRest = new DAORestaurant();
-        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         return new ViewHolder(LeyhangSavedItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 

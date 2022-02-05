@@ -35,7 +35,11 @@ public class DAORestaurant {
         return databaseReference.child(key).removeValue();
     }
 
-    public Task<DataSnapshot> get(String restaurantKey){
+    public Task<DataSnapshot> get(){
+        return databaseReference.get();
+    }
+
+    public Task<DataSnapshot> getRestaurantsByKey(String restaurantKey){
         return databaseReference.child(restaurantKey).get();
     }
 

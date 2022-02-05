@@ -1,11 +1,9 @@
 package com.example.onlyfoods.Fragments;
 
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,12 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.onlyfoods.Adapters.FiltersRecyclerViewAdapter;
 import com.example.onlyfoods.Adapters.SavedRestaurantsRecyclerViewAdapter;
 import com.example.onlyfoods.DAOs.DAORestaurant;
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Restaurant;
-import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -108,32 +104,32 @@ public class leyhangSavedFragment extends Fragment implements SavedRestaurantsRe
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
 
-        Button BtnFilterDiscover = view.findViewById(R.id.BtnFilterSaved);
-        View.OnClickListener OCLFilterDiscover = new View.OnClickListener() {
+        Button BtnFilterSaved = view.findViewById(R.id.BtnFilterSaved);
+        View.OnClickListener OCLFilterSaved = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.DestCategories);
             }
         };
-        BtnFilterDiscover.setOnClickListener(OCLFilterDiscover);
+        BtnFilterSaved.setOnClickListener(OCLFilterSaved);
 
-        Button BtnRecommendDiscover = view.findViewById(R.id.BtnRecommendSaved);
-        View.OnClickListener OCLRecommendDiscover = new View.OnClickListener() {
+        Button BtnRecommendSaved = view.findViewById(R.id.BtnRecommendSaved);
+        View.OnClickListener OCLRecommendSaved = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.DestDiscovery);
             }
         };
-        BtnRecommendDiscover.setOnClickListener(OCLRecommendDiscover);
+        BtnRecommendSaved.setOnClickListener(OCLRecommendSaved);
 
-        Button BtnSavedDiscover = view.findViewById(R.id.BtnSavedSaved);
-        View.OnClickListener OCLSavedDiscover = new View.OnClickListener() {
+        Button BtnSavedSaved = view.findViewById(R.id.BtnSavedSaved);
+        View.OnClickListener OCLSavedSaved = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.DestSaved);
             }
         };
-        BtnSavedDiscover.setOnClickListener(OCLSavedDiscover);
+        BtnSavedSaved.setOnClickListener(OCLSavedSaved);
     }
 
     private void loadData() {
@@ -144,7 +140,7 @@ public class leyhangSavedFragment extends Fragment implements SavedRestaurantsRe
                 restaurants.clear();
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    daoRest.get(data.getKey()).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                    daoRest.getRestaurantsByKey(data.getKey()).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                         @Override
                         public void onSuccess(DataSnapshot dataSnapshot) {
                             Restaurant restaurant = dataSnapshot.getValue(Restaurant.class);
@@ -160,7 +156,7 @@ public class leyhangSavedFragment extends Fragment implements SavedRestaurantsRe
                     });
                 }
             }
-            
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -171,7 +167,7 @@ public class leyhangSavedFragment extends Fragment implements SavedRestaurantsRe
     @Override
     public void onItemClick(int position) {
         Bundle bundle = new Bundle();
-        bundle.putString("categoryString", restaurants.get(position).getRestaurantKey());
+        bundle.putString("restaurantKey", restaurants.get(position).getRestaurantKey());
 //        Navigation.findNavController(getView()).navigate(R.id.NextToUserProfile, bundle);
         Toast.makeText(getContext(), "Viewing "+restaurants.get(position).getRestaurantName(), Toast.LENGTH_SHORT).show();
     }
