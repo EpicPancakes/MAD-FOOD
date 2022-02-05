@@ -1,7 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CLSaved"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".leyhangSavedFragment"
-    tools:listitem="@layout/leyhang_saved_item" />
+    tools:context=".Fragments.leyhangSavedFragment"
+    tools:listitem="@layout/leyhang_saved_item" >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVSavedRestaurants"
+        android:layout_width="391dp"
+        android:layout_height="580dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BtnRecommendSaved"
+        app:layout_constraintVertical_bias="0.272"
+        tools:listitem="@layout/leyhang_saved_item" />
+
+    <Button
+        android:id="@+id/BtnFilterSaved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Filter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="33dp" />
+
+    <Button
+        android:id="@+id/BtnSavedSaved"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saved"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="166dp" />
+
+    <Button
+        android:id="@+id/BtnRecommendSaved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Recommend"
+        app:layout_constraintEnd_toStartOf="@+id/BtnSavedSaved"
+        app:layout_constraintStart_toEndOf="@+id/BtnFilterSaved"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

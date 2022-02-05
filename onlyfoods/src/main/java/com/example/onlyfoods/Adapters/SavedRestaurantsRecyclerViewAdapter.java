@@ -15,8 +15,7 @@ import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.Models.User;
-import com.example.onlyfoods.databinding.LeyhangDiscoverItemBinding;
-import com.example.onlyfoods.databinding.LeyhangDiscoverItemBinding;
+import com.example.onlyfoods.databinding.LeyhangSavedItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,29 +33,29 @@ import java.util.Map;
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRecyclerViewAdapter.ViewHolder> {
+public class SavedRestaurantsRecyclerViewAdapter extends RecyclerView.Adapter<SavedRestaurantsRecyclerViewAdapter.ViewHolder> {
 
     private OnItemClickListener mListener;
     private final List<Restaurant> restaurants;
 
-    public DiscoverRecyclerViewAdapter(List<Restaurant> restaurants) {
+    public SavedRestaurantsRecyclerViewAdapter(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LeyhangDiscoverItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(LeyhangSavedItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Restaurant discoverRestaurant = restaurants.get(position);
-        holder.TVDiscoverName.setText(discoverRestaurant.getRestaurantName());
-        holder.TVDiscoverCategory.setText(discoverRestaurant.getCategory());
-        holder.TVDiscoverLocation.setText(discoverRestaurant.getLocation());
+        Restaurant savedRestaurant = restaurants.get(position);
+        holder.TVSavedName.setText(savedRestaurant.getRestaurantName());
+        holder.TVSavedCategory.setText(savedRestaurant.getCategory());
+        holder.TVSavedLocation.setText(savedRestaurant.getLocation());
 
-        if (discoverRestaurant.getRestaurantImageUrl() != null) {
-            Picasso.get().load(discoverRestaurant.getRestaurantImageUrl()).fit().centerCrop().into(holder.IVDiscoverImage);
+        if (savedRestaurant.getRestaurantImageUrl() != null) {
+            Picasso.get().load(savedRestaurant.getRestaurantImageUrl()).fit().centerCrop().into(holder.IVSavedImage);
         }
     }
 
@@ -74,17 +73,17 @@ public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRe
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final TextView TVDiscoverName;
-        public final TextView TVDiscoverCategory;
-        public final TextView TVDiscoverLocation;
-        public final ImageView IVDiscoverImage;
+        public final TextView TVSavedName;
+        public final TextView TVSavedCategory;
+        public final TextView TVSavedLocation;
+        public final ImageView IVSavedImage;
 
-        public ViewHolder(LeyhangDiscoverItemBinding binding) {
+        public ViewHolder(LeyhangSavedItemBinding binding) {
             super(binding.getRoot());
-            TVDiscoverName = binding.TVDiscoverName;
-            TVDiscoverCategory = binding.TVDiscoverCategory;
-            TVDiscoverLocation = binding.TVDiscoverLocation;
-            IVDiscoverImage = binding.IVDiscoverImage;
+            TVSavedName = binding.TVSavedName;
+            TVSavedCategory = binding.TVSavedCatagory;
+            TVSavedLocation = binding.TVSavedLocation;
+            IVSavedImage = binding.IVSavedImage;
 
             itemView.setOnClickListener(this);
         }
