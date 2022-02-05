@@ -39,6 +39,4 @@ public class DAOBackdrop {
     public void removeListener(ValueEventListener listener){
         databaseReference.removeEventListener(listener);
     }
-
-
 }

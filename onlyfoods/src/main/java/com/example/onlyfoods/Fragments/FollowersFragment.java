@@ -17,12 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfoods.Adapters.FollowersRecyclerViewAdapter;
-import com.example.onlyfoods.Adapters.RecommendationsAdapter;
 import com.example.onlyfoods.DAOs.DAOUser;
-import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
-import com.example.onlyfoods.placeholder.PlaceholderContent;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -35,7 +33,7 @@ import java.util.ArrayList;
 public class FollowersFragment extends Fragment implements FollowersRecyclerViewAdapter.OnItemClickListener {
 
     // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String USER_KEY = "userKey";
     // TODO: Customize parameters
     private int mColumnCount = 1;
 
@@ -43,6 +41,8 @@ public class FollowersFragment extends Fragment implements FollowersRecyclerView
     private DAOUser daoUser;
     ArrayList<User> followers = new ArrayList<>();
     private FollowersRecyclerViewAdapter adapter;
+    private String viewedUserKey;
+    private String sessionUserKey;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -53,10 +53,10 @@ public class FollowersFragment extends Fragment implements FollowersRecyclerView
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static FollowersFragment newInstance(int columnCount) {
+    public static FollowersFragment newInstance(String userKey) {
         FollowersFragment fragment = new FollowersFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putString(USER_KEY, userKey);
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,8 +66,10 @@ public class FollowersFragment extends Fragment implements FollowersRecyclerView
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            viewedUserKey = getArguments().getString(USER_KEY);
         }
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
     }
 
     @Override
@@ -96,7 +98,13 @@ public class FollowersFragment extends Fragment implements FollowersRecyclerView
 
     private void loadData() {
         // TODO: Replace userKey with the current user in session
-        daoUser.getFollowersByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        String userKey;
+        if(viewedUserKey != null){
+            userKey = viewedUserKey;
+        }else{
+            userKey = sessionUserKey;
+        }
+        daoUser.getFollowersByUserKey(userKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 followers.clear();
@@ -141,14 +149,6 @@ public class FollowersFragment extends Fragment implements FollowersRecyclerView
         Bundle bundle = new Bundle();
         bundle.putString("userKey", followers.get(position).getUserKey());
         Navigation.findNavController(getView()).navigate(R.id.NextToUserProfile, bundle);
-//        UserProfileFragment userProfileFragment = new UserProfileFragment();
-//        userProfileFragment.setArguments(bundle);
-//        for (Fragment fragment : getParentFragmentManager().getFragments()) {
-//            if (fragment != null) {
-//                getParentFragmentManager().beginTransaction().remove(fragment).commit();
-//            }
-//        }
-//        getParentFragmentManager().beginTransaction().add(userProfileFragment, "User Profile").commit();
         Toast.makeText(getContext(), "Navigating to user", Toast.LENGTH_SHORT).show();
     }
 }

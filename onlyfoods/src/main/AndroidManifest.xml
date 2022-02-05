@@ -12,19 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlyFoods">
         <activity
+            android:name=".GoogleSignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
+//          android:name=".MainActivity"
+//          android:exported="true"/>
+//      <activity
+//          android:name=".leyhangDiscover"
             android:name=".MainMenu"
             android:exported="false" />
         <activity
             android:name=".haikalLogin"
-            android:exported="false" />
-        <activity
-            android:name=".haikalRegistration"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".leyhangDiscover"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +33,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".haikalRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".leyhangDiscover"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

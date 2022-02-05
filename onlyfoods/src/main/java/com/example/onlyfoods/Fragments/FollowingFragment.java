@@ -20,6 +20,7 @@ import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 public class FollowingFragment extends Fragment implements FollowingRecyclerViewAdapter.OnItemClickListener {
 
     // TODO: Customize parameter argument names
+    private static final String USER_KEY = "userKey";
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
@@ -40,6 +42,9 @@ public class FollowingFragment extends Fragment implements FollowingRecyclerView
     private DAOUser daoUser;
     ArrayList<User> following = new ArrayList<>();
     private FollowingRecyclerViewAdapter adapter;
+    private String viewedUserKey;
+    private String sessionUserKey;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -50,10 +55,10 @@ public class FollowingFragment extends Fragment implements FollowingRecyclerView
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static FollowingFragment newInstance(int columnCount) {
+    public static FollowingFragment newInstance(String userKey) {
         FollowingFragment fragment = new FollowingFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putString(USER_KEY, userKey);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,8 +68,10 @@ public class FollowingFragment extends Fragment implements FollowingRecyclerView
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            viewedUserKey = getArguments().getString(USER_KEY);
         }
+
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override
@@ -93,7 +100,13 @@ public class FollowingFragment extends Fragment implements FollowingRecyclerView
 
     private void loadData() {
         // TODO: Replace userKey with the current user in session
-        daoUser.getFollowingByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        String userKey;
+        if(viewedUserKey != null){
+            userKey = viewedUserKey;
+        }else{
+            userKey = sessionUserKey;
+        }
+        daoUser.getFollowingByUserKey(userKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 following.clear();

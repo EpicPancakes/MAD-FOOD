@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfoods.Adapters.MyRecentPlacesRecyclerViewAdapter;
+import com.example.onlyfoods.Adapters.UserRecentPlacesRecyclerViewAdapter;
 import com.example.onlyfoods.DAOs.DAORecentPlace;
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.RecentPlace;
@@ -22,6 +23,7 @@ import com.example.onlyfoods.R;
 import com.example.onlyfoods.placeholder.PlaceholderContent;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -33,16 +35,18 @@ import java.util.Map;
 /**
  * A fragment representing a list of Items.
  */
-public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecyclerViewAdapter.OnItemClickListener {
+public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecyclerViewAdapter.OnItemClickListener, UserRecentPlacesRecyclerViewAdapter.OnItemClickListener  {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String VIEWED_USER_KEY = "viewedUserKey";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     DAORecentPlace daoRP;
-    MyRecentPlacesRecyclerViewAdapter adapter;
+    MyRecentPlacesRecyclerViewAdapter myRPAdapter;
+    UserRecentPlacesRecyclerViewAdapter userRPAdapter;
     ArrayList<RecentPlace> rps = new ArrayList<>();
     private User user;
+    private String viewedUserKey;
+    private String sessionUserKey;
 
 
     /**
@@ -52,12 +56,10 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
     public RecentPlacesFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static RecentPlacesFragment newInstance(int columnCount) {
+    public static RecentPlacesFragment newInstance(String viewedUserKey) {
         RecentPlacesFragment fragment = new RecentPlacesFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putString(VIEWED_USER_KEY, viewedUserKey);
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,10 +67,10 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            viewedUserKey = getArguments().getString(VIEWED_USER_KEY);
         }
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override
@@ -85,9 +87,15 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            adapter = new MyRecentPlacesRecyclerViewAdapter(getContext(), PlaceholderContent.ITEMS, rps);
-            recyclerView.setAdapter(adapter);
-            adapter.setOnItemClickListener(RecentPlacesFragment.this);
+            if(viewedUserKey!= null){
+                userRPAdapter = new UserRecentPlacesRecyclerViewAdapter(getContext(), rps);
+                recyclerView.setAdapter(userRPAdapter);
+                userRPAdapter.setOnItemClickListener(RecentPlacesFragment.this);
+            }else{
+                myRPAdapter = new MyRecentPlacesRecyclerViewAdapter(getContext(), rps);
+                recyclerView.setAdapter(myRPAdapter);
+                myRPAdapter.setOnItemClickListener(RecentPlacesFragment.this);
+            }
         }
 
         daoRP = new DAORecentPlace();
@@ -98,7 +106,14 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
 
     private void loadData() {
         // TODO: Replace userKey with the session key obtained from User
-        daoRP.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        String rpUserKey;
+        if(viewedUserKey != null){
+            rpUserKey = viewedUserKey;
+        }else{
+            rpUserKey = sessionUserKey;
+        }
+
+        daoRP.getByUserKey(rpUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 rps.clear();
@@ -107,7 +122,11 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
                     rp.setRecentPlaceKey(data.getKey());
                     rps.add(rp);
                 }
-                adapter.notifyDataSetChanged();
+                if(viewedUserKey!=null){
+                    userRPAdapter.notifyDataSetChanged();
+                }else{
+                    myRPAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -154,7 +173,7 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
     private void deleteRPinUser(String rpKey){
         // Include recent place key in user's recent places list by updating user
         DAOUser daoUser = new DAOUser();
-        daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user = snapshot.getValue(User.class);

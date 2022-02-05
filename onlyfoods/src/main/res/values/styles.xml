@@ -7,7 +7,7 @@
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">-1</item>
         <item name="android:shadowRadius">0.2</item>
-        <item name="android:textSize">16dip</item>
+        <item name="android:textSize">16dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/yellow_button</item>
         <item name="android:focusable">true</item>
@@ -38,5 +38,8 @@
         <item name="cornerFamilyTopRight">rounded</item>
         <item name="cornerSizeTopLeft">20dp</item>
         <item name="cornerSizeTopRight">20dp</item>
+    </style>
+    <style name="Button.White" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@android:color/white</item>
     </style>
 </resources>

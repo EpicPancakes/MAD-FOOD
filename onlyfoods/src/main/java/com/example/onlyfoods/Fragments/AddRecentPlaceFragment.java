@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.onlyfoods.DAOs.DAORecentPlace;
 import com.example.onlyfoods.DAOs.DAORestaurant;
@@ -28,6 +29,7 @@ import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -62,6 +64,11 @@ public class AddRecentPlaceFragment extends Fragment {
     ArrayList<Restaurant> restaurants = new ArrayList<>();
     ArrayList<String> results = new ArrayList<>();
     private User user;
+    private String sessionUserKey;
+    private DAORestaurant daoRest;
+    private DAORecentPlace daoRP;
+    private DateFormat formatter;
+    private View view;
 
 
     public AddRecentPlaceFragment() {
@@ -93,6 +100,7 @@ public class AddRecentPlaceFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override
@@ -106,6 +114,7 @@ public class AddRecentPlaceFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        this.view = view;
         ACTVRestaurantRP = (AutoCompleteTextView) view.findViewById(R.id.ACTVRestaurantRP);
         Button BTNSubmitOnly = view.findViewById(R.id.BTNSubmitOnly);
         Button BTNSubmitAddReview = view.findViewById(R.id.BTNSubmitAddReview);
@@ -139,10 +148,10 @@ public class AddRecentPlaceFragment extends Fragment {
         };
 
 
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); // Make sure user insert date into edittext in this format.
+        formatter = new SimpleDateFormat("dd/MM/yyyy"); // Make sure user insert date into edittext in this format.
 
-        DAORestaurant daoRest = new DAORestaurant();
-        DAORecentPlace daoRP = new DAORecentPlace();
+        daoRest = new DAORestaurant();
+        daoRP = new DAORecentPlace();
 
         final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
 
@@ -180,130 +189,77 @@ public class AddRecentPlaceFragment extends Fragment {
         });
 
         BTNSubmitOnly.setOnClickListener(v -> {
-            if (!hasErrors()) {
-                Date dateObject = null;
-                try {
-                    String dateArrived = (TVSelectDateArrived.getText().toString());
-                    dateObject = formatter.parse(dateArrived);
-//            date = new SimpleDateFormat("dd/MM/yyyy").format(dateObject);
-//            time = new SimpleDateFormat("h:mmaa").format(dateObject);
-                } catch (java.text.ParseException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                    Log.i("Date Parsing Error: ", e.toString());
-                }
-
-//            Restaurant rest = new Restaurant(ACTVRestaurantRP.getText().toString(), "Western", "Petaling Jaya, Selangor");
-
-                ACTVRestaurantRP.getText().toString();
-                Restaurant selectedRestaurant = restaurants.stream().filter(restaurant -> (ACTVRestaurantRP.getText().toString()).equals(restaurant.getRestaurantName())).findFirst().orElse(null);
-                Date finalDateObject = dateObject;
-                RecentPlace rp = new RecentPlace(selectedRestaurant.getRestaurantKey(), "-MutmLS6FPIkhneAJSGT", finalDateObject);
-                daoRP.add(rp).addOnSuccessListener(suc2 ->
-                {
-                    Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
-                    getActivity().onBackPressed();
-                }).addOnFailureListener(er ->
-                {
-                    Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-
-                // Include recent place key in user's recent places list by updating user
-                DAOUser daoUser = new DAOUser();
-                daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        user = snapshot.getValue(User.class);
-                        user.setUserKey(snapshot.getKey());
-                        if (user != null) {
-                            Map<String, Object> objectHM = new HashMap<>();
-                            Map<String, Boolean> booleanHM;
-                            if(user.getRecentPlaces()!=null){
-                                booleanHM = user.getRecentPlaces();
-                            }else{
-                                booleanHM = new HashMap<>();
-                            }
-                            booleanHM.put(daoRP.getRecentPlaceKey(), true);
-                            objectHM.put("recentPlaces", booleanHM);
-                            daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
-//                                Toast.makeText(view.getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
-                            }).addOnFailureListener(er ->
-                            {
-                                Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-                            });
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-//            daoRest.add(rest).addOnSuccessListener(suc -> {
-//
-//                Toast.makeText(getContext(), "Restaurant is inserted", Toast.LENGTH_SHORT).show();
-//                RecentPlace rp = new RecentPlace(daoRest.getRestaurantKey(), "testUser", finalDateObject);
-//
-//                daoRP.add(rp).addOnSuccessListener(suc2 ->
-//                {
-//                    Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
-//                }).addOnFailureListener(er ->
-//                {
-//                    Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-//                });
-//
-//            }).addOnFailureListener(er -> {
-//                Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-//            });
-            }
-
+            submitRecentPlace(false);
         });
 
         BTNSubmitAddReview.setOnClickListener(v -> {
-
-            // UPDATE
-
-//            Date dateObject = null;
-//            try{
-//
-//                String dateArrived=(ETDateArrived.getText().toString());
-//
-//                dateObject = formatter.parse(dateArrived);
-//
-////            date = new SimpleDateFormat("dd/MM/yyyy").format(dateObject);
-////            time = new SimpleDateFormat("h:mmaa").format(dateObject);
-//            }
-//
-//            catch (java.text.ParseException e)
-//            {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//                Log.i("Date Parsing Error: ", e.toString());
-//            }
-//
-//            HashMap<String, Object> hashMap = new HashMap<>();
-//            hashMap.put("restaurant", ETSelectRestaurantRP.getText().toString());
-//            hashMap.put("date", dateObject);
-//
-////            RecentPlace rp = new RecentPlace(ETSelectRestaurantRP.getText().toString(), dateObject);
-//            dao.update("-MuiaPbcwyBgNac6nSG3", hashMap).addOnSuccessListener(suc ->
-//            {
-//                Toast.makeText(getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
-//            }).addOnFailureListener(er ->
-//            {
-//                Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-//            });
-
-            // REMOVE
-
-//            dao.remove("-MuiaPbcwyBgNac6nSG3").addOnSuccessListener(suc ->
-//            {
-//                Toast.makeText(getContext(), "Record is deleted", Toast.LENGTH_SHORT).show();
-//            }).addOnFailureListener(er ->
-//            {
-//                Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-//            });
+            submitRecentPlace(true);
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void submitRecentPlace(boolean addReview){
+        if (!hasErrors()) {
+            Date dateObject = null;
+            try {
+                String dateArrived = (TVSelectDateArrived.getText().toString());
+                dateObject = formatter.parse(dateArrived);
+            } catch (java.text.ParseException e) {
+                e.printStackTrace();
+                Log.i("Date Parsing Error: ", e.toString());
+            }
+            ACTVRestaurantRP.getText().toString();
+            Restaurant selectedRestaurant = restaurants.stream().filter(restaurant -> (ACTVRestaurantRP.getText().toString()).equals(restaurant.getRestaurantName())).findFirst().orElse(null);
+            Date finalDateObject = dateObject;
+            RecentPlace rp = new RecentPlace(selectedRestaurant.getRestaurantKey(), sessionUserKey, finalDateObject);
+            daoRP.add(rp).addOnSuccessListener(suc2 ->
+            {
+                Toast.makeText(getContext(), "Record is inserted", Toast.LENGTH_SHORT).show();
+                if(addReview){
+                    Bundle args = new Bundle();
+                    args.putString("restaurantKey", selectedRestaurant.getRestaurantKey());
+                    args.putBoolean("fromMyProfile", true);
+                    Navigation.findNavController(view).navigate(R.id.RPNextToAddReview, args);
+                }else{
+                    getActivity().onBackPressed();
+                }
+            }).addOnFailureListener(er ->
+            {
+                Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+
+            // Include recent place key in user's recent places list by updating user
+            DAOUser daoUser = new DAOUser();
+            daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    user = snapshot.getValue(User.class);
+                    user.setUserKey(snapshot.getKey());
+                    if (user != null) {
+                        Map<String, Object> objectHM = new HashMap<>();
+                        Map<String, Boolean> booleanHM;
+                        if (user.getRecentPlaces() != null) {
+                            booleanHM = user.getRecentPlaces();
+                        } else {
+                            booleanHM = new HashMap<>();
+                        }
+                        booleanHM.put(daoRP.getRecentPlaceKey(), true);
+                        objectHM.put("recentPlaces", booleanHM);
+                        daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
+//                                Toast.makeText(view.getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
+                        }).addOnFailureListener(er ->
+                        {
+                            Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
     }
 
     private boolean hasErrors() {

@@ -6,13 +6,15 @@ import java.util.Map;
 
 public class User {
 
-    private String username;
+    public String username;
     private Map<String, Boolean> recentPlaces; // <recentPlaceKey, true>
     private Map<String, Boolean> reviews; // <recentPlaceKey, true>
     private Map<String, Boolean> recommendations; // <recentPlaceKey, true>
     private Map<String, Boolean> followers; // <recentPlaceKey, true>
     private Map<String, Boolean> following; // <recentPlaceKey, true>
+    private Map<String, Boolean> savedRestaurants; // <recentPlaceKey, true>
     private String userKey;
+    private String recentCategory;
 
 
     public User() { }
@@ -67,6 +69,22 @@ public class User {
 
     public void setRecommendations(Map<String, Boolean> recommendations) {
         this.recommendations = recommendations;
+    }
+
+    public Map<String, Boolean> getSavedRestaurants() {
+        return savedRestaurants;
+    }
+
+    public void setSavedRestaurants(Map<String, Boolean> savedRestaurants) {
+        this.savedRestaurants = savedRestaurants;
+    }
+
+    public String getRecentCategory() {
+        return recentCategory;
+    }
+
+    public void setRecentCategory(String recentCategory) {
+        this.recentCategory = recentCategory;
     }
 
     @Exclude

@@ -1,5 +1,7 @@
 package com.example.onlyfoods.Models;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.Date;
 
 public class Review {
@@ -8,6 +10,7 @@ public class Review {
     private String restaurantKey;
     private Date date;
     private String reviewMsg;
+    private String reviewKey;
 
     public Review() { }
 
@@ -48,5 +51,15 @@ public class Review {
 
     public void setReviewMsg(String reviewMsg) {
         this.reviewMsg = reviewMsg;
+    }
+
+    @Exclude
+    public String getReviewKey() {
+        return reviewKey;
+    }
+
+    @Exclude
+    public void setReviewKey(String reviewKey) {
+        this.reviewKey = reviewKey;
     }
 }

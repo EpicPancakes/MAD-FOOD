@@ -16,20 +16,14 @@
     <string name="follow">Follow</string>
     <string name="days_ago">days ago</string>
 
-    <string name="meow_string">Meow</string>
-    <string name="wang_string">Wang</string>
-    <string name="sniffle_string">Sniffle</string>
     <string name="about_app_title_string">About App</string>
-    <string name="about_app_desc_string">This App is an app for animal lovers.</string>
+    <string name="about_app_desc_string">This App is an app for food lovers.</string>
     <string name="home_tb_string">Home</string>
     <string name="about_app_tb_string">About App</string>
     <string name="navigation_drawer_open">Open Drawer</string>
     <string name="navigation_drawer_close">Close Drawer</string>
-    <string name="side_nav_header_string">Animal Lover</string>
-    <string name="side_nav_sub_header_string">The best therapy is fur with four legs.</string>
-    <string name="cat">Cat</string>
-    <string name="dog">Dog</string>
-    <string name="hedgehog">Hedgehog</string>
+    <string name="side_nav_header_string">Food Lover</string>
+    <string name="side_nav_sub_header_string">The best therapy is food with four utensils.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -25,6 +25,11 @@ public class DAOUser {
         return databaseReference.push().setValue(user);
     }
 
+    public Task<Void> addWithSpecificId(String specificId, User user)
+    {
+        return databaseReference.child(specificId).setValue(user);
+    }
+
     public Task<Void> update(String key, Map<String, Object> hashMap)
     {
         return databaseReference.child(key).updateChildren(hashMap);
@@ -48,6 +53,10 @@ public class DAOUser {
 
     public Query getFollowingByUserKey(String userKey){
         return databaseReference.child(userKey).child("following");
+    }
+
+    public Query getSavedRestaurantsByUserKey(String userKey){
+        return databaseReference.child(userKey).child("savedRestaurants");
     }
 
     public Query checkIfFollows(String userKey, String followsUserKey){

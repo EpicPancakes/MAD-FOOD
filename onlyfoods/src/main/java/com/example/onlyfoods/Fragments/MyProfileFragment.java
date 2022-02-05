@@ -1,5 +1,6 @@
 package com.example.onlyfoods.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +24,10 @@ import com.example.onlyfoods.Models.Backdrop;
 import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
+import com.example.onlyfoods.haikalLogin;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -72,6 +75,8 @@ public class MyProfileFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager2 viewPager;
 
+    private String sessionUserKey;
+
     public MyProfileFragment() {
         // Required empty public constructor
     }
@@ -97,6 +102,7 @@ public class MyProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -104,6 +110,8 @@ public class MyProfileFragment extends Fragment {
         daoBD = new DAOBackdrop();
         daoPI = new DAOProfileImage();
         daoUser = new DAOUser();
+
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
 
@@ -138,7 +146,7 @@ public class MyProfileFragment extends Fragment {
         TVName = view.findViewById(R.id.TVName);
         TVFollowers = view.findViewById(R.id.TVFollowers);
         TVFollowing = view.findViewById(R.id.TVFollowing);
-        daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user = snapshot.getValue(User.class);
@@ -154,7 +162,7 @@ public class MyProfileFragment extends Fragment {
             }
         });
 
-        mDBListenerBD = daoBD.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        mDBListenerBD = daoBD.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
@@ -173,7 +181,7 @@ public class MyProfileFragment extends Fragment {
         });
 
         IVProfileImage = view.findViewById(R.id.IVProfileImage);
-        mDBListenerPI = daoPI.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        mDBListenerPI = daoPI.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
@@ -226,6 +234,16 @@ public class MyProfileFragment extends Fragment {
             }
         };
         BtnRecommendations.setOnClickListener(OCLRecommendations);
+
+        Button BtnLogout = view.findViewById(R.id.BTNLogout);
+        BtnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(view.getContext(), haikalLogin.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -244,7 +262,7 @@ public class MyProfileFragment extends Fragment {
 
 // Include recent place key in user's recent places list by updating user
 //                DAOUser daoUser = new DAOUser();
-//                daoUser.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+//                daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
 //                    @Override
 //                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 //                        user = snapshot.getValue(User.class);
