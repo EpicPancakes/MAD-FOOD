@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import android.widget.Toast;
 
 import com.example.onlyfoods.DAOs.DAOReview;
 import com.example.onlyfoods.DAOs.DAOUser;
-import com.example.onlyfoods.Models.RecentPlace;
-import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.Models.Review;
 import com.example.onlyfoods.Models.User;
 import com.google.firebase.auth.FirebaseAuth;
