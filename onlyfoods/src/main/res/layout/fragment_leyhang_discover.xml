@@ -2,24 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/CLFilter"
+    android:id="@+id/CLDiscover"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.leyhangCategoriesFragment"
-    tools:listitem="@layout/leyhang_filter_item">
+    tools:context=".Fragments.leyhangDiscoverFragment"
+    tools:listitem="@layout/leyhang_discover_item" >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RVCategories"
+        android:id="@+id/RVDiscoverRestaurants"
         android:layout_width="391dp"
-        android:layout_height="750dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="520dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BtnRecommendFilter"
-        tools:listitem="@layout/leyhang_filter_item" />
+        app:layout_constraintTop_toBottomOf="@+id/BtnRecommendDiscover"
+        tools:listitem="@layout/leyhang_discover_item" />
 
     <Button
-        android:id="@+id/BtnFilterFilter"
+        android:id="@+id/BtnFilterDiscover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/BtnSavedFilter"
+        android:id="@+id/BtnSavedDiscover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -39,12 +39,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/BtnRecommendFilter"
+        android:id="@+id/BtnRecommendDiscover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Recommend"
-        app:layout_constraintEnd_toStartOf="@+id/BtnSavedFilter"
-        app:layout_constraintStart_toEndOf="@+id/BtnFilterFilter"
+        app:layout_constraintEnd_toStartOf="@+id/BtnSavedDiscover"
+        app:layout_constraintStart_toEndOf="@+id/BtnFilterDiscover"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/SVDiscover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/RVDiscoverRestaurants"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

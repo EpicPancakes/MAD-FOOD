@@ -6,7 +6,7 @@
     android:layout_height="280dp">
 
     <ImageView
-        android:id="@+id/IVDiscoverImage"
+        android:id="@+id/IVResultsImage"
         android:layout_width="250dp"
         android:layout_height="150dp"
         android:layout_marginTop="16dp"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TVDiscoverName"
+        android:id="@+id/TVResultsName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
@@ -25,20 +25,20 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IVDiscoverImage" />
+        app:layout_constraintTop_toBottomOf="@+id/IVResultsImage" />
 
     <TextView
-        android:id="@+id/TVDiscoverCategory"
+        android:id="@+id/TVResultsCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
         android:layout_marginTop="12dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVDiscoverName" />
+        app:layout_constraintTop_toBottomOf="@+id/TVResultsName" />
 
     <TextView
-        android:id="@+id/TVDiscoverLocation"
+        android:id="@+id/TVResultsLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
@@ -46,10 +46,10 @@
         android:text="TextView"
         android:textColor="#4CAF50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVDiscoverCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/TVResultsCategory" />
 
     <ImageButton
-        android:id="@+id/BTNHeartD"
+        android:id="@+id/BTNHeartR"
         android:layout_width="37dp"
         android:layout_height="37dp"
         android:layout_marginTop="12dp"
@@ -57,12 +57,12 @@
         android:contentDescription="@string/edit_profile"
         android:src="@drawable/ic_heart_24dp"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/IVDiscoverImage"
-        app:layout_constraintTop_toBottomOf="@+id/IVDiscoverImage"
+        app:layout_constraintEnd_toEndOf="@+id/IVResultsImage"
+        app:layout_constraintTop_toBottomOf="@+id/IVResultsImage"
         app:tint="@color/white" />
 
     <ImageButton
-        android:id="@+id/BTNUnheartD"
+        android:id="@+id/BTNUnheartR"
         android:layout_width="37dp"
         android:layout_height="37dp"
         android:layout_marginTop="12dp"
@@ -70,8 +70,8 @@
         android:contentDescription="@string/edit_profile"
         android:src="@drawable/ic_heartbreak_24dp"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/IVDiscoverImage"
-        app:layout_constraintTop_toBottomOf="@+id/IVDiscoverImage"
+        app:layout_constraintEnd_toEndOf="@+id/IVResultsImage"
+        app:layout_constraintTop_toBottomOf="@+id/IVResultsImage"
         app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

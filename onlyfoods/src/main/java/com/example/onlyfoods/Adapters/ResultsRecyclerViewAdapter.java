@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.Models.User;
-import com.example.onlyfoods.databinding.LeyhangDiscoverItemBinding;
+import com.example.onlyfoods.databinding.LeyhangResultsItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,7 +31,7 @@ import java.util.Map;
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRecyclerViewAdapter.ViewHolder> {
+public class ResultsRecyclerViewAdapter extends RecyclerView.Adapter<ResultsRecyclerViewAdapter.ViewHolder> {
 
     private OnItemClickListener mListener;
     private final List<Restaurant> restaurants;
@@ -39,7 +39,7 @@ public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRe
     private String sessionUserKey;
 
 
-    public DiscoverRecyclerViewAdapter(List<Restaurant> restaurants) {
+    public ResultsRecyclerViewAdapter(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
     }
 
@@ -48,26 +48,26 @@ public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRe
         daoUser = new DAOUser();
         sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        return new ViewHolder(LeyhangDiscoverItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(LeyhangResultsItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Restaurant discoverRestaurant = restaurants.get(position);
-        holder.TVDiscoverName.setText(discoverRestaurant.getRestaurantName());
-        holder.TVDiscoverCategory.setText(discoverRestaurant.getCategory());
-        holder.TVDiscoverLocation.setText(discoverRestaurant.getLocation());
+        Restaurant resultsRestaurant = restaurants.get(position);
+        holder.TVResultsName.setText(resultsRestaurant.getRestaurantName());
+        holder.TVResultsCategory.setText(resultsRestaurant.getCategory());
+        holder.TVResultsLocation.setText(resultsRestaurant.getLocation());
 
         // check if session user is currently following viewed user
-        daoUser.checkIfRestaurantSaved(sessionUserKey, discoverRestaurant.getRestaurantKey()).addValueEventListener(new ValueEventListener() {
+        daoUser.checkIfRestaurantSaved(sessionUserKey, resultsRestaurant.getRestaurantKey()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    holder.BTNUnheartD.setVisibility(View.VISIBLE);
-                    holder.BTNHeartD.setVisibility(View.INVISIBLE);
+                    holder.IBUnheartR.setVisibility(View.VISIBLE);
+                    holder.IBHeartR.setVisibility(View.INVISIBLE);
                 } else {
-                    holder.BTNHeartD.setVisibility(View.VISIBLE);
-                    holder.BTNUnheartD.setVisibility(View.INVISIBLE);
+                    holder.IBHeartR.setVisibility(View.VISIBLE);
+                    holder.IBUnheartR.setVisibility(View.INVISIBLE);
                 }
             }
             @Override
@@ -76,19 +76,19 @@ public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRe
             }
         });
 
-        if (discoverRestaurant.getRestaurantImageUrl() != null) {
-            Picasso.get().load(discoverRestaurant.getRestaurantImageUrl()).fit().centerCrop().into(holder.IVDiscoverImage);
+        if (resultsRestaurant.getRestaurantImageUrl() != null) {
+            Picasso.get().load(resultsRestaurant.getRestaurantImageUrl()).fit().centerCrop().into(holder.IVResultsImage);
         }
 
         // Saves the restaurant upon clicking the button "Save"
-        holder.BTNHeartD.setOnClickListener(new View.OnClickListener() {
+        holder.IBHeartR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 daoUser.getByUserKeyOnce(sessionUserKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         User sessionUser = dataSnapshot.getValue(User.class);
-                        if (sessionUser != null && discoverRestaurant.getRestaurantKey() != null) {
+                        if (sessionUser != null && resultsRestaurant.getRestaurantKey() != null) {
                             sessionUser.setUserKey(dataSnapshot.getKey());
                             Map<String, Object> objectHM = new HashMap<>();
                             Map<String, Boolean> booleanHM;
@@ -97,7 +97,7 @@ public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRe
                             } else {
                                 booleanHM = new HashMap<>();
                             }
-                            booleanHM.put(discoverRestaurant.getRestaurantKey(), true);
+                            booleanHM.put(resultsRestaurant.getRestaurantKey(), true);
                             objectHM.put("savedRestaurants", booleanHM);
                             daoUser.update(sessionUserKey, objectHM).addOnSuccessListener(suc2 -> {
 //                                    Toast.makeText(getContext(), "User followed", Toast.LENGTH_SHORT).show();
@@ -117,7 +117,7 @@ public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRe
         });
 
         // Unsaves the restaurant upon clicking the button "Unsave"
-        holder.BTNUnheartD.setOnClickListener(new View.OnClickListener() {
+        holder.IBUnheartR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DAOUser daoUser = new DAOUser();
@@ -125,7 +125,7 @@ public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRe
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         User sessionUser = dataSnapshot.getValue(User.class);
-                        if (sessionUser != null && discoverRestaurant.getRestaurantKey() != null) {
+                        if (sessionUser != null && resultsRestaurant.getRestaurantKey() != null) {
                             sessionUser.setUserKey(dataSnapshot.getKey());
                             Map<String, Object> objectHM = new HashMap<>();
                             Map<String, Boolean> booleanHM;
@@ -134,7 +134,7 @@ public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRe
                             } else {
                                 booleanHM = new HashMap<>();
                             }
-                            booleanHM.remove(discoverRestaurant.getRestaurantKey());
+                            booleanHM.remove(resultsRestaurant.getRestaurantKey());
                             objectHM.put("savedRestaurants", booleanHM);
                             daoUser.update(sessionUserKey, objectHM).addOnSuccessListener(suc2 -> {
 //                                    Toast.makeText(getContext(), "User followed", Toast.LENGTH_SHORT).show();
@@ -168,21 +168,21 @@ public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRe
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final TextView TVDiscoverName;
-        public final TextView TVDiscoverCategory;
-        public final TextView TVDiscoverLocation;
-        public final ImageView IVDiscoverImage;
-        public final ImageButton BTNHeartD;
-        public final ImageButton BTNUnheartD;
+        public final TextView TVResultsName;
+        public final TextView TVResultsCategory;
+        public final TextView TVResultsLocation;
+        public final ImageView IVResultsImage;
+        public final ImageButton IBHeartR;
+        public final ImageButton IBUnheartR;
 
-        public ViewHolder(LeyhangDiscoverItemBinding binding) {
+        public ViewHolder(LeyhangResultsItemBinding binding) {
             super(binding.getRoot());
-            TVDiscoverName = binding.TVDiscoverName;
-            TVDiscoverCategory = binding.TVDiscoverCategory;
-            TVDiscoverLocation = binding.TVDiscoverLocation;
-            IVDiscoverImage = binding.IVDiscoverImage;
-            BTNHeartD = binding.BTNHeartD;
-            BTNUnheartD = binding.BTNUnheartD;
+            TVResultsName = binding.TVResultsName;
+            TVResultsCategory = binding.TVResultsCategory;
+            TVResultsLocation = binding.TVResultsLocation;
+            IVResultsImage = binding.IVResultsImage;
+            IBHeartR = binding.BTNHeartR;
+            IBUnheartR = binding.BTNUnheartR;
 
             itemView.setOnClickListener(this);
         }

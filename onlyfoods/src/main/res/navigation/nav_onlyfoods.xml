@@ -89,13 +89,41 @@
             app:destination="@id/DestAddReview" />
     </fragment>
     <fragment
-        android:id="@+id/DestRestaurantDetail"
-        android:name="com.example.onlyfoods.gpRestaurantFragment"
-        android:label="Restaurant"
-        tools:layout="@layout/fragment_gp_restaurant" />
+        android:id="@+id/DestCategories"
+        android:name="com.example.onlyfoods.Fragments.leyhangCategoriesFragment"
+        android:label="Select a Category"
+        tools:layout="@layout/fragment_leyhang_filter">
+        <action
+            android:id="@+id/action_DestCategories_to_leyhangActualDiscoverFragment"
+            app:destination="@id/DestDiscovery" />
+        <action
+            android:id="@+id/action_DestCategories_to_DestResults"
+            app:destination="@id/DestResults" />
+    </fragment>
     <fragment
-        android:id="@+id/DestEditReview"
-        android:name="com.example.onlyfoods.gpEditReviewFragment"
-        android:label="fragment_gp_edit_review"
-        tools:layout="@layout/fragment_gp_edit_review" />
+        android:id="@+id/DestSaved"
+        android:name="com.example.onlyfoods.Fragments.leyhangSavedFragment"
+        android:label="Saved Restaurants"
+        tools:layout="@layout/fragment_leyhang_saved">
+        <action
+            android:id="@+id/action_leyhangSavedFragment2_to_DestCategories"
+            app:destination="@id/DestCategories" />
+    </fragment>
+    <fragment
+        android:id="@+id/DestDiscovery"
+        android:name="com.example.onlyfoods.Fragments.leyhangDiscoverFragment"
+        android:label="Discovery"
+        tools:layout="@layout/fragment_leyhang_discover">
+        <action
+            android:id="@+id/action_leyhangActualDiscoverFragment_to_leyhangSavedFragment2"
+            app:destination="@id/DestSaved" />
+    </fragment>
+    <fragment
+        android:id="@+id/DestResults"
+        android:name="com.example.onlyfoods.Fragments.leyhangResultsFragment"
+        android:label="Filtered Restaurants" />
+    <fragment
+        android:id="@+id/DestSpinTheWheel"
+        android:name="com.example.onlyfoods.Fragments.SpinTheWheelFragment"
+        android:label="Spin The Wheel!" />
 </navigation>
