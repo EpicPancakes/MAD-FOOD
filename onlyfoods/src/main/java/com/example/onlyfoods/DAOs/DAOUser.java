@@ -55,6 +55,10 @@ public class DAOUser {
         return databaseReference.child(userKey).child("following");
     }
 
+    public Query getSavedRestaurantsByUserKey(String userKey){
+        return databaseReference.child(userKey).child("savedRestaurants");
+    }
+
     public Query checkIfFollows(String userKey, String followsUserKey){
         return databaseReference.child(userKey).child("following").child(followsUserKey);
     }

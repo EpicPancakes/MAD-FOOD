@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -120,7 +121,7 @@ public class UserProfileFragment extends Fragment {
             userKey = bundle.getString("userKey");
         }
 
-        sessionUserKey = "-MutmLS6FPIkhneAJSGT";
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
 
@@ -298,8 +299,6 @@ public class UserProfileFragment extends Fragment {
                                 booleanHM2.put(sessionUser.getUserKey(), true);
                                 objectHM2.put("followers", booleanHM2);
                                 daoUser.update(userKey, objectHM2).addOnSuccessListener(suc2 -> {
-//                                    BTNUPFollowing.setVisibility(View.VISIBLE);
-//                                    BTNUPFollow.setVisibility(View.INVISIBLE);
                                     Toast.makeText(view.getContext(), "User followed", Toast.LENGTH_SHORT).show();
                                 });
 
@@ -350,8 +349,6 @@ public class UserProfileFragment extends Fragment {
                                 booleanHM2.remove(sessionUser.getUserKey());
                                 objectHM2.put("followers", booleanHM2);
                                 daoUser.update(userKey, objectHM2).addOnSuccessListener(suc2 -> {
-//                                    BTNUPFollowing.setVisibility(View.INVISIBLE);
-//                                    BTNUPFollow.setVisibility(View.VISIBLE);
                                     Toast.makeText(view.getContext(), "User unfollowed", Toast.LENGTH_SHORT).show();
                                 });
 

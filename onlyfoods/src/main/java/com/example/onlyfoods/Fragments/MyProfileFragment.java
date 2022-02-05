@@ -1,5 +1,6 @@
 package com.example.onlyfoods.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.example.onlyfoods.Models.Backdrop;
 import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
+import com.example.onlyfoods.haikalLogin;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
@@ -100,6 +102,7 @@ public class MyProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -231,6 +234,16 @@ public class MyProfileFragment extends Fragment {
             }
         };
         BtnRecommendations.setOnClickListener(OCLRecommendations);
+
+        Button BtnLogout = view.findViewById(R.id.BTNLogout);
+        BtnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(view.getContext(), haikalLogin.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

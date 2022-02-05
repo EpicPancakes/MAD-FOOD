@@ -62,7 +62,11 @@
         android:id="@+id/DestAddRecentPlace"
         android:name="com.example.onlyfoods.Fragments.AddRecentPlaceFragment"
         android:label="Add Recent Place"
-        tools:layout="@layout/fragment_add_recent_place" />
+        tools:layout="@layout/fragment_add_recent_place" >
+        <action
+            android:id="@+id/RPNextToAddReview"
+            app:destination="@id/DestAddReview" />
+    </fragment>
     <fragment
         android:id="@+id/DestUserProfile"
         android:name="com.example.onlyfoods.Fragments.UserProfileFragment"

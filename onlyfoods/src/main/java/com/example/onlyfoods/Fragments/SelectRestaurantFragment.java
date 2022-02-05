@@ -150,6 +150,7 @@ public class SelectRestaurantFragment extends Fragment {
                 Restaurant selectedRestaurant = restaurants.stream().filter(restaurant -> (ACTVRestaurantSR.getText().toString()).equals(restaurant.getRestaurantName())).findFirst().orElse(null);
                 Bundle args = new Bundle();
                 args.putString("restaurantKey", selectedRestaurant.getRestaurantKey());
+                args.putBoolean("fromMyProfile", true);
                 Navigation.findNavController(view).navigate(R.id.NextToAddReview, args);
             }
         });

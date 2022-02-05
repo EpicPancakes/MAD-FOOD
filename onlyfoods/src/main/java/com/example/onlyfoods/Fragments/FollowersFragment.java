@@ -20,6 +20,7 @@ import com.example.onlyfoods.Adapters.FollowersRecyclerViewAdapter;
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -41,6 +42,7 @@ public class FollowersFragment extends Fragment implements FollowersRecyclerView
     ArrayList<User> followers = new ArrayList<>();
     private FollowersRecyclerViewAdapter adapter;
     private String viewedUserKey;
+    private String sessionUserKey;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -66,6 +68,8 @@ public class FollowersFragment extends Fragment implements FollowersRecyclerView
         if (getArguments() != null) {
             viewedUserKey = getArguments().getString(USER_KEY);
         }
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
     }
 
     @Override
@@ -98,7 +102,7 @@ public class FollowersFragment extends Fragment implements FollowersRecyclerView
         if(viewedUserKey != null){
             userKey = viewedUserKey;
         }else{
-            userKey = "-MutmLS6FPIkhneAJSGT";
+            userKey = sessionUserKey;
         }
         daoUser.getFollowersByUserKey(userKey).addValueEventListener(new ValueEventListener() {
             @Override

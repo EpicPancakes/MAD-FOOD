@@ -23,6 +23,7 @@ import com.example.onlyfoods.Models.Recommendation;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -94,7 +95,7 @@ public class AddRecommendationFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        sessionUserKey = "-MutmLS6FPIkhneAJSGT";
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override
