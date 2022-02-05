@@ -9,6 +9,7 @@
     tools:listitem="@layout/leyhang_saved_item" >
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVSavedRestaurants"
         android:layout_width="391dp"
         android:layout_height="750dp"
         android:layout_marginTop="5dp"
