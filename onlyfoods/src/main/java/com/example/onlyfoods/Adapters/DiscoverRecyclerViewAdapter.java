@@ -17,6 +17,10 @@ public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRe
     // Testing Purpose
     String[] list;
 
+    public DiscoverRecyclerViewAdapter(String[] list){
+        this.list = list;
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
