@@ -40,6 +40,10 @@ public class DAORestaurant {
         return databaseReference.get();
     }
 
+    public Query getRestaurantsByQuery(String query){
+        return databaseReference.orderByChild("restaurantName").startAt(query).endAt(query+"\uf8ff");
+    }
+
     public Task<DataSnapshot> getRestaurantsByKey(String restaurantKey){
         return databaseReference.child(restaurantKey).get();
     }
