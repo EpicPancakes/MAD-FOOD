@@ -130,6 +130,7 @@ public class haikalLogin extends AppCompatActivity {
                     }
                     else{
                         //show error
+                        mLoadingBar.dismiss();
                         Toast.makeText(haikalLogin.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
