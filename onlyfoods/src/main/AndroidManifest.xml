@@ -18,6 +18,10 @@
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity
+//          android:name=".MainActivity"
+//          android:exported="true"/>
+//      <activity
+//          android:name=".leyhangDiscover"
             android:name=".MainMenu"
             android:exported="false" />
         <activity
