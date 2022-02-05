@@ -299,8 +299,6 @@ public class UserProfileFragment extends Fragment {
                                 booleanHM2.put(sessionUser.getUserKey(), true);
                                 objectHM2.put("followers", booleanHM2);
                                 daoUser.update(userKey, objectHM2).addOnSuccessListener(suc2 -> {
-//                                    BTNUPFollowing.setVisibility(View.VISIBLE);
-//                                    BTNUPFollow.setVisibility(View.INVISIBLE);
                                     Toast.makeText(view.getContext(), "User followed", Toast.LENGTH_SHORT).show();
                                 });
 
@@ -351,8 +349,6 @@ public class UserProfileFragment extends Fragment {
                                 booleanHM2.remove(sessionUser.getUserKey());
                                 objectHM2.put("followers", booleanHM2);
                                 daoUser.update(userKey, objectHM2).addOnSuccessListener(suc2 -> {
-//                                    BTNUPFollowing.setVisibility(View.INVISIBLE);
-//                                    BTNUPFollow.setVisibility(View.VISIBLE);
                                     Toast.makeText(view.getContext(), "User unfollowed", Toast.LENGTH_SHORT).show();
                                 });
 
