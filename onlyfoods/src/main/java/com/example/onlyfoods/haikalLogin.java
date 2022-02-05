@@ -18,14 +18,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class haikalLogin extends AppCompatActivity {
 
     TextView TVRegister, TVForgotPass;
     EditText LoginEmail, LoginPassword;
-    Button btnLogin;
+    Button btnLogin, LoginGoogle;
     private FirebaseAuth mAuth;
     private ProgressDialog mLoadingBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +72,31 @@ public class haikalLogin extends AppCompatActivity {
 
             }
         });
+
+        LoginGoogle = findViewById(R.id.LoginGoogle);
+        LoginGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(haikalLogin.this, GoogleSignInActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
+    //@Override
+    //public void onStart() {
+    //    super.onStart();
+    //    // Check if user is signed in (non-null) and update UI accordingly.
+    //    FirebaseUser currentUser = mAuth.getCurrentUser();
+    //    updateUI(currentUser);
+    //}
+    //private void updateUI(FirebaseUser user) {
+    //    Intent intent = new Intent(haikalLogin.this, MainMenu.class);
+    //    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+    //    startActivity(intent);
+    //}
 
     private void checkCredentials() {
         String email = LoginEmail.getText().toString().trim();
@@ -115,5 +140,12 @@ public class haikalLogin extends AppCompatActivity {
     private void showError(EditText ET, String s) {
         ET.setError(s);
         ET.requestFocus();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+        System.exit(0);
     }
 }
