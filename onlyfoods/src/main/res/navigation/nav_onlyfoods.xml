@@ -88,4 +88,9 @@
             android:id="@+id/NextToAddReview"
             app:destination="@id/DestAddReview" />
     </fragment>
+    <fragment
+        android:id="@+id/DestCategories"
+        android:name="com.example.onlyfoods.leyhangCategories"
+        android:label="fragment_leyhang_filter"
+        tools:layout="@layout/fragment_leyhang_filter" />
 </navigation>

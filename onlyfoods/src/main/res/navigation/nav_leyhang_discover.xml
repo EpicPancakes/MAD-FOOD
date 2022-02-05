@@ -11,11 +11,6 @@
         android:label="fragment_leyhang_saved"
         tools:layout="@layout/fragment_leyhang_saved" />
     <fragment
-        android:id="@+id/DestCategories"
-        android:name="com.example.onlyfoods.leyhangCategories"
-        android:label="Restaurant Categories"
-        tools:layout="@layout/fragment_leyhang_filter" />
-    <fragment
         android:id="@+id/leyhangActualDiscover2"
         android:name="com.example.onlyfoods.leyhangActualDiscoverFragment"
         android:label="fragment_leyhang_actual_discover"

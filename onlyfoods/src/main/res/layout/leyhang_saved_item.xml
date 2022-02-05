@@ -6,7 +6,7 @@
     android:layout_height="120dp">
 
     <Button
-        android:id="@+id/BtnFilterSaved"
+        android:id="@+id/BTNSaved"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TVFilterName"
+        android:id="@+id/TVSavedName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/IVFilterPic"
+        android:id="@+id/IVSavedPic"
         android:layout_width="123dp"
         android:layout_height="92dp"
         android:layout_marginStart="16dp"
@@ -37,23 +37,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TVFilterCatagory"
+        android:id="@+id/TVSavedCatagory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/IVFilterPic"
-        app:layout_constraintTop_toBottomOf="@+id/TVFilterName" />
+        app:layout_constraintStart_toEndOf="@+id/IVSavedPic"
+        app:layout_constraintTop_toBottomOf="@+id/TVSavedName" />
 
     <TextView
-        android:id="@+id/TVFilterAddress"
+        android:id="@+id/TVSavedAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/IVFilterPic"
-        app:layout_constraintTop_toBottomOf="@+id/TVFilterCatagory" />
+        app:layout_constraintStart_toEndOf="@+id/IVSavedPic"
+        app:layout_constraintTop_toBottomOf="@+id/TVSavedCatagory" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
