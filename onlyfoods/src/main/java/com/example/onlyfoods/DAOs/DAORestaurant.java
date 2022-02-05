@@ -6,6 +6,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.HashMap;
 
@@ -43,8 +44,8 @@ public class DAORestaurant {
         return databaseReference.child(restaurantKey).get();
     }
 
-    public Task<DataSnapshot> getRestaurantByCategory(String categoryString){
-        return databaseReference.orderByChild("userKey").startAt(categoryString).endAt(categoryString).get();
+    public Query getRestaurantByCategory(String categoryString){
+        return databaseReference.orderByChild("category").startAt(categoryString).endAt(categoryString);
     }
 
     public DatabaseReference getReference(){

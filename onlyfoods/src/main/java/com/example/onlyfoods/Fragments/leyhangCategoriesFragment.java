@@ -89,6 +89,7 @@ public class leyhangCategoriesFragment extends Fragment implements FiltersRecycl
     }
 
     private void loadData() {
+        categories.clear();
         categories.add("Local");
         categories.add("Western");
         categories.add("Japanese");
@@ -99,7 +100,7 @@ public class leyhangCategoriesFragment extends Fragment implements FiltersRecycl
     public void onItemClick(int position) {
         Bundle bundle = new Bundle();
         bundle.putString("categoryString", categories.get(position));
-//        Navigation.findNavController(getView()).navigate(R.id.NextToUserProfile, bundle);
+        Navigation.findNavController(getView()).navigate(R.id.DestResults, bundle);
         Toast.makeText(getContext(), "Viewing "+categories.get(position)+" restaurants", Toast.LENGTH_SHORT).show();
     }
 

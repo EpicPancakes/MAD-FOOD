@@ -73,6 +73,7 @@
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_discover.xml" value="0.21981981981981982" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_filter.xml" value="0.12342342342342343" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_recommend.xml" value="0.12342342342342343" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_results.xml" value="0.21981981981981982" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_saved.xml" value="0.2" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_my_profile.xml" value="0.4" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_recent_places.xml" value="0.6045548654244306" />
@@ -89,6 +90,7 @@
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/header_layout.xml" value="0.264" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/leyhang_discover_item.xml" value="0.4" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/leyhang_filter_item.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/leyhang_filter_results_item.xml" value="0.21981981981981982" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/leyhang_saved_item.xml" value="0.21981981981981982" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/reviews_item.xml" value="0.21981981981981982" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/menu/menu_bottom.xml" value="0.25416666666666665" />
