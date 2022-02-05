@@ -39,6 +39,10 @@ public class DAORestaurant {
         return databaseReference.child(restaurantKey).get();
     }
 
+    public Task<DataSnapshot> getRestaurantByCategory(String categoryString){
+        return databaseReference.orderByChild("userKey").startAt(categoryString).endAt(categoryString).get();
+    }
+
     public DatabaseReference getReference(){
         return databaseReference;
     }
