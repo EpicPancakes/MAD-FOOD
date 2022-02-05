@@ -91,6 +91,11 @@
     <fragment
         android:id="@+id/DestRestaurantDetail"
         android:name="com.example.onlyfoods.gpRestaurantFragment"
-        android:label="fragment_gp_restaurant"
+        android:label="Restaurant"
         tools:layout="@layout/fragment_gp_restaurant" />
+    <fragment
+        android:id="@+id/DestEditReview"
+        android:name="com.example.onlyfoods.gpEditReviewFragment"
+        android:label="fragment_gp_edit_review"
+        tools:layout="@layout/fragment_gp_edit_review" />
 </navigation>

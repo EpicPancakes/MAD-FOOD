@@ -103,8 +103,7 @@ public class gpReviewFragment extends Fragment {
                     if(fromMyProfile){
                         Navigation.findNavController(view).navigate(R.id.DestMyProfile);
                     }else{
-                        // TODO: Navigate to restaurant page here (can use the restaurantKey to know which restaurant)
-//                    getActivity().onBackPressed();
+                        getParentFragmentManager().popBackStackImmediate();
                     }
                 }).addOnFailureListener(er ->
                 {
@@ -129,7 +128,7 @@ public class gpReviewFragment extends Fragment {
                             booleanHM.put(daoRev.getReviewKey(), true);
                             objectHM.put("reviews", booleanHM);
                             daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
-//                                Toast.makeText(view.getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
+
                             }).addOnFailureListener(er ->
                             {
                                 Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
@@ -144,6 +143,7 @@ public class gpReviewFragment extends Fragment {
         });
 
     }
+
 
     private boolean hasErrors() {
         if (ETReviewMessage.getText().toString().isEmpty()) {

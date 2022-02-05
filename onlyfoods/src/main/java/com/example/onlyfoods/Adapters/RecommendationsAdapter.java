@@ -52,6 +52,15 @@ public class RecommendationsAdapter extends
         textView.setText(rec.getRestaurantKey());
         TextView button = holder.messageButton;
 
+//        public TextView nameTextView;
+//        public TextView messageButton;
+//        public TextView TVRecommendedRestaurantName;
+//        public TextView TVRecommendationLocation;
+//        public TextView TVRecommendedByUser;
+//        public TextView TVRecommendationDate;
+//        public TextView TVRecommendationMessage;
+//        public final ImageView IVRecommendationImage;
+
         TextView TVRecommendedRestaurantName = holder.TVRecommendedRestaurantName;
         TextView TVRecommendationLocation = holder.TVRecommendationLocation;
         TextView TVRecommendedByUser = holder.TVRecommendedByUser;
