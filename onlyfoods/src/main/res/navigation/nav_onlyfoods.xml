@@ -122,4 +122,8 @@
         android:id="@+id/DestResults"
         android:name="com.example.onlyfoods.Fragments.leyhangResultsFragment"
         android:label="Filtered Restaurants" />
+    <fragment
+        android:id="@+id/DestSpinTheWheel"
+        android:name="com.example.onlyfoods.Fragments.SpinTheWheelFragment"
+        android:label="Spin The Wheel!" />
 </navigation>
