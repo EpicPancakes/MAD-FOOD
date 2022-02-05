@@ -56,10 +56,41 @@
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/layout/header_layout.xml" value="0.264" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/menu/menu_bottom.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/menu/menu_side.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/drawable/a&amp;wLogo_background.xml" value="0.3675" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/activity_main_menu.xml" value="0.328804347826087" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_about_app.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_add_recommendation.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deal_item.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deals.xml" value="0.67" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deals_item.xml" value="0.67" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deals_list.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_dog.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_edit_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_following_item.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_following_list.xml" value="0.34601449275362317" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_follows.xml" value="0.34601449275362317" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_gp_review.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_hedgehog.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_leyhang_discover.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_leyhang_filter.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_leyhang_saved.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_my_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recent_places.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recent_places_item.xml" value="0.34601449275362317" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recent_places_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recommendations.xml" value="0.34601449275362317" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recommendations_item.xml" value="0.34601449275362317" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recommendations_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_reviews.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_reviews_item.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_reviews_list.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/header_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/mipmap-anydpi-v26/a&amp;wLogo.xml" value="0.3675" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
