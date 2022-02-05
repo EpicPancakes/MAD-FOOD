@@ -21,10 +21,6 @@
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity
-//          android:name=".MainActivity"
-//          android:exported="true"/>
-//      <activity
-//          android:name=".leyhangDiscover"
             android:name=".MainMenu"
             android:exported="false" />
         <activity
@@ -32,7 +28,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

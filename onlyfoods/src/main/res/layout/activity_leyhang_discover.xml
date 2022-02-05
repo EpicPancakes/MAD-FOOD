@@ -61,11 +61,11 @@
             android:layout_width="match_parent"
             android:layout_height="620dp"
             android:layout_weight="1"
-            app:defaultNavHost="true"
+            app:defaultNavHost="false"
             app:navGraph="@navigation/nav_leyhang_discover" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/BottomNavView"
+            android:id="@+id/BottomNavViewDiscover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/R4"
