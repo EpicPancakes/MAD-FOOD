@@ -15,6 +15,9 @@
             android:name=".GoogleSignInActivity"
             android:exported="false" />
         <activity
+            android:name=".GoogleSignInActivity"
+            android:exported="false" />
+        <activity
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity

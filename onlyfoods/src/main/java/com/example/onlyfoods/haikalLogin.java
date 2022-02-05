@@ -85,19 +85,6 @@ public class haikalLogin extends AppCompatActivity {
 
     }
 
-    //@Override
-    //public void onStart() {
-    //    super.onStart();
-    //    // Check if user is signed in (non-null) and update UI accordingly.
-    //    FirebaseUser currentUser = mAuth.getCurrentUser();
-    //    updateUI(currentUser);
-    //}
-    //private void updateUI(FirebaseUser user) {
-    //    Intent intent = new Intent(haikalLogin.this, MainMenu.class);
-    //    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-    //    startActivity(intent);
-    //}
-
     private void checkCredentials() {
         String email = LoginEmail.getText().toString().trim();
         String password = LoginPassword.getText().toString().trim();
@@ -141,6 +128,21 @@ public class haikalLogin extends AppCompatActivity {
     private void showError(EditText ET, String s) {
         ET.setError(s);
         ET.requestFocus();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+    private void updateUI(FirebaseUser user) {
+        if(user != null){
+            Intent intent = new Intent(haikalLogin.this, MainMenu.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
     }
 
     @Override
