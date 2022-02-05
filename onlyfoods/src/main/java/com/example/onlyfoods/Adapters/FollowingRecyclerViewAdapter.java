@@ -4,20 +4,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.onlyfoods.DAOs.DAOProfileImage;
 import com.example.onlyfoods.DAOs.DAOUser;
+import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.databinding.FragmentFollowingItemBinding;
 import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +37,9 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
     private OnItemClickListener mListener;
     private final List<User> following;
     private DAOUser daoUser;
+    private String sessionUserKey;
+    private DAOProfileImage daoPI;
+
 
     public FollowingRecyclerViewAdapter(List<User> following) {
         this.following = following;
@@ -41,6 +49,8 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         daoUser = new DAOUser();
+        daoPI = new DAOProfileImage();
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         return new ViewHolder(FragmentFollowingItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
@@ -52,30 +62,58 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
         holder.TVFollowersNum.setText(String.valueOf(followingUser.getFollowersCount()));
         holder.TVReviewsNum.setText(String.valueOf(followingUser.getReviewsCount()));
 
-        // check if session user is currently following viewed user
-        daoUser.checkIfFollows("-MutmLS6FPIkhneAJSGT", followingUser.getUserKey()).addValueEventListener(new ValueEventListener() {
+        daoPI.getByUserKey(followingUser.getUserKey()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    holder.BTNFollowingFollowing.setVisibility(View.VISIBLE);
-                    holder.BTNFollowingFollow.setVisibility(View.INVISIBLE);
-                } else {
-                    holder.BTNFollowingFollow.setVisibility(View.VISIBLE);
-                    holder.BTNFollowingFollowing.setVisibility(View.INVISIBLE);
+                for (DataSnapshot data: snapshot.getChildren()) {
+                    if(data.exists()){
+                        ProfileImage profileImage = data.getValue(ProfileImage.class);
+                        if (profileImage.getProfileImageUrl() != null) {
+                            Picasso.get().load(profileImage.getProfileImageUrl()).fit().centerCrop().into(holder.IVFollowingImage);
+                        }
+                    }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
 
+        // check if the following is the session user itself
+        if (sessionUserKey.equals(followingUser.getUserKey())) {
+            holder.BTNFollowingFollowing.setVisibility(View.VISIBLE);
+            holder.BTNFollowingFollow.setVisibility(View.INVISIBLE);
+            holder.BTNFollowingFollowing.setEnabled(false);
+            holder.BTNFollowingFollowing.setText("Disabled");
+        } else {
+            // check if session user is currently following viewed user
+            daoUser.checkIfFollows(sessionUserKey, followingUser.getUserKey()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        holder.BTNFollowingFollowing.setVisibility(View.VISIBLE);
+                        holder.BTNFollowingFollow.setVisibility(View.INVISIBLE);
+                    } else {
+                        holder.BTNFollowingFollow.setVisibility(View.VISIBLE);
+                        holder.BTNFollowingFollowing.setVisibility(View.INVISIBLE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
         // Follows the user upon clicking the button "Follow"
         holder.BTNFollowingFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DAOUser daoUser = new DAOUser();
-                daoUser.getByUserKeyOnce("-MutmLS6FPIkhneAJSGT").addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                daoUser.getByUserKeyOnce(sessionUserKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         User sessionUser = dataSnapshot.getValue(User.class);
@@ -126,7 +164,7 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
             @Override
             public void onClick(View v) {
                 DAOUser daoUser = new DAOUser();
-                daoUser.getByUserKeyOnce("-MutmLS6FPIkhneAJSGT").addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                daoUser.getByUserKeyOnce(sessionUserKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         User sessionUser = dataSnapshot.getValue(User.class);
@@ -192,6 +230,7 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
         public final Button BTNFollowingFollowing;
         public final TextView TVFollowersNum;
         public final TextView TVReviewsNum;
+        public final ImageView IVFollowingImage;
 
         public ViewHolder(FragmentFollowingItemBinding binding) {
             super(binding.getRoot());
@@ -200,6 +239,7 @@ public class FollowingRecyclerViewAdapter extends RecyclerView.Adapter<Following
             BTNFollowingFollowing = binding.BTNFollowingFollowing;
             TVFollowersNum = binding.TVFollowingFollowersNum;
             TVReviewsNum = binding.TVFollowingReviewsNum;
+            IVFollowingImage = binding.IVFollowingImage;
 
             itemView.setOnClickListener(this);
         }

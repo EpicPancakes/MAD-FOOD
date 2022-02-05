@@ -8,13 +8,15 @@ public class Restaurant {
     private String category;
     private String location;
     private String restaurantKey;
+    private String restaurantImageUrl;
 
     public Restaurant() { }
 
-    public Restaurant(String restaurantName, String category, String location) {
+    public Restaurant(String restaurantName, String category, String location, String restaurantImageUrl) {
         this.restaurantName = restaurantName;
         this.category = category;
         this.location = location;
+        this.restaurantImageUrl = restaurantImageUrl;
     }
 
     public String getRestaurantName() {
@@ -39,6 +41,14 @@ public class Restaurant {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getRestaurantImageUrl() {
+        return restaurantImageUrl;
+    }
+
+    public void setRestaurantImageUrl(String restaurantImageUrl) {
+        this.restaurantImageUrl = restaurantImageUrl;
     }
 
     @Exclude

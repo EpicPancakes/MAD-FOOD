@@ -20,7 +20,7 @@
             android:id="@+id/IVRecommendationImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00FFFFFF"
+            android:background="#FF20AAF6"
             android:padding="3dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.153"
             app:shapeAppearanceOverlay="@style/roundedImageViewRoundedTop20"
-            app:srcCompat="@drawable/food3" />
+            app:srcCompat="@drawable/empty_restaurant" />
 
         <View
             android:layout_width="match_parent"

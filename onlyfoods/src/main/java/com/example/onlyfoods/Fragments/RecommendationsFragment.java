@@ -20,6 +20,7 @@ import com.example.onlyfoods.Models.Recommendation;
 import com.example.onlyfoods.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -49,7 +50,7 @@ public class RecommendationsFragment extends Fragment implements Recommendations
     DAORecommendation daoRec;
     RecommendationsAdapter adapter;
     ArrayList<Recommendation> recs = new ArrayList<>();
-
+    private String sessionUserKey;
 
 
     public RecommendationsFragment() {
@@ -81,6 +82,7 @@ public class RecommendationsFragment extends Fragment implements Recommendations
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
 
@@ -114,7 +116,7 @@ public class RecommendationsFragment extends Fragment implements Recommendations
 
     private void loadData() {
         // TODO: Replace userKey with the session key obtained from User
-        daoRec.getByUserKey("-MutmLS6FPIkhneAJSGT").addValueEventListener(new ValueEventListener() {
+        daoRec.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 recs.clear();

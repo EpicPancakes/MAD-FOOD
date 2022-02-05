@@ -132,6 +132,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/common_google_signin_btn_icon_dark"
         android:fontFamily="@font/montserrat"
         android:text="connect with google"
         app:layout_constraintEnd_toEndOf="@+id/BtnLogin"

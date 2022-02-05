@@ -4,15 +4,21 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfoods.DAOs.DAORestaurant;
+import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Recommendation;
 import com.example.onlyfoods.Models.Restaurant;
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -23,6 +29,7 @@ public class RecommendationsAdapter extends
 
     private OnItemClickListener mListener;
     private List<Recommendation> recs;
+    private DAOUser daoUser;
 
     public RecommendationsAdapter(List<Recommendation> recs) {
         this.recs = recs;
@@ -51,8 +58,15 @@ public class RecommendationsAdapter extends
         TextView TVRecommendationDate = holder.TVRecommendationDate;
         TextView TVRecommendationMessage = holder.TVRecommendationMessage;
 
-        // TODO: Replace user key with actual user name
-        TVRecommendedByUser.setText(rec.getRecommendedUserKey());
+        daoUser = new DAOUser();
+        daoUser.getByUserKeyOnce(rec.getRecommendedUserKey()).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                User recommendedByUser = dataSnapshot.getValue(User.class);
+                TVRecommendedByUser.setText(recommendedByUser.getUsername());
+            }
+        });
+
         TVRecommendationDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(rec.getDate()));
         TVRecommendationMessage.setText(rec.getRecommendationMsg());
 
@@ -62,13 +76,12 @@ public class RecommendationsAdapter extends
             assert restaurant != null;
             TVRecommendedRestaurantName.setText(restaurant.getRestaurantName());
             TVRecommendationLocation.setText(restaurant.getLocation());
+            if (restaurant.getRestaurantImageUrl() != null) {
+                Picasso.get().load(restaurant.getRestaurantImageUrl()).fit().centerCrop().into(holder.IVRecommendationImage);
+            }
         }).addOnFailureListener(er ->{
             Toast.makeText(TVRecommendedRestaurantName.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
         });
-
-
-//        button.setText(rec.isOnline() ? "Message" : "Offline");
-//        button.setEnabled(rec.isOnline());
     }
 
     @Override
@@ -94,6 +107,7 @@ public class RecommendationsAdapter extends
         public TextView TVRecommendedByUser;
         public TextView TVRecommendationDate;
         public TextView TVRecommendationMessage;
+        public final ImageView IVRecommendationImage;
 
 
         public ViewHolder(View itemView) {
@@ -108,6 +122,8 @@ public class RecommendationsAdapter extends
             TVRecommendedByUser = (TextView) itemView.findViewById(R.id.TVRecommendedByUser);
             TVRecommendationDate = (TextView) itemView.findViewById(R.id.TVRecommendationDate);
             TVRecommendationMessage = (TextView) itemView.findViewById(R.id.TVRecommendationMessage);
+            IVRecommendationImage = (ImageView) itemView.findViewById(R.id.IVRecommendationImage);
+
 
             itemView.setOnClickListener(this);
         }

@@ -28,6 +28,7 @@ import com.example.onlyfoods.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -50,6 +51,7 @@ public class EditProfileImageDialog extends AppCompatDialogFragment {
 
     private ProfileImage profileImage;
     private View view;
+    private String sessionUserKey;
 
     public static EditProfileImageDialog newInstance(int arg, ProfileImage profileImage) {
         EditProfileImageDialog frag = new EditProfileImageDialog();
@@ -71,6 +73,8 @@ public class EditProfileImageDialog extends AppCompatDialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.dialog_edit_profile_image, null);
+
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         BTNChooseProfileImage = view.findViewById(R.id.BTNChooseProfileImage);
         IVEditProfileImage = view.findViewById(R.id.IVUploadedProfileImage);
@@ -155,7 +159,7 @@ public class EditProfileImageDialog extends AppCompatDialogFragment {
                             while(!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
 
-                            ProfileImage profileImage = new ProfileImage("-MutmLS6FPIkhneAJSGT", downloadUrl.toString());
+                            ProfileImage profileImage = new ProfileImage(sessionUserKey, downloadUrl.toString());
 
                             daoBD.add(profileImage);
                         }
