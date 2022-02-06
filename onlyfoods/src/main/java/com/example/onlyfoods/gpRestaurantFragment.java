@@ -1,15 +1,14 @@
 package com.example.onlyfoods;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
@@ -103,7 +102,6 @@ public class gpRestaurantFragment extends Fragment {
 
         // Lookup the recyclerview in activity layout
         RecyclerView rvReview = (RecyclerView) view.findViewById(R.id.RVRecommendations);
-        populateList();
 
 //        // Initialize recommendations
 //        recommendations = Recommendation.createRecommendationsList(20);
@@ -116,14 +114,5 @@ public class gpRestaurantFragment extends Fragment {
 
 
     }
-
-    private void populateList() {
-        list = new ArrayList<>();
-        list.add(new ReviewGP("Fitri Koh", "Delicious Afffffffffff", R.drawable.my_profile_image));
-        list.add(new ReviewGP("LeyHang Koh", "Trash", R.drawable.cat_img));
-        list.add(new ReviewGP("Jason Koh", "STRESS LA BABI", R.drawable.dog_img));
-
-    }
-
 
 }

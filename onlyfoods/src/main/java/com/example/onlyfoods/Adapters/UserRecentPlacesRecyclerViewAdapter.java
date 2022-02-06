@@ -14,16 +14,11 @@ import com.example.onlyfoods.DAOs.DAORestaurant;
 import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.databinding.FragmentRecentPlacesItemBinding;
-import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class UserRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<UserRecentPlacesRecyclerViewAdapter.ViewHolder> {
 
     private ArrayList<RecentPlace> list = new ArrayList<>();

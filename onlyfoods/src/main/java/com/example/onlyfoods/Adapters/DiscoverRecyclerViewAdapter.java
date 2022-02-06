@@ -14,7 +14,6 @@ import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.databinding.LeyhangDiscoverItemBinding;
-import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,10 +26,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class DiscoverRecyclerViewAdapter extends RecyclerView.Adapter<DiscoverRecyclerViewAdapter.ViewHolder> {
 
     private OnItemClickListener mListener;
