@@ -2,6 +2,9 @@ package com.example.onlyfoods;
 
 import android.media.Image;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -135,6 +138,7 @@ public class gpRestaurantFragment extends Fragment {
         // Lookup the recyclerview in activity layout
         RecyclerView rvReview = (RecyclerView) view.findViewById(R.id.reviewRecycler);
 
+
 //        // Initialize recommendations
 //        recommendations = Recommendation.createRecommendationsList(20);
 
@@ -170,7 +174,6 @@ public class gpRestaurantFragment extends Fragment {
             }
         });
     }
-
 
 
 }

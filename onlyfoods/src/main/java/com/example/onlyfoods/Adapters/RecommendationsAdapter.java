@@ -48,19 +48,6 @@ public class RecommendationsAdapter extends
     @Override
     public void onBindViewHolder(RecommendationsAdapter.ViewHolder holder, int position) {
         Recommendation rec = recs.get(position);
-        TextView textView = holder.nameTextView;
-        textView.setText(rec.getRestaurantKey());
-        TextView button = holder.messageButton;
-
-//        public TextView nameTextView;
-//        public TextView messageButton;
-//        public TextView TVRecommendedRestaurantName;
-//        public TextView TVRecommendationLocation;
-//        public TextView TVRecommendedByUser;
-//        public TextView TVRecommendationDate;
-//        public TextView TVRecommendationMessage;
-//        public final ImageView IVRecommendationImage;
-
         TextView TVRecommendedRestaurantName = holder.TVRecommendedRestaurantName;
         TextView TVRecommendationLocation = holder.TVRecommendationLocation;
         TextView TVRecommendedByUser = holder.TVRecommendedByUser;
@@ -109,8 +96,6 @@ public class RecommendationsAdapter extends
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView nameTextView;
-        public TextView messageButton;
         public TextView TVRecommendedRestaurantName;
         public TextView TVRecommendationLocation;
         public TextView TVRecommendedByUser;
@@ -124,8 +109,6 @@ public class RecommendationsAdapter extends
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            nameTextView = (TextView) itemView.findViewById(R.id.item_number);
-            messageButton = (TextView) itemView.findViewById(R.id.content);
             TVRecommendedRestaurantName = (TextView) itemView.findViewById(R.id.TVRecommendedRestaurantName);
             TVRecommendationLocation = (TextView) itemView.findViewById(R.id.TVRecommendationLocation);
             TVRecommendedByUser = (TextView) itemView.findViewById(R.id.TVRecommendedByUser);

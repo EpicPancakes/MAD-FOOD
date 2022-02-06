@@ -5,11 +5,6 @@
     android:id="@+id/nav_onlyfoods"
     app:startDestination="@id/DestMyProfile">
     <fragment
-        android:id="@+id/DestAboutApp"
-        android:name="com.example.onlyfoods.Fragments.AboutAppFragment"
-        android:label="@string/about_app_tb_string"
-        tools:layout="@layout/fragment_about_app" />
-    <fragment
         android:id="@+id/DestMyProfile"
         android:name="com.example.onlyfoods.Fragments.MyProfileFragment"
         android:label="My Profile"
