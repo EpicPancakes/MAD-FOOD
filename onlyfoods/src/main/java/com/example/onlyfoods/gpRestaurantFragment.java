@@ -24,15 +24,19 @@ import android.widget.Toast;
 
 import com.example.onlyfoods.DAOs.DAORestaurant;
 import com.example.onlyfoods.DAOs.DAOReview;
+import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Recommendation;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.Models.Review;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,6 +59,8 @@ public class gpRestaurantFragment extends Fragment {
     private String restaurantKey;
     ReviewAdapter adapter;
     DAORestaurant daoRest;
+    DAOUser daoUser;
+    private String sessionUserKey;
 
     public gpRestaurantFragment() {
         // Required empty public constructor
@@ -87,6 +93,8 @@ public class gpRestaurantFragment extends Fragment {
             restaurantKey = getArguments().getString("restaurantKey");
         }
         daoRest = new DAORestaurant();
+        daoUser = new DAOUser();
+        sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override
@@ -108,6 +116,8 @@ public class gpRestaurantFragment extends Fragment {
         ImageView restaurantImg = (ImageView) view.findViewById(R.id.restImageId);
 
         if(restaurantKey != null){
+
+
             daoRest.getRestaurantsByKey(restaurantKey).addOnSuccessListener(suc ->{
                 Restaurant restaurant = suc.getValue(Restaurant.class);
                 assert restaurant != null;
@@ -116,6 +126,16 @@ public class gpRestaurantFragment extends Fragment {
                 if (restaurant.getRestaurantImageUrl() != null) {
                     Picasso.get().load(restaurant.getRestaurantImageUrl()).fit().centerCrop().into(restaurantImg);
                 }
+
+                String category = restaurant.getCategory();
+                Map<String, Object> stringHM = new HashMap<>();
+                stringHM.put("recentCategory", category);
+                daoUser.update(sessionUserKey, stringHM).addOnSuccessListener(suc2->{
+                }).addOnFailureListener(er2->{
+                    Toast.makeText(restaurantName.getContext(), "" + er2.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+
             }).addOnFailureListener(er ->{
                 Toast.makeText(restaurantName.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
             });
