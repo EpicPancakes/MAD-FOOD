@@ -105,7 +105,7 @@ public class gpRestaurantFragment extends Fragment {
         TextView restaurantCat = (TextView) view.findViewById(R.id.restCategoryId);
         ImageView restaurantImg = (ImageView) view.findViewById(R.id.restImageId);
 
-        daoRest.get(restaurantKey).addOnSuccessListener(suc ->{
+        daoRest.getRestaurantsByKey(restaurantKey).addOnSuccessListener(suc ->{
             Restaurant restaurant = suc.getValue(Restaurant.class);
             assert restaurant != null;
             restaurantName.setText(restaurant.getRestaurantName());

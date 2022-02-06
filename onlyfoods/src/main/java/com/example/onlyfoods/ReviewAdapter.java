@@ -1,6 +1,8 @@
 package com.example.onlyfoods;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +32,9 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ReviewAdapter extends
         RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
@@ -41,6 +45,7 @@ public class ReviewAdapter extends
     private DAOReview daoRev;
     private String sessionUserKey;
     private Context mContext;
+    private User user;
     View view;
 
     public ReviewAdapter(List<Review> lists) {
@@ -100,8 +105,23 @@ public class ReviewAdapter extends
                                 Navigation.findNavController(v).navigate(R.id.DestEditReview, args);
                                 break;
                             case R.id.menu_delete:
-                                //TODO DELETE PART
-                                Toast.makeText(mContext, "Delete Clicked", Toast.LENGTH_SHORT).show();
+                                new AlertDialog.Builder(mContext)
+                                    .setTitle("Delete entry")
+                                    .setMessage("Are you sure you want to delete this entry?")
+
+                                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                                    // The dialog is automatically dismissed when a dialog button is clicked.
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteReview(list.getReviewKey());
+                                        }
+                                     })
+
+                                    // A null listener allows the button to dismiss the dialog and take no further action.
+                                    .setNegativeButton(android.R.string.no, null)
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
+//                                Toast.makeText(mContext, "Delete Clicked", Toast.LENGTH_SHORT).show();
                                 break;
                         }
                         return true;
@@ -114,6 +134,7 @@ public class ReviewAdapter extends
                 }
             });
         }
+
 
             //Working
 //        if(list.getUserKey().equals(sessionUserKey)){
@@ -151,6 +172,46 @@ public class ReviewAdapter extends
 
         TVReviewDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(list.getDate()));
         TVReviewMsg.setText(list.getReviewMsg());
+
+
+    }
+
+    private void deleteReview(String revKey){
+        daoRev.remove(revKey).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                // Include review key in user's reviews list by updating user
+                DAOUser daoUser = new DAOUser();
+                daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        user = snapshot.getValue(User.class);
+                        user.setUserKey(snapshot.getKey());
+                        if (user != null) {
+                            Map<String, Object> objectHM = new HashMap<>();
+                            Map<String, Boolean> booleanHM;
+                            if(user.getReviews()!=null){
+                                booleanHM = user.getReviews();
+                            }else{
+                                booleanHM = new HashMap<>();
+                            }
+                            booleanHM.remove(revKey);
+                            objectHM.put("reviews", booleanHM);
+                            daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
+
+                            }).addOnFailureListener(er ->
+                            {
+
+                            });
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
 
     }
