@@ -122,6 +122,14 @@
         android:name="com.example.onlyfoods.Fragments.SpinTheWheelFragment"
         android:label="Spin The Wheel!" />
     <fragment
+        android:id="@+id/DestDealDetails"
+        android:name="com.example.onlyfoods.DealDetailFragment"
+        android:label="Deal Details" />
+    <fragment
+        android:id="@+id/DestDeals"
+        android:name="com.example.onlyfoods.Fragments.DealsFragment"
+        android:label="Available Deals" />
+    <fragment
         android:id="@+id/DestEditReview"
         android:name="com.example.onlyfoods.gpEditReviewFragment"
         android:label="Edit Review"

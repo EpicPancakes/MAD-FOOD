@@ -4,15 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.onlyfoods.Adapters.ViewPagerAdapter;
+import com.example.onlyfoods.DAOs.DAOUser;
+import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.database.DataSnapshot;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,20 +87,20 @@ public class FollowsFragment extends Fragment {
         return view;
     }
 
-    private void addFragment(View view){
+    private void addFragment(View view) {
         tabLayout = view.findViewById(R.id.TLUPFollows);
         viewPager = view.findViewById(R.id.VPUPFollows);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), getLifecycle());
-        if(userKey!=null){
+        if (userKey != null) {
             adapter.addFragment(FollowersFragment.newInstance(userKey), "Followers");
             adapter.addFragment(FollowingFragment.newInstance(userKey), "Following");
-        }else{
+        } else {
             adapter.addFragment(new FollowersFragment(), "Followers");
             adapter.addFragment(new FollowingFragment(), "Following");
         }
         viewPager.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            if(position == 0)
+            if (position == 0)
                 tab.setText("Followers");
             else
                 tab.setText("Following");
@@ -103,34 +108,19 @@ public class FollowsFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
-//        Button BtnCat = view.findViewById(R.id.BtnCat);
-//        View.OnClickListener OCLCat = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Navigation.findNavController(view).navigate(R.id.DestCat);
-//            }
-//        };
-//        BtnCat.setOnClickListener(OCLCat);
-//
-//        Button BtnDog = view.findViewById(R.id.BtnDog);
-//        View.OnClickListener OCLDog = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Navigation.findNavController(view).navigate(R.id.NextToDog);
-//            }
-//        };
-//        BtnDog.setOnClickListener(OCLDog);
-//
-//        Button BtnHedgehog = view.findViewById(R.id.BtnHedgehog);
-//        View.OnClickListener OCLHedgehog = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Navigation.findNavController(view).navigate(R.id.NextToHedgehog);
-//            }
-//        };
-//        BtnHedgehog.setOnClickListener(OCLHedgehog);
+        if (userKey != null) {
+            TextView TVFollowProfileName = view.findViewById(R.id.TVFollowProfileName);
+            DAOUser daoUser = new DAOUser();
+            daoUser.getByUserKeyOnce(userKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                @Override
+                public void onSuccess(DataSnapshot dataSnapshot) {
+                    User user = dataSnapshot.getValue(User.class);
+                    TVFollowProfileName.setText(user.getUsername());
+                }
+            });
+        }
+
     }
-
 }
