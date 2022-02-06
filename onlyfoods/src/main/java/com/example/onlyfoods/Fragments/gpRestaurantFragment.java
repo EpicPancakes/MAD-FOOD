@@ -40,7 +40,7 @@ import java.util.Map;
  * Use the {@link gpRestaurantFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class gpRestaurantFragment extends Fragment {
+public class gpRestaurantFragment extends Fragment implements ReviewAdapter.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -166,6 +166,8 @@ public class gpRestaurantFragment extends Fragment {
         rvReview.setAdapter(adapter);
         rvReview.setItemAnimator(new DefaultItemAnimator());
         rvReview.setLayoutManager(new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false));
+        adapter.setOnItemClickListener(gpRestaurantFragment.this);
+
         if(restaurantKey != null){
             loadData();
         }
@@ -195,4 +197,10 @@ public class gpRestaurantFragment extends Fragment {
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString("userKey", lists.get(position).getUserKey());
+        Navigation.findNavController(getView()).navigate(R.id.DestUserProfile, bundle);
+    }
 }

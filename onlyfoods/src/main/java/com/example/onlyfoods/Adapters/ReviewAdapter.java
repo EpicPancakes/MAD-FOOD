@@ -46,6 +46,8 @@ public class ReviewAdapter extends
     private Context mContext;
     private User user;
     View view;
+    private OnItemClickListener mListener;
+
 
     public ReviewAdapter(List<Review> lists) {
         this.lists = lists;
@@ -197,8 +199,6 @@ public class ReviewAdapter extends
                 });
             }
         });
-
-
     }
 
     @Override
@@ -210,7 +210,7 @@ public class ReviewAdapter extends
         this.lists = list;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView IVProfilePicture, menuPopUp;
         TextView nameTextView, TVReviewMsg, TVReviewDate;
         public ViewHolder(@NonNull View itemView) {
@@ -220,6 +220,31 @@ public class ReviewAdapter extends
             nameTextView = (TextView) itemView.findViewById(R.id.userName);
             TVReviewMsg = (TextView) itemView.findViewById(R.id.TVReview);
             TVReviewDate = (TextView) itemView.findViewById(R.id.rvDate);
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public String toString() {
+            return super.toString() + " '" + "'";
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mListener != null) {
+                int position = getAbsoluteAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    mListener.onItemClick(position);
+                }
+            }
+        }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
     }
 }
