@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.onlyfoods.DAOs.DAOUser;
+import com.example.onlyfoods.Fragments.SpinTheWheelFragment;
+import com.example.onlyfoods.Fragments.leyhangDiscoverFragment;
 import com.example.onlyfoods.Models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -57,8 +59,38 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, MainActivity.class);
+                intent.putExtra("Fragment","My profile");
                 startActivity(intent);
+            }
+        });
 
+        BtnRestaurant = findViewById(R.id.BtnRestaurant);
+        BtnRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, MainActivity.class);
+                intent.putExtra("Fragment","Restaurant");
+                startActivity(intent);
+            }
+        });
+
+        BtnDeals = findViewById(R.id.BtnDeals);
+        BtnDeals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, MainActivity.class);
+                intent.putExtra("Fragment","Deals");
+                startActivity(intent);
+            }
+        });
+
+        BtnWheel = findViewById(R.id.BtnWheel);
+        BtnWheel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, MainActivity.class);
+                intent.putExtra("Fragment","Spin the wheel");
+                startActivity(intent);
             }
         });
     }

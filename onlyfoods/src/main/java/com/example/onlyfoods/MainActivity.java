@@ -11,6 +11,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.onlyfoods.Fragments.MyProfileFragment;
+import com.example.onlyfoods.Fragments.SpinTheWheelFragment;
+import com.example.onlyfoods.Fragments.leyhangDiscoverFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +32,23 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         setupBottomNavMenu(navController);
+        String intentFragment = getIntent().getExtras().getString("Fragment");
+
+        switch (intentFragment){
+            case "Restaurant":
+                // Load corresponding fragment
+                navController.navigate(R.id.DestDiscovery);
+                break;
+            case "Spin the wheel":
+                // Load corresponding fragment
+                navController.navigate(R.id.DestSpinTheWheel);
+                break;
+            case "My profile":
+                break;
+            case "Deals":
+                //Navigation.findNavController(this,R.id.NHFMain).navigate(R.id., args);
+                break;
+        }
     }
 
     @Override
