@@ -165,9 +165,9 @@ public class leyhangSavedFragment extends Fragment implements SavedRestaurantsRe
 
     @Override
     public void onItemClick(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putString("restaurantKey", restaurants.get(position).getRestaurantKey());
-//        Navigation.findNavController(getView()).navigate(R.id.NextToUserProfile, bundle);
+        Bundle args = new Bundle();
+        args.putString("restaurantKey", restaurants.get(position).getRestaurantKey());
+        Navigation.findNavController(getView()).navigate(R.id.DestRestaurant, args);
         Toast.makeText(getContext(), "Viewing "+restaurants.get(position).getRestaurantName(), Toast.LENGTH_SHORT).show();
     }
 }

@@ -209,10 +209,7 @@ public class leyhangDiscoverFragment extends Fragment implements DiscoverRecycle
                 ArrayList<Restaurant> toMove = new ArrayList<>();
                 restaurants.stream().filter(r -> r.getCategory().equals(recentCategory)).forEach(
                         o -> {
-//                            int position = restaurants.indexOf(o);
                             toMove.add(o);
-//                            restaurants.remove(position);
-//                            restaurants.add(0, o);
                         }
                 );
                 restaurants.removeAll(toMove);
@@ -250,17 +247,9 @@ public class leyhangDiscoverFragment extends Fragment implements DiscoverRecycle
 
     @Override
     public void onItemClick(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putString("restaurantKey", restaurants.get(position).getRestaurantKey());
-//        Navigation.findNavController(getView()).navigate(R.id.NextToUserProfile, bundle);
-        String category = restaurants.get(position).getCategory();
-        Map<String, Object> stringHM = new HashMap<>();
-        stringHM.put("recentCategory", category);
-        daoUser.update(sessionUserKey, stringHM).addOnSuccessListener(suc->{
-
-        }).addOnFailureListener(er->{
-
-        });
+        Bundle args = new Bundle();
+        args.putString("restaurantKey", restaurants.get(position).getRestaurantKey());
+        Navigation.findNavController(getView()).navigate(R.id.DestRestaurant, args);
 
     }
 }
