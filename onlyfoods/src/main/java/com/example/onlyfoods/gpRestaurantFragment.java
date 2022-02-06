@@ -87,7 +87,7 @@ public class gpRestaurantFragment extends Fragment {
             restaurantKey = getArguments().getString("restaurantKey");
         }
         daoRest = new DAORestaurant();
-        restaurantKey = "-MukspRMoaeV7w04xhk5";
+//        restaurantKey = "-MukspRMoaeV7w04xhk5";
     }
 
     @Override
