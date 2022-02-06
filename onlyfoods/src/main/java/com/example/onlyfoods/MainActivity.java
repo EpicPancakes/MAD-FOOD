@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             case "My profile":
                 break;
             case "Deals":
-                //Navigation.findNavController(this,R.id.NHFMain).navigate(R.id., args);
+                //navController.navigate(R.id.);
                 break;
         }
     }
