@@ -1,18 +1,17 @@
 package com.example.onlyfoods;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.onlyfoods.DAOs.DAOReview;
 import com.example.onlyfoods.DAOs.DAOUser;
@@ -103,8 +102,7 @@ public class gpReviewFragment extends Fragment {
                     if(fromMyProfile){
                         Navigation.findNavController(view).navigate(R.id.DestMyProfile);
                     }else{
-                        // TODO: Navigate to restaurant page here (can use the restaurantKey to know which restaurant)
-//                    getActivity().onBackPressed();
+                        getParentFragmentManager().popBackStackImmediate();
                     }
                 }).addOnFailureListener(er ->
                 {
@@ -129,7 +127,7 @@ public class gpReviewFragment extends Fragment {
                             booleanHM.put(daoRev.getReviewKey(), true);
                             objectHM.put("reviews", booleanHM);
                             daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
-//                                Toast.makeText(view.getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
+
                             }).addOnFailureListener(er ->
                             {
                                 Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
@@ -144,6 +142,7 @@ public class gpReviewFragment extends Fragment {
         });
 
     }
+
 
     private boolean hasErrors() {
         if (ETReviewMessage.getText().toString().isEmpty()) {

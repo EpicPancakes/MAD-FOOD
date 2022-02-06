@@ -18,9 +18,11 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.onlyfoods.Adapters.ViewPagerAdapter;
 import com.example.onlyfoods.DAOs.DAOBackdrop;
+import com.example.onlyfoods.DAOs.DAODeals;
 import com.example.onlyfoods.DAOs.DAOProfileImage;
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Backdrop;
+import com.example.onlyfoods.Models.Deal;
 import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
@@ -32,9 +34,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.

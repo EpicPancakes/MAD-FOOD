@@ -1,11 +1,11 @@
 package com.example.onlyfoods;
 
-import androidx.annotation.NonNull;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.User;

@@ -16,16 +16,8 @@
     <string name="follow">Follow</string>
     <string name="days_ago">days ago</string>
 
-    <string name="about_app_title_string">About App</string>
-    <string name="about_app_desc_string">This App is an app for food lovers.</string>
     <string name="home_tb_string">Home</string>
-    <string name="about_app_tb_string">About App</string>
-    <string name="navigation_drawer_open">Open Drawer</string>
-    <string name="navigation_drawer_close">Close Drawer</string>
-    <string name="side_nav_header_string">Food Lover</string>
-    <string name="side_nav_sub_header_string">The best therapy is food with four utensils.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select_a_restaurant">Select A Restaurant</string>
     <string name="choose_who_to_recommend_to">Choose who to recommend to</string>

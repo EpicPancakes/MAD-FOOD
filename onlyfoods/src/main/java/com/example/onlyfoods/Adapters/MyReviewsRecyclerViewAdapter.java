@@ -14,19 +14,14 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfoods.DAOs.DAORestaurant;
-import com.example.onlyfoods.Models.Review;
 import com.example.onlyfoods.Models.Restaurant;
+import com.example.onlyfoods.Models.Review;
 import com.example.onlyfoods.databinding.FragmentReviewsItemBinding;
-import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviewsRecyclerViewAdapter.ViewHolder> {
 
     private ArrayList<Review> list = new ArrayList<>();
@@ -110,7 +105,6 @@ public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviews
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.setHeaderTitle("Delete Entry?");
             MenuItem delete = menu.add(Menu.NONE, 1, 1, "Delete");
             delete.setOnMenuItemClickListener(this);
         }
