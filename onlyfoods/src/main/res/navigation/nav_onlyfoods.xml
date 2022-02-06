@@ -121,4 +121,14 @@
         android:id="@+id/DestSpinTheWheel"
         android:name="com.example.onlyfoods.Fragments.SpinTheWheelFragment"
         android:label="Spin The Wheel!" />
+    <fragment
+        android:id="@+id/DestEditReview"
+        android:name="com.example.onlyfoods.gpEditReviewFragment"
+        android:label="Edit Review"
+        tools:layout="@layout/fragment_gp_edit_review" />
+    <fragment
+        android:id="@+id/DestRestaurant"
+        android:name="com.example.onlyfoods.gpRestaurantFragment"
+        android:label="Restaurant View"
+        tools:layout="@layout/fragment_gp_restaurant" />
 </navigation>
