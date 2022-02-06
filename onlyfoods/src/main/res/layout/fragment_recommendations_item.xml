@@ -52,38 +52,12 @@
         android:id="@+id/VRating"
         android:layout_width="30dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/positive_rating"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/thumbs_up"
         app:layout_constraintBottom_toBottomOf="@+id/VRecommendationBtm"
         app:layout_constraintEnd_toEndOf="@+id/VRecommendationBtm"
         app:layout_constraintTop_toBottomOf="@id/FLRecommendation"
         app:layout_constraintVertical_bias="0.142" />
-
-    <TextView
-        android:id="@+id/item_number"
-        android:layout_width="26dp"
-        android:layout_height="18dp"
-        android:gravity="center"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/VRating"
-        app:layout_constraintEnd_toEndOf="@+id/VRating"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="@+id/VRating"
-        app:layout_constraintTop_toTopOf="@+id/VRating" />
-
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="48dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="8dp"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
     <!--    <com.google.android.material.imageview.ShapeableImageView-->
     <!--        android:id="@+id/IVRestaurant"-->
