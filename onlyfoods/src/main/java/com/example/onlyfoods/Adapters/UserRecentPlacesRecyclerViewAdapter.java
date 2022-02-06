@@ -50,7 +50,7 @@ public class UserRecentPlacesRecyclerViewAdapter extends RecyclerView.Adapter<Us
         RecentPlace rp = list.get(position);
 
         DAORestaurant daoRest = new DAORestaurant();
-        daoRest.get(rp.getRestaurantKey()).addOnSuccessListener(suc ->{
+        daoRest.getRestaurantsByKey(rp.getRestaurantKey()).addOnSuccessListener(suc ->{
             Restaurant restaurant = suc.getValue(Restaurant.class);
             assert restaurant != null;
             holder.TVRestaurantName.setText(restaurant.getRestaurantName());

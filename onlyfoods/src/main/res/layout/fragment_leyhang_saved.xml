@@ -5,16 +5,19 @@
     android:id="@+id/CLSaved"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".leyhangSavedFragment"
+    tools:context=".Fragments.leyhangSavedFragment"
     tools:listitem="@layout/leyhang_saved_item" >
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVSavedRestaurants"
         android:layout_width="391dp"
-        android:layout_height="750dp"
+        android:layout_height="580dp"
         android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BtnRecommendSaved"
+        app:layout_constraintVertical_bias="0.272"
         tools:listitem="@layout/leyhang_saved_item" />
 
     <Button

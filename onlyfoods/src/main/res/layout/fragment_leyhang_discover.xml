@@ -5,13 +5,14 @@
     android:id="@+id/CLDiscover"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".leyhangActualDiscoverFragment"
+    tools:context=".Fragments.leyhangDiscoverFragment"
     tools:listitem="@layout/leyhang_discover_item" >
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVDiscoverRestaurants"
         android:layout_width="391dp"
-        android:layout_height="750dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="520dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BtnRecommendDiscover"
@@ -46,4 +47,12 @@
         app:layout_constraintEnd_toStartOf="@+id/BtnSavedDiscover"
         app:layout_constraintStart_toEndOf="@+id/BtnFilterDiscover"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/SVDiscover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/RVDiscoverRestaurants"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

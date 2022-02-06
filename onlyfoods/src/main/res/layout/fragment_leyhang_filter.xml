@@ -5,10 +5,11 @@
     android:id="@+id/CLFilter"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".leyhangFilter"
-    tools:listitem="@layout/leyhang_filter_item" >
+    tools:context=".Fragments.leyhangCategoriesFragment"
+    tools:listitem="@layout/leyhang_filter_item">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVCategories"
         android:layout_width="391dp"
         android:layout_height="750dp"
         android:layout_marginTop="5dp"
@@ -46,5 +47,4 @@
         app:layout_constraintEnd_toStartOf="@+id/BtnSavedFilter"
         app:layout_constraintStart_toEndOf="@+id/BtnFilterFilter"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

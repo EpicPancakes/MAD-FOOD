@@ -28,6 +28,7 @@ public class MainMenu extends AppCompatActivity {
     private FirebaseUser user;
     private DAOUser daoUser;
     private String userID;
+    Button BtnRestaurant, BtnSocial, BtnDeals, BtnWheel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +57,8 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
-        Button btnSocial = findViewById(R.id.BtnSocial);
-        btnSocial.setOnClickListener(new View.OnClickListener() {
+        BtnSocial = findViewById(R.id.BtnSocial);
+        BtnSocial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, MainActivity.class);
