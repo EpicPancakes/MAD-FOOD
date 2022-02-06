@@ -35,9 +35,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MyProfileFragment#newInstance} factory method to

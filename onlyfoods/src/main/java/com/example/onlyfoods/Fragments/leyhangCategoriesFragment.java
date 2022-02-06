@@ -1,7 +1,11 @@
 package com.example.onlyfoods.Fragments;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -9,14 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
-
 import com.example.onlyfoods.Adapters.FiltersRecyclerViewAdapter;
-import com.example.onlyfoods.Adapters.RecommendationsAdapter;
 import com.example.onlyfoods.R;
 
 import java.util.ArrayList;
@@ -130,7 +127,7 @@ public class leyhangCategoriesFragment extends Fragment implements FiltersRecycl
         View.OnClickListener OCLSavedFilter = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.DestCategories);
+                Navigation.findNavController(view).navigate(R.id.DestSaved);
             }
         };
         BtnSavedFilter.setOnClickListener(OCLSavedFilter);

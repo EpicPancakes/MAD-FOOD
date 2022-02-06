@@ -33,12 +33,25 @@ public class DAOReview {
         return databaseReference.child(key).updateChildren(hashMap);
     }
 
+    public Task<Void> updateByReview(String key, Review review)
+    {
+        return databaseReference.child(key).setValue(review);
+    }
+
     public Task<Void> remove(String key){
         return databaseReference.child(key).removeValue();
     }
 
     public Query get(){
         return databaseReference.orderByKey();
+    }
+
+    public Query getByReviewKey(String reviewKey){
+        return databaseReference.orderByChild("reviewKey").startAt(reviewKey).endAt(reviewKey);
+    }
+
+    public Query getByRestaurantKey(String restaurantKey){
+        return databaseReference.orderByChild("restaurantKey").startAt(restaurantKey).endAt(restaurantKey);
     }
 
     public Query getByUserKey(String userKey){

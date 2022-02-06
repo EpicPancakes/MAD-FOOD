@@ -15,13 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfoods.Adapters.ResultsRecyclerViewAdapter;
-import com.example.onlyfoods.Adapters.ResultsRecyclerViewAdapter;
 import com.example.onlyfoods.DAOs.DAORestaurant;
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

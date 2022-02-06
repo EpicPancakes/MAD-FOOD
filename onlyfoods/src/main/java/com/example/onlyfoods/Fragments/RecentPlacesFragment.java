@@ -20,7 +20,6 @@ import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.RecentPlace;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
-import com.example.onlyfoods.placeholder.PlaceholderContent;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;

@@ -1,14 +1,22 @@
 package com.example.onlyfoods;
 
+import java.util.Date;
+
 public class ReviewGP {
+
+
 
     private String name;
     private String reviewMsg;
+    private Date date;
+
+
     private int image;
 
-    public ReviewGP(String name, String reviewMsg, int image) {
+    public ReviewGP(String name, String reviewMsg, Date date, int image) {
         this.name = name;
         this.reviewMsg = reviewMsg;
+        this.date = date;
         this.image = image;
     }
 
@@ -35,4 +43,13 @@ public class ReviewGP {
     public void setImage(int image) {
         this.image = image;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 }

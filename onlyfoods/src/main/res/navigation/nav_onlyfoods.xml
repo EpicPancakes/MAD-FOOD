@@ -5,11 +5,6 @@
     android:id="@+id/nav_onlyfoods"
     app:startDestination="@id/DestMyProfile">
     <fragment
-        android:id="@+id/DestAboutApp"
-        android:name="com.example.onlyfoods.Fragments.AboutAppFragment"
-        android:label="@string/about_app_tb_string"
-        tools:layout="@layout/fragment_about_app" />
-    <fragment
         android:id="@+id/DestMyProfile"
         android:name="com.example.onlyfoods.Fragments.MyProfileFragment"
         android:label="My Profile"
@@ -134,4 +129,14 @@
         android:id="@+id/DestDeals"
         android:name="com.example.onlyfoods.Fragments.DealsFragment"
         android:label="Available Deals" />
+    <fragment
+        android:id="@+id/DestEditReview"
+        android:name="com.example.onlyfoods.gpEditReviewFragment"
+        android:label="Edit Review"
+        tools:layout="@layout/fragment_gp_edit_review" />
+    <fragment
+        android:id="@+id/DestRestaurant"
+        android:name="com.example.onlyfoods.gpRestaurantFragment"
+        android:label="Restaurant View"
+        tools:layout="@layout/fragment_gp_restaurant" />
 </navigation>
