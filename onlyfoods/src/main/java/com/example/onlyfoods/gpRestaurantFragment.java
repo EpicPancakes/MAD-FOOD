@@ -87,7 +87,6 @@ public class gpRestaurantFragment extends Fragment {
             restaurantKey = getArguments().getString("restaurantKey");
         }
         daoRest = new DAORestaurant();
-        restaurantKey = "-MukspRMoaeV7w04xhk5";
     }
 
     @Override
@@ -108,17 +107,20 @@ public class gpRestaurantFragment extends Fragment {
         TextView restaurantCat = (TextView) view.findViewById(R.id.restCategoryId);
         ImageView restaurantImg = (ImageView) view.findViewById(R.id.restImageId);
 
-        daoRest.getRestaurantsByKey(restaurantKey).addOnSuccessListener(suc ->{
-            Restaurant restaurant = suc.getValue(Restaurant.class);
-            assert restaurant != null;
-            restaurantName.setText(restaurant.getRestaurantName());
-            restaurantCat.setText(restaurant.getCategory());
-            if (restaurant.getRestaurantImageUrl() != null) {
-                Picasso.get().load(restaurant.getRestaurantImageUrl()).fit().centerCrop().into(restaurantImg);
-            }
-        }).addOnFailureListener(er ->{
-            Toast.makeText(restaurantName.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-        });
+        if(restaurantKey != null){
+            daoRest.getRestaurantsByKey(restaurantKey).addOnSuccessListener(suc ->{
+                Restaurant restaurant = suc.getValue(Restaurant.class);
+                assert restaurant != null;
+                restaurantName.setText(restaurant.getRestaurantName());
+                restaurantCat.setText(restaurant.getCategory());
+                if (restaurant.getRestaurantImageUrl() != null) {
+                    Picasso.get().load(restaurant.getRestaurantImageUrl()).fit().centerCrop().into(restaurantImg);
+                }
+            }).addOnFailureListener(er ->{
+                Toast.makeText(restaurantName.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        }
+
 
         Button add = (Button) view.findViewById(R.id.addButton);
         add.setOnClickListener(new View.OnClickListener() {

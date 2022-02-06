@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -137,7 +138,10 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
 
     @Override
     public void onItemClick(int position) {
-        Toast.makeText(getContext(), "Navigating to restaurant" + position, Toast.LENGTH_SHORT).show();
+        Bundle args = new Bundle();
+        args.putString("restaurantKey", rps.get(position).getRestaurantKey());
+        Navigation.findNavController(getView()).navigate(R.id.DestRestaurant, args);
+
     }
 
 //    @Override
