@@ -72,19 +72,7 @@
         app:layout_constraintVertical_bias="0.26" />
 
     <TextView
-<<<<<<< HEAD:onlyfoods/src/main/res/layout/fragment_reviews.xml
-<<<<<<< Updated upstream:onlyfoods/src/main/res/layout/fragment_reviews.xml
-<<<<<<< Updated upstream:onlyfoods/src/main/res/layout/fragment_reviews.xml
-        android:id="@+id/TVReviewComment"
-=======
-        android:id="@+id/TVDealsTitle"
->>>>>>> Stashed changes:onlyfoods/src/main/res/layout/fragment_reviews_item.xml
-=======
-        android:id="@+id/TVDealsTitle"
->>>>>>> Stashed changes:onlyfoods/src/main/res/layout/fragment_reviews_item.xml
-=======
         android:id="@+id/TVReviewMessage"
->>>>>>> master:onlyfoods/src/main/res/layout/fragment_reviews_item.xml
         android:layout_width="230dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
