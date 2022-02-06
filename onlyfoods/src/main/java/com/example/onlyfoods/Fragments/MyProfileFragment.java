@@ -18,9 +18,11 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.onlyfoods.Adapters.ViewPagerAdapter;
 import com.example.onlyfoods.DAOs.DAOBackdrop;
+import com.example.onlyfoods.DAOs.DAODeals;
 import com.example.onlyfoods.DAOs.DAOProfileImage;
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Backdrop;
+import com.example.onlyfoods.Models.Deal;
 import com.example.onlyfoods.Models.ProfileImage;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.R;
