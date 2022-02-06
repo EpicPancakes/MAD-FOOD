@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             case "My profile":
                 break;
             case "Deals":
-                //navController.navigate(R.id.);
+                navController.navigate(R.id.DestDeals);
                 break;
         }
     }

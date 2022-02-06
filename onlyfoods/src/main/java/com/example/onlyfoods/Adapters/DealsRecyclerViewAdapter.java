@@ -18,7 +18,6 @@ import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.Models.User;
 import com.example.onlyfoods.databinding.FragmentDealsItemBinding;
 import com.example.onlyfoods.databinding.LeyhangResultsItemBinding;
-import com.example.onlyfoods.placeholder.PlaceholderContent.PlaceholderItem;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
