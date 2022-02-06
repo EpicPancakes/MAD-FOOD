@@ -175,11 +175,11 @@ public class ReviewsFragment extends Fragment implements MyReviewsRecyclerViewAd
     private void deleteReviewinUser(String revKey){
         // Include review key in user's reviews list by updating user
         DAOUser daoUser = new DAOUser();
-        daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
+        daoUser.getByUserKeyOnce(sessionUserKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                user = snapshot.getValue(User.class);
-                user.setUserKey(snapshot.getKey());
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                user = dataSnapshot.getValue(User.class);
+                user.setUserKey(dataSnapshot.getKey());
                 if (user != null) {
                     Map<String, Object> objectHM = new HashMap<>();
                     Map<String, Boolean> booleanHM;
@@ -198,10 +198,8 @@ public class ReviewsFragment extends Fragment implements MyReviewsRecyclerViewAd
                     });
                 }
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+        }).addOnFailureListener(er->{
+            Toast.makeText(getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
         });
     }
 }

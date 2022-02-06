@@ -135,20 +135,15 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
                                 objectHM.put("following", booleanHM);
 
                                 daoUser.update(sessionUser.getUserKey(), objectHM).addOnSuccessListener(suc2 -> {
-//                                    holder.BTNFollowerFollowing.setVisibility(View.VISIBLE);
-//                                    holder.BTNFollowerFollow.setVisibility(View.INVISIBLE);
-//                                    Toast.makeText(getContext(), "User followed", Toast.LENGTH_SHORT).show();
                                 });
                             }).addOnFailureListener(er ->
                             {
-//                                Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
                             });
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
                     }
                 });
             }
@@ -186,13 +181,9 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
                                 booleanHM2.remove(sessionUser.getUserKey());
                                 objectHM2.put("followers", booleanHM2);
                                 daoUser.update(followerUser.getUserKey(), objectHM2).addOnSuccessListener(suc2 -> {
-//                                    holder.BTNFollowerFollowing.setVisibility(View.INVISIBLE);
-//                                    holder.BTNFollowerFollow.setVisibility(View.VISIBLE);
-//                                    Toast.makeText(view.getContext(), "User unfollowed", Toast.LENGTH_SHORT).show();
                                 });
                             }).addOnFailureListener(er ->
                             {
-//                                Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
                             });
                         }
                     }
