@@ -130,7 +130,7 @@ public class leyhangCategoriesFragment extends Fragment implements FiltersRecycl
         View.OnClickListener OCLSavedFilter = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.DestCategories);
+                Navigation.findNavController(view).navigate(R.id.DestSaved);
             }
         };
         BtnSavedFilter.setOnClickListener(OCLSavedFilter);
