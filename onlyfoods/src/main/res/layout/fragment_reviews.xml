@@ -84,7 +84,11 @@
 
     <TextView
 <<<<<<< Updated upstream:onlyfoods/src/main/res/layout/fragment_reviews.xml
+<<<<<<< Updated upstream:onlyfoods/src/main/res/layout/fragment_reviews.xml
         android:id="@+id/TVReviewComment"
+=======
+        android:id="@+id/TVDealsTitle"
+>>>>>>> Stashed changes:onlyfoods/src/main/res/layout/fragment_reviews_item.xml
 =======
         android:id="@+id/TVDealsTitle"
 >>>>>>> Stashed changes:onlyfoods/src/main/res/layout/fragment_reviews_item.xml

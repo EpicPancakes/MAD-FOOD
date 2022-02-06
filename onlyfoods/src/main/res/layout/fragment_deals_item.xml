@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Eyuzu Japanese Cuisine"
+        android:text="A&amp;W"
         android:textColor="@color/R4"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Japanese"
+        android:text="Fast Food"
         android:textColor="@color/gray"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -61,9 +61,10 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/BtnDealsPrice"
-        android:layout_width="70dp"
+        android:layout_width="45dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="#4271CD"
         android:text="Button"
         android:textAlignment="center"
@@ -71,6 +72,7 @@
         android:textSize="8sp"
         app:cornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/TVDealsTitle"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="RM 9.49" />
