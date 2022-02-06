@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "789450388183",
+    "firebase_url": "https://onlyfoods-e16b9-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "onlyfoods-e16b9",
+    "storage_bucket": "onlyfoods-e16b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789450388183:android:e9191467260a2d8f633692",
+        "android_client_info": {
+          "package_name": "com.example.onlyfoods"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789450388183-p6pb76c22gea4pg7vi2r56ki0sejemu0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.onlyfoods",
+            "certificate_hash": "049d8138e286d59eb86aee857a99b0dfb9d5077a"
+          }
+        },
+        {
+          "client_id": "789450388183-1hc9k7bclfr4fk01r8l2qmu5da99dp2a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxJFe5ZRSdwHml582gL4rmuT1OMoUVRWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789450388183-1hc9k7bclfr4fk01r8l2qmu5da99dp2a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,7 +3,7 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="recommendations">Recommendations</string>
+    <string name="recommendation">Recommendations</string>
     <string name="logout">Logout</string>
     <string name="recent_places">Recent Places</string>
     <string name="reviews">Reviews</string>
@@ -12,23 +12,30 @@
     <string name="add">Add</string>
     <string name="recent_place">Recent Place</string>
     <string name="review">Review</string>
+    <string name="separator">||</string>
+    <string name="follow">Follow</string>
+    <string name="days_ago">days ago</string>
 
-
-    <string name="meow_string">Meow</string>
-    <string name="wang_string">Wang</string>
-    <string name="sniffle_string">Sniffle</string>
     <string name="about_app_title_string">About App</string>
-    <string name="about_app_desc_string">This App is an app for animal lovers.</string>
+    <string name="about_app_desc_string">This App is an app for food lovers.</string>
     <string name="home_tb_string">Home</string>
     <string name="about_app_tb_string">About App</string>
     <string name="navigation_drawer_open">Open Drawer</string>
     <string name="navigation_drawer_close">Close Drawer</string>
-    <string name="side_nav_header_string">Animal Lover</string>
-    <string name="side_nav_sub_header_string">The best therapy is fur with four legs.</string>
-    <string name="cat">Cat</string>
-    <string name="dog">Dog</string>
-    <string name="hedgehog">Hedgehog</string>
+    <string name="side_nav_header_string">Food Lover</string>
+    <string name="side_nav_sub_header_string">The best therapy is food with four utensils.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_a_restaurant">Select A Restaurant</string>
+    <string name="choose_who_to_recommend_to">Choose who to recommend to</string>
+    <string name="write_a_message">Write a message</string>
+    <string name="search_for_a_follower">Search for a follower ...</string>
+    <string name="tell_your_follower_what_to_expect_about_this_restaurant">Tell your follower what to expect about this restaurant</string>
+    <string name="search_for_a_restaurant">Search for a restaurant ...</string>
+    <string name="recommend_place">Recommend Place</string>
+    <string name="submit_and_add_review">Submit and Add Review</string>
+    <string name="submit_only">Submit Only</string>
+    <string name="date_arrived">Date Arrived</string>
+    <string name="select_date">Select Date</string>
 </resources>

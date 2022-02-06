@@ -13,13 +13,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/TBMainAct"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="?attr/colorPrimary"-->
-<!--            android:minHeight="?attr/actionBarSize" />-->
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/NHFMain"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -27,7 +20,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_animal_lover" />
+            app:navGraph="@navigation/nav_onlyfoods" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/BottomNavView"
@@ -36,7 +29,8 @@
             android:background="@color/R4"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
-            app:menu="@menu/menu_bottom" />
+            app:menu="@menu/menu_bottom"
+            app:labelVisibilityMode="unlabeled"/>
 
     </LinearLayout>
 
