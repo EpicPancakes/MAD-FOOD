@@ -90,6 +90,7 @@ public class DealDetailFragment extends Fragment {
         ImageView IVDealsDetailsBackdrop = view.findViewById(R.id.IVDealsDetailsBackdrop);
         TextView TVDealsDetailsResName = view.findViewById(R.id.TVDealsDetailsResName);
         TextView TVDealsDetailsTitle = view.findViewById(R.id.TVDealsDetailsTitle);
+        TextView TVDealsDetailsPrice = view.findViewById(R.id.TVDealsDetailsPrice);
 
         daoDeals.getDealByKey(dealKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
@@ -99,6 +100,7 @@ public class DealDetailFragment extends Fragment {
                 deal.setDealKey(dataSnapshot.getKey());
 
                 TVDealsDetailsTitle.setText(deal.getDealTitle());
+                TVDealsDetailsPrice.setText(deal.getPrice());
 
                 daoRest.getRestaurantsByKey(deal.getRestaurantKey()).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override

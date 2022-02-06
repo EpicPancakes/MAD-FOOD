@@ -36,6 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="A&amp;W"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/IVDealsDetailsLogo"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/IVDealsDetailsLogo"
@@ -43,14 +45,41 @@
 
     <TextView
         android:id="@+id/TVDealsDetailsTitle"
-        android:layout_width="200dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="RM9.49 for Chicken Coney with 1 Root Beer (Regular) worth RM12.90"
+        android:fontFamily="serif"
+        android:text="Chicken Coney with 1 Root Beer (Regular) worth RM12.90"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintHorizontal_bias="0.219"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVDealsDetailsPrice" />
+
+    <TextView
+        android:id="@+id/TVDealsDetailsPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="RM 9.49"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVDealsDetailsResName" />
+
+    <TextView
+        android:id="@+id/TVStringFor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="serif"
+        android:text="for"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/TVDealsDetailsPrice"
+        app:layout_constraintStart_toEndOf="@+id/TVDealsDetailsPrice"
+        app:layout_constraintTop_toTopOf="@+id/TVDealsDetailsPrice"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
