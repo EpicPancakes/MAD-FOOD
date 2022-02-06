@@ -12,7 +12,13 @@
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/app/src/main/res/layout/header_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/app/src/main/res/menu/menu_bottom.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/app/src/main/res/menu/menu_side.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/background_with_shadow.xml" value="0.23378378378378378" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/circular_red_yellow_button.xml" value="0.23055555555555557" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/follow_button.xml" value="0.3828125" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/follow_button_default.xml" value="0.3828125" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/follow_button_pressed.xml" value="0.3828125" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/following_button.xml" value="0.3310810810810811" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/gradient.xml" value="0.23378378378378378" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/gray_border.xml" value="0.11197916666666667" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/red_yellow_button.xml" value="0.2361111111111111" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/red_yellow_button_default.xml" value="0.2361111111111111" />
@@ -22,7 +28,12 @@
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/red_yellow_rounded_left_button.xml" value="0.23055555555555557" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/red_yellow_rounded_right_button.xml" value="0.23055555555555557" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/rounded_rectangle.xml" value="0.23055555555555557" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/rounded_rectangle_90dp.xml" value="0.23378378378378378" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/rounded_rectangle_r2_12dp.xml" value="0.23378378378378378" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/rounded_rectangle_r2_25dp.xml" value="0.23378378378378378" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/rounded_rectangle_r2_button_12dp.xml" value="0.23378378378378378" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/rounded_rectangle_y1.xml" value="0.23055555555555557" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/rounded_rectangle_y1_50dp.xml" value="0.23378378378378378" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/rounded_rectangle_y1_75dp.xml" value="0.23055555555555557" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/rounded_rectangle_y1_90dp.xml" value="0.23055555555555557" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/drawable/rounded_top_rectangle_y1_90dp.xml" value="0.23055555555555557" />
@@ -47,14 +58,44 @@
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_cat.xml" value="0.21981981981981982" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_dog.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_edit_profile.xml" value="0.30082796688132474" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_followers.xml" value="0.72" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_followers_item.xml" value="0.536" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_followers_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_following.xml" value="0.8" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_following_item.xml" value="0.4" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_following_list.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_followings_list.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_follows.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_gp_edit_review.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_gp_review.xml" value="0.21981981981981982" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_hedgehog.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_my_profile.xml" value="0.2" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_actual_discover.xml" value="0.264" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_discover.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_filter.xml" value="0.12342342342342343" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_recommend.xml" value="0.12342342342342343" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_results.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_leyhang_saved.xml" value="0.2" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_my_profile.xml" value="0.4" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_recent_places.xml" value="0.6045548654244306" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_recent_places_item.xml" value="0.72" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_recent_places_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_recommendations.xml" value="0.16799999999999998" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_recommendations_item.xml" value="0.4" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_recommendations_list.xml" value="0.21981981981981982" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_reviews.xml" value="0.6" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_reviews_item.xml" value="0.536" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_reviews_list.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/header_layout.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_select_restaurant.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_spin_the_wheel.xml" value="0.176" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/fragment_user_profile.xml" value="0.2" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/header_layout.xml" value="0.264" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/leyhang_discover_item.xml" value="0.264" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/leyhang_filter_item.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/leyhang_filter_results_item.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/leyhang_saved_item.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/reviews_item.xml" value="0.21981981981981982" />
+        <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/layout/spin_the_wheel.xml" value="0.11036036036036036" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/OnlyFoods/onlyfoods/src/main/res/menu/menu_bottom.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/layout/fragment_about_app.xml" value="0.36666666666666664" />
@@ -66,49 +107,16 @@
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/layout/header_layout.xml" value="0.264" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/menu/menu_bottom.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/60172/AndroidStudioProjects/Practical6/app/src/main/res/menu/menu_side.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/drawable/a&amp;wLogo_background.xml" value="0.3675" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/activity_main_menu.xml" value="0.328804347826087" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_about_app.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_add_recommendation.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deal_detail.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deal_item.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deals.xml" value="0.67" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deals_details.xml" value="0.5" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deals_details_view.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deals_item.xml" value="0.22145328719723184" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deals_list.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_dog.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_edit_profile.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_following_item.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_following_list.xml" value="0.34601449275362317" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_follows.xml" value="0.34601449275362317" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_gp_review.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_hedgehog.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_leyhang_discover.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_leyhang_filter.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_leyhang_saved.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_my_profile.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recent_places.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recent_places_item.xml" value="0.34601449275362317" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recent_places_list.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recommendations.xml" value="0.34601449275362317" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recommendations_item.xml" value="0.34601449275362317" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_recommendations_list.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_reviews.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_reviews_item.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_reviews_list.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_user_profile.xml" value="0.3171171171171171" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/layout/header_layout.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/jiaqi/Documents/UM/Sem 7/Mobile App Development/MAD-FOOD/onlyfoods/src/main/res/mipmap-anydpi-v26/a&amp;wLogo.xml" value="0.3675" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/activity_haikal_registration.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/activity_main_menu.xml" value="0.1" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deals_item.xml" value="0.4" />
+        <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_deals_list.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/layout/fragment_leyhang_discover.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/GitHub/MAD-FOOD/onlyfoods/src/main/res/menu/menu_bottom.xml" value="0.1" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
