@@ -80,7 +80,7 @@ public class FollowersRecyclerViewAdapter extends RecyclerView.Adapter<Followers
             holder.BTNFollowerFollowing.setVisibility(View.VISIBLE);
             holder.BTNFollowerFollow.setVisibility(View.INVISIBLE);
             holder.BTNFollowerFollowing.setEnabled(false);
-            holder.BTNFollowerFollowing.setText("Disabled");
+            holder.BTNFollowerFollowing.setText("You");
         }else {
             // check if session user is currently following viewed user
             daoUser.checkIfFollows(sessionUserKey, followerUser.getUserKey()).addValueEventListener(new ValueEventListener() {

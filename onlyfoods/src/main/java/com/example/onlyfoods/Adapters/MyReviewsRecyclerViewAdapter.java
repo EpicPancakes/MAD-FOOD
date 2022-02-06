@@ -105,7 +105,6 @@ public class MyReviewsRecyclerViewAdapter extends RecyclerView.Adapter<MyReviews
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.setHeaderTitle("Delete Entry?");
             MenuItem delete = menu.add(Menu.NONE, 1, 1, "Delete");
             delete.setOnMenuItemClickListener(this);
         }
