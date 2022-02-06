@@ -250,14 +250,6 @@ public class leyhangDiscoverFragment extends Fragment implements DiscoverRecycle
         Bundle args = new Bundle();
         args.putString("restaurantKey", restaurants.get(position).getRestaurantKey());
         Navigation.findNavController(getView()).navigate(R.id.DestRestaurant, args);
-        String category = restaurants.get(position).getCategory();
-        Map<String, Object> stringHM = new HashMap<>();
-        stringHM.put("recentCategory", category);
-        daoUser.update(sessionUserKey, stringHM).addOnSuccessListener(suc->{
-
-        }).addOnFailureListener(er->{
-
-        });
 
     }
 }
