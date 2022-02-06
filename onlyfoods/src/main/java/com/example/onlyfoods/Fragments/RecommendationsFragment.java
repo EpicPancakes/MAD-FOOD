@@ -151,6 +151,8 @@ public class RecommendationsFragment extends Fragment implements Recommendations
 
     @Override
     public void onItemClick(int position) {
-        Toast.makeText(getContext(), "Navigating to restaurant" + position, Toast.LENGTH_SHORT).show();
+        Bundle args = new Bundle();
+        args.putString("restaurantKey", recs.get(position).getRestaurantKey());
+        Navigation.findNavController(getView()).navigate(R.id.DestRestaurant, args);
     }
 }
