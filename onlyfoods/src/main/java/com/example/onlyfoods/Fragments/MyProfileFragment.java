@@ -157,7 +157,7 @@ public class MyProfileFragment extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -253,43 +253,3 @@ public class MyProfileFragment extends Fragment {
     }
 
 }
-
-
-//                DAOUser daoUser = new DAOUser();
-//                User user = new User("testUser");
-//                daoUser.add(user);
-
-// Include recent place key in user's recent places list by updating user
-//                DAOUser daoUser = new DAOUser();
-//                daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        user = snapshot.getValue(User.class);
-//                        user.setUserKey(snapshot.getKey());
-//                        if (user != null) {
-//                            Map<String, Object> objectHM = new HashMap<>();
-//                            Map<String, Boolean> booleanHM;
-//                            if(user.getFollowers()!=null){
-//                                booleanHM = user.getFollowers();
-//                            }else{
-//                                booleanHM = new HashMap<>();
-//                            }
-//                            booleanHM.put("-MuutRjvNVBKBLgtgoay", true);
-//                            booleanHM.put("-MuutSTwAsOozQY-4q__", true);
-//                            booleanHM.put("-MuutT3u5vHv0aGdAzEi", true);
-//                            booleanHM.put("-MuutTWbptHyoyd45QuL", true);
-//                            booleanHM.put("-MuutVzOns5vF6LrOxce", true);
-//                            objectHM.put("followers", booleanHM);
-//                            daoUser.update(user.getUserKey(), objectHM).addOnSuccessListener(suc -> {
-////                                Toast.makeText(view.getContext(), "Record is updated", Toast.LENGTH_SHORT).show();
-//                            }).addOnFailureListener(er ->
-//                            {
-//                                Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-//                            });
-//                        }
-//                    }
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });

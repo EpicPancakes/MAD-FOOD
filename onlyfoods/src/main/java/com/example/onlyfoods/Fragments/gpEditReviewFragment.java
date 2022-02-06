@@ -1,11 +1,10 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +13,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.onlyfoods.DAOs.DAOReview;
-import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Review;
 import com.example.onlyfoods.Models.User;
+import com.example.onlyfoods.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,7 +72,6 @@ public class gpEditReviewFragment extends Fragment {
         if (getArguments() != null) {
             restaurantKey = getArguments().getString(ARG_RESTAURANT_KEY);
             reviewKey = getArguments().getString(ARG_REVIEW_KEY);
-//            fromMyProfile = getArguments().getBoolean(ARG_FROM_MY_PROFILE);
         }
         sessionUserKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
@@ -103,15 +94,12 @@ public class gpEditReviewFragment extends Fragment {
         BTNSubmitReview.setOnClickListener(v -> {
             if (!hasErrors()) {
                 Review review = new Review(sessionUserKey, restaurantKey, new Date(), ETReviewMessage.getText().toString());
-//
-
                 daoRev.updateByReview(reviewKey, review).addOnSuccessListener(suc -> {
                     getParentFragmentManager().popBackStackImmediate();
                 }).addOnFailureListener(er ->
                 {
-                    Toast.makeText(view.getContext(), "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Unable to update the review at the moment, please try again later." + er.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-//
             }
         });
 

@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/DestAddReview"
-        android:name="com.example.onlyfoods.gpReviewFragment"
+        android:name="com.example.onlyfoods.Fragments.gpReviewFragment"
         android:label="Add Review"
         tools:layout="@layout/fragment_gp_review" />
     <fragment
@@ -123,20 +123,28 @@
         android:label="Spin The Wheel!" />
     <fragment
         android:id="@+id/DestDealDetails"
-        android:name="com.example.onlyfoods.DealDetailFragment"
+        android:name="com.example.onlyfoods.Fragments.DealDetailFragment"
         android:label="Deal Details" />
     <fragment
         android:id="@+id/DestDeals"
         android:name="com.example.onlyfoods.Fragments.DealsFragment"
-        android:label="Available Deals" />
+        android:label="Available Deals" >
+        <action
+            android:id="@+id/action_DestDeals_to_DestDealDetails"
+            app:destination="@id/DestDealDetails" />
+    </fragment>
     <fragment
         android:id="@+id/DestEditReview"
-        android:name="com.example.onlyfoods.gpEditReviewFragment"
+        android:name="com.example.onlyfoods.Fragments.gpEditReviewFragment"
         android:label="Edit Review"
         tools:layout="@layout/fragment_gp_edit_review" />
     <fragment
         android:id="@+id/DestRestaurant"
-        android:name="com.example.onlyfoods.gpRestaurantFragment"
+        android:name="com.example.onlyfoods.Fragments.gpRestaurantFragment"
         android:label="Restaurant View"
-        tools:layout="@layout/fragment_gp_restaurant" />
+        tools:layout="@layout/fragment_gp_restaurant" >
+        <action
+            android:id="@+id/action_DestRestaurant_to_DestEditReview"
+            app:destination="@id/DestEditReview" />
+    </fragment>
 </navigation>

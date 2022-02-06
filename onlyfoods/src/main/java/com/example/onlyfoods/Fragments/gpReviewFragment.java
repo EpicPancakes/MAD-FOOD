@@ -1,4 +1,4 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +17,7 @@ import com.example.onlyfoods.DAOs.DAOReview;
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.Review;
 import com.example.onlyfoods.Models.User;
+import com.example.onlyfoods.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

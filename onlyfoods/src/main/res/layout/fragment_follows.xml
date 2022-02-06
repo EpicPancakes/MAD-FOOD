@@ -18,23 +18,6 @@
         app:layout_constraintTop_toBottomOf="@+id/TLUPFollows"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/TVFollowProfileName"
-        android:layout_width="147dp"
-        android:layout_height="25dp"
-        android:fontFamily="@font/montserrat"
-        android:gravity="center"
-        android:text="Fitri Makmor"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/TLUPFollows"
         android:layout_width="match_parent"
@@ -58,6 +41,23 @@
             android:text="@string/following" />
 
     </com.google.android.material.tabs.TabLayout>
+
+    <TextView
+        android:id="@+id/TVFollowProfileName"
+        android:layout_width="147dp"
+        android:layout_height="25dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="Fitri Makmor"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
 
     <View
         android:id="@+id/HLFollows"

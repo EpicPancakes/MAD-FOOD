@@ -1,4 +1,4 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -20,9 +19,9 @@ import com.example.onlyfoods.DAOs.DAOProfileImage;
 import com.example.onlyfoods.DAOs.DAOReview;
 import com.example.onlyfoods.DAOs.DAOUser;
 import com.example.onlyfoods.Models.ProfileImage;
-import com.example.onlyfoods.Models.Recommendation;
 import com.example.onlyfoods.Models.Review;
 import com.example.onlyfoods.Models.User;
+import com.example.onlyfoods.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -136,20 +135,6 @@ public class ReviewAdapter extends
         }
 
 
-            //Working
-//        if(list.getUserKey().equals(sessionUserKey)){
-//            holder.menuPopUp.setVisibility(View.VISIBLE);
-//            holder.menuPopUp.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Bundle args = new Bundle();
-//                    args.putString("reviewKey", list.getReviewKey());
-//                    args.putString("restaurantKey", list.getRestaurantKey());
-//                    Navigation.findNavController(v).navigate(R.id.DestEditReview, args);
-//                }
-//            });
-//        }
-
         daoPI.getByUserKey(list.getUserKey()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -222,8 +207,6 @@ public class ReviewAdapter extends
     }
 
     public ReviewAdapter(ArrayList<Review> list){
-        //REMOVED CONTEXT FROM THE PARAMETER OF THE CONSTRCUTOR ABV ^
-//        this.mContext =mContext;
         this.lists = list;
     }
 

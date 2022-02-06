@@ -176,11 +176,11 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
     private void deleteRPinUser(String rpKey){
         // Include recent place key in user's recent places list by updating user
         DAOUser daoUser = new DAOUser();
-        daoUser.getByUserKey(sessionUserKey).addValueEventListener(new ValueEventListener() {
+        daoUser.getByUserKeyOnce(sessionUserKey).addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                user = snapshot.getValue(User.class);
-                user.setUserKey(snapshot.getKey());
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                user = dataSnapshot.getValue(User.class);
+                user.setUserKey(dataSnapshot.getKey());
                 if (user != null) {
                     Map<String, Object> objectHM = new HashMap<>();
                     Map<String, Boolean> booleanHM;
@@ -199,10 +199,8 @@ public class RecentPlacesFragment extends Fragment implements MyRecentPlacesRecy
                     });
                 }
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+        }).addOnFailureListener(er->{
+            Toast.makeText(getContext(), "Unable to retrieve user data the moment, please try again later." + er.getMessage(), Toast.LENGTH_SHORT).show();
         });
     }
 }

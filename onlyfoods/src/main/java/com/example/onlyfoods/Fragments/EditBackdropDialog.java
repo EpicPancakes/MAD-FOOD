@@ -144,7 +144,6 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
             deleteFile();
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mBackdropImageUri));
-
             fileReference.putFile(mBackdropImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -156,14 +155,11 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
                                     PBEditBackdrop.setProgress(0);
                                 }
                             }, 500);
-
                             Toast.makeText(view.getContext(), "Upload successful", Toast.LENGTH_LONG).show();
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while(!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
-
                             Backdrop backdrop = new Backdrop(sessionUserKey, ETBackdropFileName.getText().toString().trim(), downloadUrl.toString());
-
                             daoBD.add(backdrop);
                         }
                     })
@@ -180,7 +176,6 @@ public class EditBackdropDialog extends AppCompatDialogFragment {
                             PBEditBackdrop.setProgress((int) progress);
                         }
                     });
-
         } else {
             Toast.makeText(view.getContext(), "No file selected", Toast.LENGTH_SHORT).show();
         }
