@@ -1,6 +1,5 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Fragments;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +13,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,9 +21,10 @@ import android.widget.Toast;
 import com.example.onlyfoods.DAOs.DAORestaurant;
 import com.example.onlyfoods.DAOs.DAOReview;
 import com.example.onlyfoods.DAOs.DAOUser;
-import com.example.onlyfoods.Models.Recommendation;
 import com.example.onlyfoods.Models.Restaurant;
 import com.example.onlyfoods.Models.Review;
+import com.example.onlyfoods.R;
+import com.example.onlyfoods.Adapters.ReviewAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

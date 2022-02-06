@@ -1,4 +1,4 @@
-package com.example.onlyfoods;
+package com.example.onlyfoods.Fragments;
 
 import android.os.Bundle;
 
@@ -16,6 +16,7 @@ import com.example.onlyfoods.DAOs.DAODeals;
 import com.example.onlyfoods.DAOs.DAORestaurant;
 import com.example.onlyfoods.Models.Deal;
 import com.example.onlyfoods.Models.Restaurant;
+import com.example.onlyfoods.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;

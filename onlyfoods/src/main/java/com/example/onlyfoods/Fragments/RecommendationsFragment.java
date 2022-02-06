@@ -130,6 +130,7 @@ public class RecommendationsFragment extends Fragment implements Recommendations
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getView().getContext(), "Unable to retrieve user information at the moment, please try again later.", Toast.LENGTH_SHORT).show();
 
             }
         });
